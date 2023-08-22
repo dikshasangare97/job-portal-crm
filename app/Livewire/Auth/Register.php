@@ -28,6 +28,7 @@ class Register extends Component
             'email' => $this->email,
             'password' => $newpassword,
             'contact_number' => $this->contact_number,
+            'is_user' => 1
         ]);
         session()->flash('message', 'Your registration is successfully.');
         $this->reset('name', 'email', 'password', 'contact_number');

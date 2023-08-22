@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
-class Login extends Component
+class RecruiterLogin extends Component
 {
     #[Rule('required|email')]
     public $email;
@@ -19,8 +19,9 @@ class Login extends Component
     {
         $this->validate();
         $user = User::where('email', $this->email)->first();
-
-        if ($user && ($user->is_user == 1) && Hash::check($this->password, $user->password)) {
+        $user->register_for;
+        if ($user && ($user->is_user == 0) && Hash::check($this->password, $user->password)) {
+            dd($user);
             auth()->login($user);
             session()->flash('message', "You are Login successfully.");
             return redirect()->to('/');
@@ -31,6 +32,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login');
+        return view('livewire.auth.recruiter-login');
     }
 }

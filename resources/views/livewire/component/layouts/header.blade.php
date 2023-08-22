@@ -55,6 +55,7 @@
                         </ul>
                     </div>
                     @else
+                    <!-- for user login -->
                     <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/login">
                         {{ __('Log in')}} <span aria-hidden="true">&rarr;</span>
                     </a>
@@ -64,6 +65,11 @@
                         {{ __('Sign up')}} <span aria-hidden="true">&rarr;</span>
                     </a>
                     @endif
+                    <!-- for recruiter login -->
+                    <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter-login">
+                        {{ __('Recruiter Login')}} <span aria-hidden="true">&rarr;</span>
+                    </a>
+
                     @endauth
                 </div>
                 @endif
@@ -113,15 +119,22 @@
                                             <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
                                         </li>
                                         <li>
-                                            <a wire:click="logout" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign out</a>
+                                            <livewire:component.logout />
                                         </li>
                                     </ul>
                                 </div>
                                 @else
+                                <!-- user login -->
                                 <a href="/login" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Log in')}} <span aria-hidden="true">&rarr;</span></a>
+
                                 @if (Route::has('register'))
                                 <a href="/register" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Sign up')}} <span aria-hidden="true">&rarr;</span></a>
                                 @endif
+
+                                <!-- for recruiter login -->
+                                <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/recruiter-login">
+                                    {{ __('Recruiter Login')}} <span aria-hidden="true">&rarr;</span>
+                                </a>
                                 @endauth
                             </div>
                             @endif

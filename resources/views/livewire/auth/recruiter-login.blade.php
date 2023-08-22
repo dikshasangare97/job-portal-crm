@@ -1,6 +1,6 @@
 <div class="min-h-screen flex flex-col items-center justify-center">
     <div class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
-        <div class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Create Your Account</div>
+        <div class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Login To Your Account</div>
         <div class="mt-2">
             @if (session()->has('message'))
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
@@ -15,20 +15,6 @@
         </div>
         <div class="mt-5">
             <form wire:submit="store">
-                <div class="flex flex-col mb-6">
-                    <label for="name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Full Name:</label>
-                    <div class="relative">
-                        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                            </svg>
-                        </div>
-
-                        <input id="name" type="text" wire:model="name" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Full Name" />
-                        <div class="text-xs text-red-600 font-bold">@error('name') {{ $message }} @enderror</div>
-
-                    </div>
-                </div>
                 <div class="flex flex-col mb-6">
                     <label for="email" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">E-Mail Address:</label>
                     <div class="relative">
@@ -59,27 +45,16 @@
 
                     </div>
                 </div>
-                <div class="flex flex-col mb-6">
-                    <label for="contact_number" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Mobile Number:</label>
-                    <div class="relative">
-                        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-black font-semibold">
-                            +91
-                            <!-- <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                            </svg> -->
-                        </div>
 
-                        <input id="contact_number" type="tel" wire:model="contact_number" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Mobile Number" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
-                        <div class="text-xs text-red-600 font-bold">@error('contact_number') {{ $message }} @enderror</div>
-
+                <div class="flex items-center mb-6 -mt-4">
+                    <div class="flex ml-auto">
+                        <a href="#" class="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700">Forgot Your Password?</a>
                     </div>
                 </div>
 
-
-
                 <div class="flex w-full">
                     <button type="submit" class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in">
-                        <span class="mr-2 uppercase">Register Now</span>
+                        <span class="mr-2 uppercase">Login</span>
                         <span>
                             <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                 <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -89,25 +64,20 @@
                 </div>
             </form>
         </div>
+        <div class="flex justify-center items-center mt-6 border-t ">
+            <p class="mt-4">Are you a new recruiter?</p>
+        </div>
         <div class="flex justify-center items-center mt-6">
-            <a href="/login" class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
-                <span>
-                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                    </svg>
-                </span>
-                <span class="ml-2">Already have an account?</span>
-            </a>
+            <div class="border px-20 py-3">
+                <a href="/recruiter-register" class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
+                    <span>
+                        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                        </svg>
+                    </span>
+                    <span class="ml-2 text-lg">Register Now</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
-<script>
-    function isNumber(evt) {
-        evt = (evt) ? evt : window.event;
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            return false;
-        }
-        return true;
-    }
-</script>
