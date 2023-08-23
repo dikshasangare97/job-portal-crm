@@ -5,6 +5,7 @@ use App\Livewire\Auth\RecruiterLogin;
 use App\Livewire\Auth\RecruiterRegister;
 use App\Livewire\Auth\Register;
 use App\Livewire\Homepage;
+use App\Livewire\Job\JobCreate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,5 @@ Route::get('/register', Register::class)->name('register');
 Route::get('/login', Login::class)->name('login');
 Route::get('/recruiter-login', RecruiterLogin::class)->name('recruiter-login');
 Route::get('/recruiter-register', RecruiterRegister::class)->name('recruiter-register');
+
+Route::get('/recruiter/job-posting', JobCreate::class)->name('recruiter/job-posting');

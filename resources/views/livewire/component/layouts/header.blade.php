@@ -24,12 +24,14 @@
                 </a>
                 @if (Route::has('login'))
                 @auth
-                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/">
-                    {{ __('Book Category')}}
+                @if(Auth::user()->is_user == 0)
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/job-posting">
+                    {{ __('Post a Job')}}
                 </a>
-                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/">
-                    {{ __('Books')}}
-                </a>
+                @else
+
+                @endif
+
                 @endauth
                 @endif
             </div>
@@ -98,7 +100,16 @@
                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Contact us')}}</a>
                             @if (Route::has('login'))
                             @auth
-                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> {{ __('Books')}}</a>
+
+                            @if(Auth::user()->is_user == 0)
+                            <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/job-posting">
+                                {{ __('Post a Job')}}
+                            </a>
+                            @else
+
+                            @endif
+
+
                             @endauth
                             @endif
                         </div>

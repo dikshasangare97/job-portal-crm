@@ -21,7 +21,6 @@ class RecruiterLogin extends Component
         $user = User::where('email', $this->email)->first();
         $user->register_for;
         if ($user && ($user->is_user == 0) && Hash::check($this->password, $user->password)) {
-            dd($user);
             auth()->login($user);
             session()->flash('message', "You are Login successfully.");
             return redirect()->to('/');
