@@ -1,9 +1,9 @@
 <div>
     <div class="flex">
-        <div class="w-1/3">
+        <div class="w-1/4">
             <livewire:job.job-search-sidebar />
         </div>
-        <div class="w-2/3">
+        <div class="w-2/4">
             @foreach($jobs as $job)
             <div class="flex bg-white shadow-lg rounded-xl mb-2 max-w-full ">
                 <div class="flex items-start px-4 py-6">
