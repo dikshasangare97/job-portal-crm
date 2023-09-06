@@ -18,19 +18,19 @@
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
+                    <input type="checkbox" wire:model="work_mode" id="from_office">
                     <label class="ml-2" for="from_office">Work from office</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
+                    <input type="checkbox" wire:model="work_mode" id="remote">
                     <label class="ml-2" for="remote">Remote</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
+                    <input type="checkbox" wire:model="work_mode" id="hybrid">
                     <label class="ml-2" for="hybrid">Hybrid</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
+                    <input type="checkbox" wire:model="work_mode" id="from_home">
                     <label class="ml-2" for="from_home">Temp. WFH</label>
                 </li>
             </ul>
@@ -54,19 +54,19 @@
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
+                    <input type="checkbox" wire:model="department" id="from_office">
                     <label class="ml-2" for="from_office">Work from office</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
+                    <input type="checkbox" wire:model="department" id="remote">
                     <label class="ml-2" for="remote">Remote</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
+                    <input type="checkbox" wire:model="department" id="hybrid">
                     <label class="ml-2" for="hybrid">Hybrid</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
+                    <input type="checkbox" wire:model="department" id="from_home">
                     <label class="ml-2" for="from_home">Temp. WFH</label>
                 </li>
             </ul>
@@ -89,22 +89,12 @@
         </div>
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
+                @foreach($locations as $location)
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
-                    <label class="ml-2" for="from_office">Work from office</label>
+                    <input type="checkbox" wire:model="location" value="{{ $location->id }}" id="location_{{ $location->id }}">
+                    <label class="ml-2" for="location_{{ $location->id }}">{{$location->city_name}}</label>
                 </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
-                    <label class="ml-2" for="remote">Remote</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
-                    <label class="ml-2" for="hybrid">Hybrid</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
-                    <label class="ml-2" for="from_home">Temp. WFH</label>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -126,19 +116,19 @@
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
+                    <input type="checkbox" wire:model="salary" id="from_office">
                     <label class="ml-2" for="from_office">Work from office</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
+                    <input type="checkbox" wire:model="salary" id="remote">
                     <label class="ml-2" for="remote">Remote</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
+                    <input type="checkbox" wire:model="salary" id="hybrid">
                     <label class="ml-2" for="hybrid">Hybrid</label>
                 </li>
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
+                    <input type="checkbox" wire:model="salary" id="from_home">
                     <label class="ml-2" for="from_home">Temp. WFH</label>
                 </li>
             </ul>
@@ -161,22 +151,12 @@
         </div>
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
+                @foreach($company_types as $company_type)
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
-                    <label class="ml-2" for="from_office">Work from office</label>
+                    <input type="checkbox" wire:model="company_type" value="{{ $company_type->id }}" id="company_type_{{ $company_type->id }}">
+                    <label class="ml-2" for="company_type_{{ $company_type->id }}">{{$company_type->company_type_name}}</label>
                 </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
-                    <label class="ml-2" for="remote">Remote</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
-                    <label class="ml-2" for="hybrid">Hybrid</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
-                    <label class="ml-2" for="from_home">Temp. WFH</label>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -197,22 +177,12 @@
         </div>
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
+                @foreach($role_categories as $role_category)
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
-                    <label class="ml-2" for="from_office">Work from office</label>
+                    <input type="checkbox" wire:model="work_mode" value="{{ $role_category->id }}" id="role_category_{{ $role_category->id }}">
+                    <label class="ml-2" for="role_category_{{ $role_category->id }}">{{$role_category->role_name}}</label>
                 </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
-                    <label class="ml-2" for="remote">Remote</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
-                    <label class="ml-2" for="hybrid">Hybrid</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
-                    <label class="ml-2" for="from_home">Temp. WFH</label>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -233,22 +203,12 @@
         </div>
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
+                @foreach($educations as $education)
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
-                    <label class="ml-2" for="from_office">Work from office</label>
+                    <input type="checkbox" wire:model="work_mode" value="{{ $education->id }}" id="education_{{ $education->id }}">
+                    <label class="ml-2" for="education_{{ $education->id }}">{{$education->education_name}}</label>
                 </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
-                    <label class="ml-2" for="remote">Remote</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
-                    <label class="ml-2" for="hybrid">Hybrid</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
-                    <label class="ml-2" for="from_home">Temp. WFH</label>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -269,22 +229,12 @@
         </div>
         <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
             <ul class="text-gray-500 text-sm">
+                @foreach($industries as $industry)
                 <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_office">
-                    <label class="ml-2" for="from_office">Work from office</label>
+                    <input type="checkbox" wire:model="work_mode" value="{{ $industry->id }}" id="industry_{{ $industry->id }}">
+                    <label class="ml-2" for="industry_{{ $industry->id }}">{{$industry->industry_name}}</label>
                 </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="remote">
-                    <label class="ml-2" for="remote">Remote</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="hybrid">
-                    <label class="ml-2" for="hybrid">Hybrid</label>
-                </li>
-                <li class="py-1">
-                    <input type="checkbox" name="work_mode" id="from_home">
-                    <label class="ml-2" for="from_home">Temp. WFH</label>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
