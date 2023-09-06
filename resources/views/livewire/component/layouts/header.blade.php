@@ -16,18 +16,39 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
+                @if (Route::has('login'))
+                @auth
+                @if(Auth::user()->is_user == 0)
+
                 <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="#">
                     {{ __('About us') }}
                 </a>
                 <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="#">
                     {{ __('Contact us')}}
                 </a>
-                @if (Route::has('login'))
-                @auth
-                @if(Auth::user()->is_user == 0)
+
                 <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/job-posting">
                     {{ __('Post a Job')}}
                 </a>
+                @elseif(Auth::user()->is_user == 2)
+                <!-- for super admin -->
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out mr-0" href="/admin/company-type">
+                    {{ __('Company Type')}}
+                </a>
+
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/education">
+                    {{ __('Education')}}
+                </a>
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/industry">
+                    {{ __('Industry')}}
+                </a>
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/location">
+                    {{ __('Location')}}
+                </a>
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/role">
+                    {{ __('Role')}}
+                </a>
+
                 @else
 
                 @endif
@@ -96,15 +117,37 @@
                 <div class="mt-6 flow-root" id="colse-nav-content">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('About us') }}</a>
-                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Contact us')}}</a>
                             @if (Route::has('login'))
                             @auth
 
                             @if(Auth::user()->is_user == 0)
-                            <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/job-posting">
+
+                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('About us') }}</a>
+                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Contact us')}}</a>
+
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/recruiter/job-posting">
                                 {{ __('Post a Job')}}
                             </a>
+                            @elseif(Auth::user()->is_user == 2)
+                            <!-- for super admin -->
+
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 mr-0" href="/admin/company-type">
+                                {{ __('Company Type')}}
+                            </a>
+
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/admin/education">
+                                {{ __('Education')}}
+                            </a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/admin/industry">
+                                {{ __('Industry')}}
+                            </a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/admin/location">
+                                {{ __('Location')}}
+                            </a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/admin/role">
+                                {{ __('Role')}}
+                            </a>
+
                             @else
 
                             @endif
