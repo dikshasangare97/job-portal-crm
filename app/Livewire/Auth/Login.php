@@ -20,10 +20,10 @@ class Login extends Component
         $this->validate();
         $user = User::where('email', $this->email)->first();
 
-        if ($user && ($user->is_user == 2) && Hash::check($this->password, $user->password)) {
+        if ($user && ($user->is_user == 1) && Hash::check($this->password, $user->password)) {
             auth()->login($user);
             session()->flash('message', "You are Login successfully.");
-            return redirect()->to('/admin');
+            return redirect()->to('/');
         } else {
             session()->flash('error', 'Something went wrong. Please check entered email and password.');
         }
