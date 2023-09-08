@@ -12,8 +12,9 @@
     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     @livewireStyles
-    @vite('resources/css/app.css')
+   
 </head>
 
 <body>
