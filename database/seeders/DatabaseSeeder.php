@@ -31,5 +31,13 @@ class DatabaseSeeder extends Seeder
             'is_user' => '2'
 
         ]);
+
+        tap(new JobSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new EducationSeeder(), function ($seeder) {
+            $seeder->run();
+        });
     }
 }

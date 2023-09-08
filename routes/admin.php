@@ -12,18 +12,16 @@ use App\Livewire\Admin\Location\LocationCreate;
 use App\Livewire\Admin\Location\LocationIndex;
 use App\Livewire\Admin\RoleCategory\RoleCategoryCreate;
 use App\Livewire\Admin\RoleCategory\RoleCategoryIndex;
-use App\Livewire\Admin\Salary\SalaryCreate;
-use App\Livewire\Admin\Salary\SalaryIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| admin Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register admin routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the "admin" middleware group. Make something great!
 |
 */
 
