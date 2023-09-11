@@ -94,8 +94,7 @@
                     <ul class="text-gray-500 text-sm">
                         @foreach($locations as $location)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="selectedLocations" wire:click="toggleLocation({{ $location->city_name }})" value="{{ $location->city_name }}" id="location_{{ $location->id }}">
-
+                            <input type="checkbox" wire:model="selectedLocations" wire:click="toggleLocation({{ $location->id }})" value="{{ $location->city_name }}" id="location_{{ $location->id }}">
                             <label class="ml-2" for="location_{{ $location->id }}">{{$location->city_name}}</label>
                         </li>
                         @endforeach
@@ -105,7 +104,7 @@
 
             <hr class="my-3">
 
-            <!-- Location -->
+            <!-- salary -->
             <div x-data="{ workModeOpen: true }">
                 <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
@@ -183,7 +182,7 @@
                     <ul class="text-gray-500 text-sm">
                         @foreach($role_categories as $role_category)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="work_mode" value="{{ $role_category->id }}" id="role_category_{{ $role_category->id }}">
+                            <input type="checkbox" wire:model="selectedRoleCategories" wire:click="toggleRoleCategory({{ $role_category->id }})" value="{{ $role_category->role_name }}" id="role_category_{{ $role_category->id }}">
                             <label class="ml-2" for="role_category_{{ $role_category->id }}">{{$role_category->role_name}}</label>
                         </li>
                         @endforeach
@@ -238,7 +237,7 @@
                     <ul class="text-gray-500 text-sm">
                         @foreach($industries as $industry)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="work_mode" value="{{ $industry->id }}" id="industry_{{ $industry->id }}">
+                            <input type="checkbox" wire:model="selectedIndustries" wire:click="toggleIndustry({{ $industry->id }})" value="{{ $industry->industry_name }}" id="industry_{{ $industry->id }}">
                             <label class="ml-2" for="industry_{{ $industry->id }}">{{$industry->industry_name}}</label>
                         </li>
                         @endforeach

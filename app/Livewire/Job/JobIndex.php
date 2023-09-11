@@ -34,17 +34,10 @@ class JobIndex extends Component
 
     public function  render()
     {
-        // $this->jobs = Job::whereIn('education_qualification', $this->selectedEducations)
-        //     ->whereIn('location', $this->selectedLocations)
-        //     ->orWhere('education_qualification', $this->selectedCompanyTypes)
-        //     ->orWhere('role', $this->selectedRoleCategories)
-        //     ->orWhere('industry', $this->selectedIndustries)
-        //     ->get();
-
         $this->jobs = Job::where(function ($query) {
             $query->whereIn('education_qualification', $this->selectedEducations)
                 ->orWhereIn('location', $this->selectedLocations)
-                ->orWhereIn('education_qualification', $this->selectedCompanyTypes)
+                // ->orWhereIn('education_qualification', $this->selectedCompanyTypes)
                 ->orWhereIn('role', $this->selectedRoleCategories)
                 ->orWhereIn('industry', $this->selectedIndustries);
         })->get();
@@ -84,6 +77,32 @@ class JobIndex extends Component
             $this->selectedLocations = array_diff($this->selectedLocations, [$locationId]);
         } else {
             $this->selectedLocations[] = $locationId;
+        }
+    }
+
+    public function toggleRoleCategory($roleCategoryId)
+    {
+        if (!is_array($this->selectedRoleCategories)) {
+            $this->selectedRoleCategories = [];
+        }
+
+        if (in_array($roleCategoryId, $this->selectedRoleCategories)) {
+            $this->selectedRoleCategories = array_diff($this->selectedRoleCategories, [$roleCategoryId]);
+        } else {
+            $this->selectedRoleCategories[] = $roleCategoryId;
+        }
+    }
+
+    public function toggleIndustry($industryId)
+    {
+        if (!is_array($this->selectedIndustries)) {
+            $this->selectedIndustries = [];
+        }
+
+        if (in_array($industryId, $this->selectedIndustries)) {
+            $this->selectedIndustries = array_diff($this->selectedIndustries, [$industryId]);
+        } else {
+            $this->selectedIndustries[] = $industryId;
         }
     }
 }
