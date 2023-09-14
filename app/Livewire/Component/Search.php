@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Component;
 
-use App\Models\Job;
+use App\Models\PostJob;
 use Livewire\Component;
 
 class Search extends Component
@@ -13,7 +13,7 @@ class Search extends Component
 
     public function searchResult()
     {
-        $this->records = Job::orderby('id', 'DESC')->where('job_headline', 'like', '%' . $this->search_input . '%')->get();
+        $this->records = PostJob::orderby('id', 'DESC')->where('job_headline', 'like', '%' . $this->search_input . '%')->get();
         return  redirect('jobs/search/' . $this->search_input);
     }
     public function render()

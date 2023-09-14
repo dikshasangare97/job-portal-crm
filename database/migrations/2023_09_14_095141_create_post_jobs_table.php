@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('post_jobs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('job_headline')->nullable();
@@ -21,16 +21,18 @@ return new class extends Migration
             $table->string('work_experience')->nullable();
             $table->string('annual_salary')->nullable();
             $table->boolean('salary_hide_status')->default(0);
-            $table->string('location')->nullable();
+            $table->foreignId('location_id')->constrained('locations');
             $table->string('locality')->nullable();
-            $table->string('industry')->nullable();
+            $table->foreignId('industry_id')->constrained('industries');
             $table->string('functional_area')->nullable();
-            $table->string('role')->nullable();
+            $table->foreignId('role_id')->constrained('roles');
             $table->string('reference_code')->nullable();
             $table->string('vacancy')->nullable();
-            $table->string('education_qualification')->nullable();
+            $table->foreignId('education_qualification_id')->constrained('education');
             $table->string('company_name')->nullable();
+            $table->foreignId('company_type_id')->constrained('company_types');
             $table->text('company_detail')->nullable();
+            $table->string('posted_by')->nullable();
             $table->boolean('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
@@ -42,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('post_jobs');
     }
 };

@@ -82,7 +82,12 @@
                     <div class="w-1/3 mb-6 ml-2">
                         <label for="location" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Location:</label>
                         <br>
-                        <input type="text" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400" wire:model="location" id="location">
+                        <select wire:model="location" id="location" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select location</option>
+                            @foreach($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->city_name }}</option>
+                            @endforeach
+                        </select>
                         <div class="text-xs text-red-600 font-bold">@error('location') {{ $message }} @enderror</div>
                     </div>
                     <div class="w-1/3 mb-6 ml-2">
@@ -97,7 +102,12 @@
                     <div class="w-full mb-6 ml-2">
                         <label for="industry" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Industry:</label>
                         <br>
-                        <input type="text" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400" wire:model="industry" id="industry">
+                        <select wire:model="industry" id="industry" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select industry</option>
+                            @foreach($industries as $industry)
+                            <option value="{{ $industry->id }}">{{ $industry->industry_name }}</option>
+                            @endforeach
+                        </select>
                         <div class="text-xs text-red-600 font-bold">@error('industry') {{ $message }} @enderror</div>
                     </div>
                 </div>
@@ -112,7 +122,12 @@
                     <div class="w-1/3 mb-6 ml-2">
                         <label for="role" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Role:</label>
                         <br>
-                        <input type="text" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400" wire:model="role" id="role">
+                        <select wire:model="role" id="role" class="text-sm sm:text-base placeholder-gray-500 mt-2 w-96 pl-3 pr-4 rounded-lg border border-gray-400 py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select role</option>
+                            @foreach($roles as $roles)
+                            <option value="{{ $roles->id }}">{{ $roles->role_name }}</option>
+                            @endforeach
+                        </select>
                         <div class="text-xs text-red-600 font-bold">@error('role') {{ $message }} @enderror</div>
                     </div>
                 </div>
@@ -135,13 +150,10 @@
                     <div class="w-1/3 mb-6 ml-2">
                         <label for="education_qualification" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Educational qualification:</label>
                         <select wire:model="education_qualification" id="education_qualification" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
-                            <option value="null">Select employment type</option>
-                            <option value="Full-Time Employment">Full-Time Employment</option>
-                            <option value="Part-Time Employment">Part-Time Employment</option>
-                            <option value="Casual Employment">Casual Employment</option>
-                            <option value="Contract Employment">Contract Employment</option>
-                            <option value="Apprenticeship">Apprenticeship</option>
-                            <option value="Traineeship">Traineeship</option>
+                            <option value="null">Select education</option>
+                            @foreach($educations as $education)
+                            <option value="{{ $education->id }}">{{ $education->education_name }}</option>
+                            @endforeach
                         </select>
                         <div class="text-xs text-red-600 font-bold">@error('education_qualification') {{ $message }} @enderror</div>
                     </div>
@@ -160,9 +172,35 @@
                 </div>
                 <div class="flex">
                     <div class="w-1/2 mb-6 ml-2">
+                        <label for="company_type_id" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Company type:</label>
+                        <br>
+                        <select wire:model="company_type_id" id="company_type_id" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select company type</option>
+                            @foreach($company_types as $company_type)
+                            <option value="{{ $company_type->id }}">{{ $company_type->company_type_name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="text-xs text-red-600 font-bold">@error('company_type_id') {{ $message }} @enderror</div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-1/2 mb-6 ml-2">
                         <label for="company_detail" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Company details:</label>
                         <textarea wire:model="company_detail" id="company_detail" cols="30" rows="10" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"></textarea>
                         <div class="text-xs text-red-600 font-bold">@error('company_detail') {{ $message }} @enderror</div>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div class="w-1/2 mb-6 ml-2">
+                        <label for="posted_by" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job posted by:</label>
+                        <br>
+                        <select wire:model="posted_by" id="posted_by" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select</option>
+                            <option value="Company Jobs">Company Jobs</option>
+                            <option value="Consultant Jobs">Consultant Jobs</option>
+                        </select>
+                        <div class="text-xs text-red-600 font-bold">@error('posted_by') {{ $message }} @enderror</div>
                     </div>
                 </div>
 
