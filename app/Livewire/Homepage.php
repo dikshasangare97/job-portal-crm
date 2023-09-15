@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Job;
+use App\Models\PostJob;
 use Livewire\Component;
 
 class Homepage extends Component
@@ -10,7 +10,7 @@ class Homepage extends Component
     public function render()
     {
         return view('livewire.homepage', [
-            'jobs' => Job::orderBy('id', 'DESC')->get()
+            'jobs' => PostJob::orderBy('id', 'DESC')->get()
         ]);
     }
 }

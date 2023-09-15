@@ -216,9 +216,6 @@
                 </div>
             </div>
 
-
-
-
             <hr class="my-3">
 
             <!-- industry -->
@@ -247,6 +244,34 @@
 
             <hr class="my-3">
 
+            <!-- posted by -->
+            <div x-data="{ workModeOpen: true }">
+                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+                    <div class='w-5/6 items-center font-bold text-black py-3'>
+                        <button class="hover:underline">Posted By</button>
+                    </div>
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                    <ul class="text-gray-500 text-sm">
+                        <li class="py-1">
+                            <input type="checkbox" wire:model="selectedPostedBy" wire:click="togglePostedJob('Company Jobs')" value="Company Jobs" id="posted_company_jobs">
+                            <label class="ml-2" for="posted_company_jobs">Company Jobs</label>
+                        </li>
+                        <li class="py-1">
+                            <input type="checkbox" wire:model="selectedPostedBy" wire:click="togglePostedJob('Consultant Jobs')" value="Consultant Jobs" id="posted_consultant_jobs">
+                            <label class="ml-2" for="posted_consultant_jobs">Consultant Jobs</label>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-3">
 
         </div>
 
@@ -263,7 +288,6 @@
                         <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{$job->job_headline}} </h2>
                     </div>
                     <p class="text-gray-700">{{$job->company_name}} </p>
-                    <p class="text-gray-700">{{$job->education_qualification}} </p>
 
                     <div class="mt-4 flex items-center">
                         <div class="flex text-gray-700 text-sm mr-3 border-r pr-3">
@@ -289,9 +313,17 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                             </svg>
-                            <span>{{$job->location}}</span>
+                            <span>{{$job->location->city_name}}</span>
                         </div>
                     </div>
+
+                    <div class="flex mt-3 text-gray-700">
+                        <svg class="w-4 h-4 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                        <p class="text-sm mt-1"> {{$job->education->education_name}} </p>
+                    </div>
+
                     <div class="flex mt-3 text-gray-700">
                         <svg class="w-4 h-4 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
@@ -331,7 +363,6 @@
                         <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{$getJob->job_headline}} </h2>
                     </div>
                     <p class="text-gray-700">{{$getJob->company_name}} </p>
-                    <p class="text-gray-700">{{$getJob->education_qualification}} </p>
 
                     <div class="mt-4 flex items-center">
                         <div class="flex text-gray-700 text-sm mr-3 border-r pr-3">
@@ -357,9 +388,16 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                             </svg>
-                            <span>{{$getJob->location}}</span>
+                            <span>{{$getJob->location->city_name}}</span>
                         </div>
                     </div>
+                    <div class="flex mt-3 text-gray-700">
+                        <svg class="w-4 h-4 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                        <p class="text-sm mt-1"> {{$getJob->education->education_name}} </p>
+                    </div>
+
                     <div class="flex mt-3 text-gray-700">
                         <svg class="w-4 h-4 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />

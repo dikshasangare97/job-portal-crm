@@ -22,21 +22,58 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $user = User::factory()->create([
+        // for admin
+        $admin = User::factory()->create([
             'name' => 'John Doe',
-            'email' => 'super_admin@dwebpixel.com',
+            'email' => 'admin@dwebpixel.com',
             'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
-            'register_for' => 'super_admin',
+            'register_for' => 'admin',
             'is_active' => '1',
             'is_user' => '2'
 
         ]);
 
-        tap(new JobSeeder(), function ($seeder) {
+        // for user 
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'user@dwebpixel.com',
+            'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
+            'register_for' => 'user',
+            'is_active' => '1',
+            'is_user' => '1'
+        ]);
+
+        // for recuiter
+        $recruiter = User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'recruiter@dwebpixel.com',
+            'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
+            'register_for' => 'recuiter',
+            'is_active' => '1',
+            'is_user' => '0'
+        ]);
+
+        tap(new EducationSeeder(), function ($seeder) {
             $seeder->run();
         });
 
-        tap(new EducationSeeder(), function ($seeder) {
+        tap(new CompanyTypeSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new IndustrySeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new LocationSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new RoleSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new JobSeeder(), function ($seeder) {
             $seeder->run();
         });
     }

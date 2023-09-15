@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Job;
 
-use App\Models\Job;
+use App\Models\PostJob;
 use Livewire\Component;
 
 class JobView extends Component
@@ -10,7 +10,7 @@ class JobView extends Component
     public $detail;
     public function mount($id)
     {
-        $this->detail = Job::find($id);
+        $this->detail = PostJob::find($id);
     }
 
     public function render()

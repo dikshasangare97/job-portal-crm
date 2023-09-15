@@ -5,8 +5,8 @@ namespace App\Livewire\Job;
 use App\Models\CompanyType;
 use App\Models\Education;
 use App\Models\Industry;
-use App\Models\Job;
 use App\Models\Location;
+use App\Models\PostJob;
 use App\Models\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,12 +21,13 @@ class JobIndex extends Component
     public $selectedCompanyTypes = [];
     public $selectedRoleCategories = [];
     public $selectedIndustries = [];
+    public $selectedPostedBy = [];
     public $jobs;
 
 
     public function mount($search)
     {
-        $this->records = Job::orderby('id', 'DESC')
+        $this->records = PostJob::orderby('id', 'DESC')
             ->where('job_headline', 'like', '%' . $search . '%')
             ->orWhere('employment_type', 'like', '%' . $search . '%')
             ->orWhere('key_skill', 'like', '%' . $search . '%')->get();
@@ -34,13 +35,15 @@ class JobIndex extends Component
 
     public function  render()
     {
-        $this->jobs = Job::where(function ($query) {
-            $query->whereIn('education_qualification', $this->selectedEducations)
-                ->orWhereIn('location', $this->selectedLocations)
-                // ->orWhereIn('education_qualification', $this->selectedCompanyTypes)
-                ->orWhereIn('role', $this->selectedRoleCategories)
-                ->orWhereIn('industry', $this->selectedIndustries);
-        })->get();
+        $this->jobs = PostJob::where(function ($query) {
+            $query->whereIn('education_qualification_id', $this->selectedEducations)
+                ->orWhereIn('location_id', $this->selectedLocations)
+                ->orWhereIn('company_type_id', $this->selectedCompanyTypes)
+                ->orWhereIn('role_id', $this->selectedRoleCategories)
+                ->orWhereIn('industry_id', $this->selectedIndustries)
+                ->orWhereIn('posted_by', $this->selectedPostedBy);
+        })->with('location', 'industry', 'role', 'education', 'companyType')->get();
+        // dd($this->selectedPostedBy);
 
         return view('livewire.job.job-index', [
             'jobs' =>  $this->jobs,
@@ -103,6 +106,19 @@ class JobIndex extends Component
             $this->selectedIndustries = array_diff($this->selectedIndustries, [$industryId]);
         } else {
             $this->selectedIndustries[] = $industryId;
+        }
+    }
+
+    public function togglePostedJob($postedByName)
+    {
+        if (!is_array($this->selectedPostedBy)) {
+            $this->selectedPostedBy = [];
+        }
+
+        if (in_array($postedByName, $this->selectedPostedBy)) {
+            $this->selectedPostedBy = array_diff($this->selectedPostedBy, [$postedByName]);
+        } else {
+            $this->selectedPostedBy[] = $postedByName;
         }
     }
 }
