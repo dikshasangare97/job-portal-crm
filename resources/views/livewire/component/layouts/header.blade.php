@@ -49,6 +49,14 @@
                     {{ __('Role')}}
                 </a>
 
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/department">
+                    {{ __('Department')}}
+                </a>
+
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/workmode">
+                    {{ __('Workmode')}}
+                </a>
+
                 @else
 
                 @endif

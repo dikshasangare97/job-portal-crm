@@ -76,5 +76,15 @@ class DatabaseSeeder extends Seeder
         tap(new JobSeeder(), function ($seeder) {
             $seeder->run();
         });
+
+        tap(new DepartmentSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new WorkmodeSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        
     }
 }

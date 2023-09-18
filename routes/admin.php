@@ -4,6 +4,8 @@ use App\Livewire\Admin\Auth\Dashboard;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\CompanyType\CompanyTypeCreate;
 use App\Livewire\Admin\CompanyType\CompanyTypeIndex;
+use App\Livewire\Admin\Department\DepartmentCreate;
+use App\Livewire\Admin\Department\DepartmentIndex;
 use App\Livewire\Admin\Education\EducationCreate;
 use App\Livewire\Admin\Education\EducationIndex;
 use App\Livewire\Admin\Industry\IndustryCreate;
@@ -12,6 +14,8 @@ use App\Livewire\Admin\Location\LocationCreate;
 use App\Livewire\Admin\Location\LocationIndex;
 use App\Livewire\Admin\RoleCategory\RoleCategoryCreate;
 use App\Livewire\Admin\RoleCategory\RoleCategoryIndex;
+use App\Livewire\Admin\Workmode\WorkmodeCreate;
+use App\Livewire\Admin\Workmode\WorkmodeIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +48,9 @@ Route::get('/admin/location/create', LocationCreate::class)->name('admin.locatio
 
 Route::get('/admin/role', RoleCategoryIndex::class)->name('admin.role.index')->middleware(['admin']);
 Route::get('/admin/role/create', RoleCategoryCreate::class)->name('admin.role.create')->middleware(['admin']);
+
+Route::get('/admin/department', DepartmentIndex::class)->name('admin.department.index')->middleware(['admin']);
+Route::get('/admin/department/create', DepartmentCreate::class)->name('admin.department.create')->middleware(['admin']);
+
+Route::get('/admin/workmode', WorkmodeIndex::class)->name('admin.workmode.index')->middleware(['admin']);
+Route::get('/admin/workmode/create', WorkmodeCreate::class)->name('admin.workmode.create')->middleware(['admin']);
