@@ -30,8 +30,10 @@ class PostJob extends Model
         'company_name',
         'company_type_id',
         'company_detail',
-        'posted_by',
+        'posted_by_id',
         'status',
+        'work_mode_id',
+        'department_id'
     ];
 
 
@@ -63,5 +65,25 @@ class PostJob extends Model
     public function companyType()
     {
         return $this->belongsTo(CompanyType::class, 'company_type_id');
+    }
+
+    public function postedBy()
+    {
+        return $this->belongsTo(JobPostedBy::class, 'posted_by_id');
+    }
+
+    public function workMode()
+    {
+        return $this->belongsTo(Workmode::class, 'work_mode_id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Departments::class, 'department_id');
+    }
+
+    public function workExperience()
+    {
+        return $this->belongsTo(Experience::class, 'work_experience');
     }
 }
