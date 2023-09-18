@@ -24,7 +24,10 @@
                             </div>
                             <input type="text" wire:model="search_input" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search book here..." required>
                         </div>
-                        <button type="submit" class="ml-2 p-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button type="submit" 
+                        class="ml-2 p-2 text-sm font-medium text-white bg-blue-700 rounded-lg border
+                         border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
+                         dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Search
                         </button>
                     </form>
@@ -43,7 +46,7 @@
                             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">Company Type Name</th>
                                 <th class="py-3 px-6 text-center">Status</th>
-                                <th class="py-3 px-6 text-center"></th>
+                                <th class="py-3 px-6 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
@@ -70,12 +73,14 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                         </button>
-                                        <button wire:click="edit({{$company_type->id}})" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                        <button wire:click="edit({{$company_type->id}})"
+                                         class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                             </svg>
                                         </button>
-                                        <button wire:click="delete({{$company_type->id}})" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                        <button  onclick="return confirm('Are you sure you want to delete this item?') || event.stopImmediatePropagation()"  wire:click="delete({{$company_type->id}})"  class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>
@@ -95,7 +100,49 @@
                         {{$company_types->links()}}
                     </div>
                 </div>
+                @if($isOpen)
+                <div class="fixed inset-0 flex items-center justify-center z-50">
+                        <div class="absolute inset-0 bg-black opacity-50"></div>
+                        <div class="relative bg-gray-200 p-8 rounded shadow-lg w-1/2">
+                            <!-- Modal content goes here -->
+                            <svg wire:click.prevent="$set('isOpen', false)"
+                            class="ml-auto w-6 h-6 text-gray-900 dark:text-gray-900 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                           <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
+                            </svg>
+                            <!-- <h2 class="text-2xl font-bold mb-4">Create Post</h2> -->
+                            <h2 class="text-2xl font-bold mb-4">{{ $company_typesId  }}</h2>
+                                <form enctype=""  wire:submit.prevent="{{ $company_typesId ? 'update' : '' }}">
+                                <div class="mb-4">
+                                    <label for="company_type_name" class="block text-gray-700 font-bold mb-2">Company Type Name:</label>
+                                    <input type="text" wire:model="company_type_name" id="company_type_name" 
+                                    class="w-full border border-gray-300 px-4 py-2 rounded">         	
+                                    <span class="text-red-500">@error('company_type_name') {{ $message }} @enderror</span>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
+                                    @if($company_type->status == 1)
+                                    <span class="bg-green-200 text-green-600 py-1 font-medium px-3 rounded-full text-xs">Available</span>
+                                    @else
+                                    <span class="bg-red-200 text-red-600 py-1 px-3 font-medium rounded-full text-xs">Not&nbsp;available</span>
+                                    @endif        	
+                                    <span class="text-red-500">@error('status') {{ $message }} @enderror</span>
+                                </div>
+                        <div>
+    
+   
+                                <div class="flex justify-end">
+                                    <button type="submit" 
+                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                                      Update{{ $company_typesId ? 'Update' : '' }}
+                                    </button>
+                                    <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" wire:click="closeModal">Cancel</button>
+                                </div>
+                          
+                        </div>
+                    </div>
+                </div>
             </div>
+            @endif
         </div>
 
     </div>
