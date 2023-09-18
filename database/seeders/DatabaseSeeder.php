@@ -88,6 +88,10 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
+        tap(new ExperienceSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
         
     }
 }
