@@ -84,6 +84,10 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
+        tap(new ExperienceSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
         tap(new JobSeeder(), function ($seeder) {
             $seeder->run();
         });

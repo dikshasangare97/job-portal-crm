@@ -8,6 +8,8 @@ use App\Livewire\Admin\Department\DepartmentCreate;
 use App\Livewire\Admin\Department\DepartmentIndex;
 use App\Livewire\Admin\Education\EducationCreate;
 use App\Livewire\Admin\Education\EducationIndex;
+use App\Livewire\Admin\Experience\ExperienceCreate;
+use App\Livewire\Admin\Experience\ExperienceIndex;
 use App\Livewire\Admin\Industry\IndustryCreate;
 use App\Livewire\Admin\Industry\IndustryIndex;
 use App\Livewire\Admin\Location\LocationCreate;
@@ -54,3 +56,6 @@ Route::get('/admin/department/create', DepartmentCreate::class)->name('admin.dep
 
 Route::get('/admin/workmode', WorkmodeIndex::class)->name('admin.workmode.index')->middleware(['admin']);
 Route::get('/admin/workmode/create', WorkmodeCreate::class)->name('admin.workmode.create')->middleware(['admin']);
+
+Route::get('/admin/experience', ExperienceIndex::class)->name('admin.experience.index')->middleware(['admin']);
+Route::get('/admin/experience/create', ExperienceCreate::class)->name('admin.experience.create')->middleware(['admin']);
