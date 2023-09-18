@@ -197,8 +197,9 @@
                         <br>
                         <select wire:model="posted_by" id="posted_by" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
                             <option value="null">Select</option>
-                            <option value="Company Jobs">Company Jobs</option>
-                            <option value="Consultant Jobs">Consultant Jobs</option>
+                            @foreach($posted_bies as $posted_by)
+                            <option value="{{ $posted_by->id }}">{{ $posted_by->posted_by_name }}</option>
+                            @endforeach
                         </select>
                         <div class="text-xs text-red-600 font-bold">@error('posted_by') {{ $message }} @enderror</div>
                     </div>

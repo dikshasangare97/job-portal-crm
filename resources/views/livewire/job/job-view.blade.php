@@ -32,7 +32,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
-                <span>{{$job->location}}</span>
+                <span>{{$job->location->city_name}}</span>
             </div>
 
             <hr class="max-w-full ">
@@ -80,13 +80,13 @@
         <div class="flex px-4 py-2">
             <h4 class="text-md font-semibold text-gray-900">Role:</h4>
             <div class="text-sm ml-2 mt-1">
-                {{ $job->role }}
+                {{ $job->role->role_name }}
             </div>
         </div>
         <div class="flex px-4 py-2">
             <h4 class="text-md font-semibold text-gray-900">Industry Type:</h4>
             <div class="text-sm ml-2 mt-1">
-                {{ $job->industry }}
+                {{ $job->industry->industry_name }}
             </div>
         </div>
         <div class="flex px-4 py-2">
@@ -99,7 +99,7 @@
         <div class="flex px-4 py-2">
             <h4 class="text-md font-semibold text-gray-900">Education:</h4>
             <div class="text-sm ml-2 mt-1">
-                {{ $job->education_qualification }}
+                {{ $job->education->education_name }}
             </div>
         </div>
 

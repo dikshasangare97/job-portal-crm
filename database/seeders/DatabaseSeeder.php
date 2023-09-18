@@ -72,6 +72,9 @@ class DatabaseSeeder extends Seeder
         tap(new RoleSeeder(), function ($seeder) {
             $seeder->run();
         });
+        tap(new JobPostedBySeeder(), function ($seeder) {
+            $seeder->run();
+        });
 
         tap(new JobSeeder(), function ($seeder) {
             $seeder->run();

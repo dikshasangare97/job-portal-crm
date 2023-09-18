@@ -5,6 +5,7 @@ namespace App\Livewire\Job;
 use App\Models\CompanyType;
 use App\Models\Education;
 use App\Models\Industry;
+use App\Models\JobPostedBy;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
@@ -127,6 +128,7 @@ class JobCreate extends Component
             'roles' => Role::where('status', 1)->get(),
             'educations' => Education::where('status', 1)->get(),
             'company_types' => CompanyType::where('status', 1)->get(),
+            'posted_bies' => JobPostedBy::where('status', 1)->get(),
         ]);
     }
 }
