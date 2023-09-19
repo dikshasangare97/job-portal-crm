@@ -56,7 +56,12 @@
                     <div class="w-full mb-6 ml-2">
                         <label for="work_experience" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Work experience(Years):</label>
                         <br>
-                        <input type="text" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400" wire:model="work_experience" id="work_experience" placeholder="Type Work experience">
+                        <select wire:model="work_experience" id="work_experience" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select experience </option>
+                            @foreach($experiences as $experience)
+                            <option value="{{ $experience->id }}">{{ $experience->experience }}</option>
+                            @endforeach
+                        </select>
                         <div class="text-xs text-red-600 font-bold">@error('work_experience') {{ $message }} @enderror</div>
                     </div>
                 </div>
@@ -158,6 +163,33 @@
                         <div class="text-xs text-red-600 font-bold">@error('education_qualification') {{ $message }} @enderror</div>
                     </div>
                 </div>
+
+                <div class="flex">
+                    <div class="w-1/3 mb-6 ml-2">
+                        <label for="work_mode" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Work Mode:</label>
+                        <br>
+                        <select wire:model="work_mode" id="work_mode" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select work mode </option>
+                            @foreach($work_modes as $work_mode)
+                            <option value="{{ $work_mode->id }}">{{ $work_mode->work_mode_name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="text-xs text-red-600 font-bold">@error('work_mode') {{ $message }} @enderror</div>
+                    </div>
+                    <div class="w-1/3 mb-6 ml-2">
+                        <label for="department" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Department:</label>
+                        <br>
+                        <select wire:model="department" id="department" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select department</option>
+                            @foreach($departments as $department)
+                            <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="text-xs text-red-600 font-bold">@error('department') {{ $message }} @enderror</div>
+                    </div>
+                </div>
+
+
                 <div class="border-b-2 my-3"></div>
 
                 <h5 class="font-medium self-center uppercase text-gray-800">Company Information</h5>

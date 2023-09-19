@@ -20,22 +20,12 @@
                 </div>
                 <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
+                        @foreach($work_modes as $work_mode)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="work_mode" id="from_office">
-                            <label class="ml-2" for="from_office">Work from office</label>
+                            <input type="checkbox" wire:model="selectedWorkModes" wire:click="toggleWorkMode({{ $work_mode->id }})" value="{{ $work_mode->work_mode_name }}" id="location_{{ $work_mode->id }}">
+                            <label class="ml-2" for="location_{{ $work_mode->id }}">{{$work_mode->work_mode_name}}</label>
                         </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="work_mode" id="remote">
-                            <label class="ml-2" for="remote">Remote</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="work_mode" id="hybrid">
-                            <label class="ml-2" for="hybrid">Hybrid</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="work_mode" id="from_home">
-                            <label class="ml-2" for="from_home">Temp. WFH</label>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -79,22 +69,12 @@
                 </div>
                 <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
+                        @foreach($departments as $department)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="department" id="from_office">
-                            <label class="ml-2" for="from_office">Work from office</label>
+                            <input type="checkbox" wire:model="selectedDepartments" wire:click="toggleDepartment({{ $department->id }})" value="{{ $department->department_name }}" id="department_{{ $department->id }}">
+                            <label class="ml-2" for="department_{{ $department->id }}">{{$department->department_name}}</label>
                         </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="department" id="remote">
-                            <label class="ml-2" for="remote">Remote</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="department" id="hybrid">
-                            <label class="ml-2" for="hybrid">Hybrid</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="department" id="from_home">
-                            <label class="ml-2" for="from_home">Temp. WFH</label>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -406,7 +386,6 @@
                         <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{$getJob->job_headline}} </h2>
                     </div>
                     <p class="text-gray-700">{{$getJob->company_name}} </p>
-
                     <div class="mt-4 flex items-center">
                         <div class="flex text-gray-700 text-sm mr-3 border-r pr-3">
                             <svg class="w-4 h-4 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

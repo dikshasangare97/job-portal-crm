@@ -76,10 +76,6 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
-        tap(new JobSeeder(), function ($seeder) {
-            $seeder->run();
-        });
-
         tap(new DepartmentSeeder(), function ($seeder) {
             $seeder->run();
         });
@@ -92,6 +88,8 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
-        
+        tap(new JobSeeder(), function ($seeder) {
+            $seeder->run();
+        });
     }
 }

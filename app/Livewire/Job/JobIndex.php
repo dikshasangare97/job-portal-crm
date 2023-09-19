@@ -3,12 +3,14 @@
 namespace App\Livewire\Job;
 
 use App\Models\CompanyType;
+use App\Models\Departments;
 use App\Models\Education;
 use App\Models\Industry;
 use App\Models\JobPostedBy;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
+use App\Models\Workmode;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -24,6 +26,8 @@ class JobIndex extends Component
     public $selectedIndustries = [];
     public $selectedPostedBy = [];
     public $selectedWorkExperience = [];
+    public $selectedWorkModes = [];
+    public $selectedDepartments = [];
     public $jobs;
     public $search;
 
@@ -44,18 +48,21 @@ class JobIndex extends Component
                 ->orWhereIn('role_id', $this->selectedRoleCategories)
                 ->orWhereIn('industry_id', $this->selectedIndustries)
                 ->orWhereIn('posted_by', $this->selectedPostedBy)
+                ->whereIn('work_mode_id', $this->selectedWorkModes)
                 ->orWhereIn('work_experience', $this->selectedWorkExperience);
         })->with('location', 'industry', 'role', 'education', 'companyType')->get();
 
         return view('livewire.job.job-index', [
             'jobs' =>  $this->jobs,
             'getJobs' =>  $this->records,
-            'educations' => Education::orderBy('id', 'DESC')->get(),
-            'locations' => Location::orderBy('id', 'DESC')->get(),
-            'company_types' => CompanyType::orderBy('id', 'DESC')->get(),
-            'role_categories' => Role::orderBy('id', 'DESC')->get(),
-            'industries' => Industry::orderBy('id', 'DESC')->get(),
-            'posted_bies' => JobPostedBy::orderBy('id', 'DESC')->get(),
+            'educations' => Education::get(),
+            'locations' => Location::get(),
+            'company_types' => CompanyType::get(),
+            'role_categories' => Role::get(),
+            'industries' => Industry::get(),
+            'posted_bies' => JobPostedBy::get(),
+            'work_modes' => Workmode::get(),
+            'departments' => Departments::get(),
         ]);
     }
 
@@ -135,6 +142,32 @@ class JobIndex extends Component
             $this->selectedWorkExperience = array_diff($this->selectedWorkExperience, [$workExperienceId]);
         } else {
             $this->selectedWorkExperience[] = $workExperienceId;
+        }
+    }
+
+    public function toggleWorkMode($workModeId)
+    {
+        if (!is_array($this->selectedWorkModes)) {
+            $this->selectedWorkModes = [];
+        }
+
+        if (in_array($workModeId, $this->selectedWorkModes)) {
+            $this->selectedWorkModes = array_diff($this->selectedWorkModes, [$workModeId]);
+        } else {
+            $this->selectedWorkModes[] = $workModeId;
+        }
+    }
+
+    public function toggleDepartment($departmentId)
+    {
+        if (!is_array($this->selectedDepartments)) {
+            $this->selectedDepartments = [];
+        }
+
+        if (in_array($departmentId, $this->selectedDepartments)) {
+            $this->selectedDepartments = array_diff($this->selectedDepartments, [$departmentId]);
+        } else {
+            $this->selectedDepartments[] = $departmentId;
         }
     }
 }

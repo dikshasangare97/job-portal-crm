@@ -19,7 +19,7 @@ class RecruiterLogin extends Component
     {
         $this->validate();
         $user = User::where('email', $this->email)->first();
-        $user->register_for;
+        // $user->register_for;
         if ($user && ($user->is_user == 0) && Hash::check($this->password, $user->password)) {
             auth()->login($user);
             session()->flash('message', "You are Login successfully.");
