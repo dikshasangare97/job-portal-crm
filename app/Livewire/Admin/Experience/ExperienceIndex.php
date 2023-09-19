@@ -24,4 +24,11 @@ class ExperienceIndex extends Component
             'experiences' => Experience::where('experience', 'like', '%' . $this->search_input . '%')->orderBy('id', 'DESC')->paginate(5)
         ]);
     }
+
+    public function delete($id)
+    {
+        Experience::find($id)->delete();
+        session()->flash('success', 'experience deleted successfully.');
+        $this->reset('experience');
+    }
 }
