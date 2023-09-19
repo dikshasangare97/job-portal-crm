@@ -23,4 +23,10 @@ class EducationIndex extends Component
             'educations' => Education::where('education_name', 'like', '%' . $this->search_input . '%')->paginate(5)
         ]);
     }
+    public function delete($id)
+    {
+        Education::find($id)->delete();
+        session()->flash('success', 'education deleted successfully.');
+        $this->reset('education_name');
+    }
 }

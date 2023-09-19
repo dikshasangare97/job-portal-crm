@@ -23,4 +23,11 @@ class RoleCategoryIndex extends Component
             'roles' => Role::where('role_name', 'like', '%' . $this->search_input . '%')->paginate(5)
         ]);
     }
+
+    public function delete($id)
+    {
+        Role::find($id)->delete();
+        session()->flash('success', 'role deleted successfully.');
+        $this->reset('city_name');
+    }
 }

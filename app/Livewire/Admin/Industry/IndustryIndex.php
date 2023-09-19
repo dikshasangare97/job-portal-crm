@@ -23,4 +23,11 @@ class IndustryIndex extends Component
             'industries' => Industry::where('industry_name', 'like', '%' . $this->search_input . '%')->paginate(5)
         ]);
     }
+    public function delete($id)
+    {
+        Industry::find($id)->delete();
+        session()->flash('success', 'industry deleted successfully.');
+        $this->reset('industry_name');
+    }
+    
 }

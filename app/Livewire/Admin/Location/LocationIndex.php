@@ -23,4 +23,12 @@ class LocationIndex extends Component
             'locations' => Location::where('city_name', 'like', '%' . $this->search_input . '%')->paginate(5)
         ]);
     }
+
+    public function delete($id)
+    {
+        Location::find($id)->delete();
+        session()->flash('success', 'location deleted successfully.');
+        $this->reset('city_name');
+    }
+
 }

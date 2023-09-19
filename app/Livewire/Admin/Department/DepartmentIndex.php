@@ -24,5 +24,12 @@ class DepartmentIndex extends Component
             'departments' => Departments::where('department_name', 'like', '%' . $this->search_input . '%')->paginate(5)
     ]);
     }
+
+    public function delete($id)
+    {
+        Departments::find($id)->delete();
+        session()->flash('success', 'department deleted successfully.');
+        $this->reset('department_name');
+    }
     
 }

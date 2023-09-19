@@ -27,4 +27,11 @@ class WorkmodeIndex extends Component
     
         ]);
     }
+
+    public function delete($id)
+    {
+        Workmode::find($id)->delete();
+        session()->flash('success', 'workmode deleted successfully.');
+        $this->reset('work_mode_name');
+    }
 }
