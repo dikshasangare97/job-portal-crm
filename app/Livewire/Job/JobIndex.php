@@ -5,6 +5,7 @@ namespace App\Livewire\Job;
 use App\Models\CompanyType;
 use App\Models\Departments;
 use App\Models\Education;
+use App\Models\Experience;
 use App\Models\Industry;
 use App\Models\JobPostedBy;
 use App\Models\Location;
@@ -25,8 +26,8 @@ class JobIndex extends Component
     public $selectedRoleCategories = [];
     public $selectedIndustries = [];
     public $selectedPostedBy = [];
-    public $selectedWorkExperience = [];
-    public $selectedWorkModes = [];
+    public $selectedExperiences = [];
+    public $selectedWorkmodes = [];
     public $selectedDepartments = [];
     public $jobs;
     public $search;
@@ -47,9 +48,10 @@ class JobIndex extends Component
                 ->orWhereIn('company_type_id', $this->selectedCompanyTypes)
                 ->orWhereIn('role_id', $this->selectedRoleCategories)
                 ->orWhereIn('industry_id', $this->selectedIndustries)
-                ->orWhereIn('posted_by', $this->selectedPostedBy)
-                ->whereIn('work_mode_id', $this->selectedWorkModes)
-                ->orWhereIn('work_experience', $this->selectedWorkExperience);
+                ->orWhereIn('posted_by_id', $this->selectedPostedBy)
+                ->orWhereIn('work_mode_id', $this->selectedWorkmodes)
+                ->orWhereIn('department_id', $this->selectedDepartments)
+                ->orWhereIn('work_experience', $this->selectedExperiences);
         })->with('location', 'industry', 'role', 'education', 'companyType')->get();
 
         return view('livewire.job.job-index', [
@@ -61,8 +63,9 @@ class JobIndex extends Component
             'role_categories' => Role::get(),
             'industries' => Industry::get(),
             'posted_bies' => JobPostedBy::get(),
-            'work_modes' => Workmode::get(),
+            'workmodes' => Workmode::get(),
             'departments' => Departments::get(),
+            'experiences' => Experience::get(),
         ]);
     }
 
@@ -132,29 +135,29 @@ class JobIndex extends Component
         }
     }
 
-    public function toggleWorkExperience($workExperienceId)
+    public function toggleExperience($experienceId)
     {
-        if (!is_array($this->selectedWorkExperience)) {
-            $this->selectedWorkExperience = [];
+        if (!is_array($this->selectedExperiences)) {
+            $this->selectedExperiences = [];
         }
 
-        if (in_array($workExperienceId, $this->selectedWorkExperience)) {
-            $this->selectedWorkExperience = array_diff($this->selectedWorkExperience, [$workExperienceId]);
+        if (in_array($experienceId, $this->selectedExperiences)) {
+            $this->selectedExperiences = array_diff($this->selectedExperiences, [$experienceId]);
         } else {
-            $this->selectedWorkExperience[] = $workExperienceId;
+            $this->selectedExperiences[] = $experienceId;
         }
     }
 
-    public function toggleWorkMode($workModeId)
+    public function toggleWorkmode($workmodeId)
     {
-        if (!is_array($this->selectedWorkModes)) {
-            $this->selectedWorkModes = [];
+        if (!is_array($this->selectedWorkmodes)) {
+            $this->selectedWorkmodes = [];
         }
 
-        if (in_array($workModeId, $this->selectedWorkModes)) {
-            $this->selectedWorkModes = array_diff($this->selectedWorkModes, [$workModeId]);
+        if (in_array($workmodeId, $this->selectedWorkmodes)) {
+            $this->selectedWorkmodes = array_diff($this->selectedWorkmodes, [$workmodeId]);
         } else {
-            $this->selectedWorkModes[] = $workModeId;
+            $this->selectedWorkmodes[] = $workmodeId;
         }
     }
 

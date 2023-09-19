@@ -20,10 +20,10 @@
                 </div>
                 <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
-                        @foreach($work_modes as $work_mode)
+                        @foreach($workmodes as $workmode)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="selectedWorkModes" wire:click="toggleWorkMode({{ $work_mode->id }})" value="{{ $work_mode->work_mode_name }}" id="location_{{ $work_mode->id }}">
-                            <label class="ml-2" for="location_{{ $work_mode->id }}">{{$work_mode->work_mode_name}}</label>
+                            <input type="checkbox" wire:model="selectedWorkmodes" wire:click="toggleWorkmode({{ $workmode->id }})" value="{{ $workmode->work_mode_name }}" id="workmode_{{ $workmode->id }}">
+                            <label class="ml-2" for="workmode_{{ $workmode->id }}">{{$workmode->work_mode_name}}</label>
                         </li>
                         @endforeach
                     </ul>
@@ -45,11 +45,12 @@
                 </div>
                 <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
-                        @for($i = 0; $i <= 10; $i++) <li class="py-1">
-                            <input type="checkbox" wire:model="selectedWorkExperience" wire:click="toggleWorkExperience({{ $i }})" value="{{ $i }}" id="year_{{ $i }}">
-                            <label class="ml-2" for="year_{{ $i }}">{{ $i }} Years</label>
-                            </li>
-                            @endfor
+                        @foreach($experiences as $experience)
+                        <li class="py-1">
+                            <input type="checkbox" wire:model="selectedExperiences" wire:click="toggleExperience({{ $experience->id }})" value="{{ $experience->experience }}" id="experience_{{ $experience->id }}">
+                            <label class="ml-2" for="experience_{{ $experience->id }}">{{$experience->experience}}</label>
+                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
