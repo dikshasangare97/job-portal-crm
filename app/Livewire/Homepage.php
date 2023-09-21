@@ -10,7 +10,7 @@ class Homepage extends Component
     public function render()
     {
         return view('livewire.homepage', [
-            'jobs' => PostJob::orderBy('id', 'DESC')->get()
+            'jobs' => PostJob::with('user', 'location', 'industry', 'role', 'education', 'companyType', 'postedBy', 'workMode', 'department', 'workExperience')->orderBy('id', 'DESC')->take(9)->get()
         ]);
     }
 }
