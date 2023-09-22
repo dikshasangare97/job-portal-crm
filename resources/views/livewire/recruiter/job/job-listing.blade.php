@@ -105,7 +105,7 @@
                             </a>
                         </li>
                         <li class="my-2">
-                            <button wire:click="" class="inline-flex items-center px-3 py-1 border border-red-700 rounded-full text-red-700 hover:text-white hover:bg-red-700 text-sm">
+                            <button wire:click="deleteJobId({{ $job->id }})" class="inline-flex items-center px-3 py-1 border border-red-700 rounded-full text-red-700 hover:text-white hover:bg-red-700 text-sm" data-modal-toggle="delete-modal">
                                 <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
@@ -129,4 +129,23 @@
             @endif
         </div>
     </div>
+
+    <!-- delete modal -->
+    <div wire:ignore.self id="delete-modal" data-modal-show="false" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+        <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+            <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
+                <div class="p-6 space-y-6">
+                    <svg aria-hidden="true" class="mx-auto mb-4 text-red-500 w-14 h-14 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="mb-5 text-lg text-center font-normal text-gray-700 ">Are you sure you want to delete this job detail?</h3>
+                </div>
+                <div class="flex justify-end p-6 space-x-2">
+                    <button data-modal-toggle="delete-modal" type="button" class="bg-red-500 ml-3 rounded-lg text-white hover:bg-red-400  border  text-sm font-medium px-2 py-2 ">Decline</button>
+                    <button wire:click="delete()" class="px-2 py-2 bg-teal-500 ml-3 rounded-lg text-white hover:bg-teal-400">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- delete modal end -->
 </div>

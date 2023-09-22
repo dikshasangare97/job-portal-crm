@@ -15,7 +15,7 @@
             @endif
         </div>
         <div class="mt-5">
-            <form wire:submit="store">
+            <form wire:submit="update">
                 <div class="flex">
                     <div class="w-1/2 mb-6 mr-2">
                         <label for="job_headline" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job posting headline:</label>
@@ -77,7 +77,7 @@
 
                 <div class="flex">
                     <div class="w-full mb-6 ml-2">
-                        <input type="checkbox" class="text-sm sm:text-base placeholder-gray-500 mt-2  rounded-lg border border-gray-400 focus:outline-none focus:border-blue-400" wire:model="salary_hide_status" value="1" id="salary_hide_status">
+                        <input type="checkbox" class="text-sm sm:text-base placeholder-gray-500 mt-2  rounded-lg border border-gray-400 focus:outline-none focus:border-blue-400" wire:model="salary_hide_status" {{ $job_detail->salary_hide_status == 1 ? 'checked' : '' }} id="salary_hide_status">
                         <label for="salary_hide_status" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Hide salary details from candidates</label>
                         <div class="text-xs text-red-600 font-bold">@error('salary_hide_status') {{ $message }} @enderror</div>
                     </div>

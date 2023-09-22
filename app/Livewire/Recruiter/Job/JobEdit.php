@@ -20,58 +20,12 @@ class JobEdit extends Component
     public $detail;
 
     #[Rule('required|min:3')]
-    public  $job_headline;
-
-    #[Rule('required|min:3')]
-    public  $employment_type;
-
-    #[Rule('required|min:3')]
-    public  $job_description;
-
-    #[Rule('required|min:3')]
-    public  $key_skill;
+    public  $job_headline, $annual_salary, $locality, $functional_area, $reference_code, $vacancy, $company_name, $company_detail;
 
     #[Rule('required')]
-    public  $work_experience;
+    public $employment_type, $work_experience, $key_skill, $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $work_mode, $department;
 
-    #[Rule('required|min:3')]
-    public  $annual_salary;
-
-    public  $salary_hide_status;
-
-    #[Rule('required')]
-    public  $location;
-
-    #[Rule('required|min:3')]
-    public  $locality;
-
-    #[Rule('required')]
-    public  $industry;
-
-    #[Rule('required|min:3')]
-    public  $functional_area;
-
-    #[Rule('required')]
-    public  $role;
-
-    #[Rule('required|min:3')]
-    public  $reference_code;
-
-    #[Rule('required|min:3')]
-    public  $vacancy;
-
-    #[Rule('required')]
-    public  $education_qualification;
-
-    #[Rule('required|min:3')]
-    public  $company_name;
-
-    #[Rule('required|min:3')]
-    public  $company_detail;
-    public $company_type_id;
-    public $posted_by;
-    public $work_mode;
-    public $department;
+    public $job_description, $salary_hide_status, $job_edit_id;
 
     public function mount($id)
     {
@@ -97,6 +51,38 @@ class JobEdit extends Component
         $this->posted_by = $this->detail->postedBy->id;
         $this->work_mode = $this->detail->workMode->id;
         $this->department = $this->detail->department->id;
+
+        $this->job_edit_id = $this->detail->id;
+    }
+
+    public function update()
+    {
+        $post_job_detail = PostJob::with('location', 'industry', 'role', 'education', 'companyType', 'postedBy', 'workMode', 'department', 'workExperience')->find($this->job_edit_id);
+        $post_job_detail->job_headline = $this->job_headline;
+        $post_job_detail->employment_type = $this->employment_type;
+        $post_job_detail->job_description = $this->job_description;
+        $post_job_detail->key_skill = $this->key_skill;
+        $post_job_detail->work_experience = $this->work_experience;
+        $post_job_detail->annual_salary = $this->annual_salary;
+        $post_job_detail->salary_hide_status = $this->salary_hide_status;
+        $post_job_detail->location_id = $this->location;
+        $post_job_detail->locality =  $this->locality;
+        $post_job_detail->industry_id = $this->industry;
+        $post_job_detail->functional_area = $this->functional_area;
+        $post_job_detail->role_id = $this->role;
+        $post_job_detail->reference_code = $this->reference_code;
+        $post_job_detail->vacancy = $this->vacancy;
+        $post_job_detail->education_qualification_id = $this->education_qualification;
+        $post_job_detail->company_name = $this->company_name;
+        $post_job_detail->company_detail = $this->company_detail;
+        $post_job_detail->company_type_id = $this->company_type_id;
+        $post_job_detail->posted_by_id = $this->posted_by;
+        $post_job_detail->work_mode_id = $this->work_mode;
+        $post_job_detail->department_id = $this->department;
+        $post_job_detail->save();
+
+        session()->flash('message', 'Job updated sucessfully');
+        return redirect()->to('/recruiter/jobs');
     }
 
     public function render()

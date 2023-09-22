@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 class JobListing extends Component
 {
     use WithPagination;
+    public $job_id = '';
 
     public function render()
     {
@@ -18,5 +19,17 @@ class JobListing extends Component
                 ->where('user_id', Auth::user()->id)
                 ->orderBy('id', 'DESC')->paginate(15)
         ]);
+    }
+
+    public function deleteJobId($id)
+    {
+        $this->job_id = $id;
+    }
+
+    public function delete()
+    {
+        PostJob::find($this->job_id)->delete();
+        session()->flash('message', 'Job detail deleted sucessfully');
+        return redirect()->to('/recruiter/jobs');
     }
 }

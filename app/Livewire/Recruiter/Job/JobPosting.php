@@ -21,13 +21,13 @@ class JobPosting extends Component
     #[Rule('required|min:3')]
     public  $job_headline = '';
 
-    #[Rule('required|min:3')]
+    #[Rule('required')]
     public  $employment_type = '';
 
     #[Rule('required|min:3')]
     public  $job_description = '';
 
-    #[Rule('required|min:3')]
+    #[Rule('required')]
     public  $key_skill = '';
 
     #[Rule('required')]
