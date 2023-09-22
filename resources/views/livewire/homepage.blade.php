@@ -8,7 +8,7 @@
         <div class="md:grid grid-cols-3 gap-4 min-w-7xl">
             @foreach($jobs as $job)
             <div class="bg-white shadow-xl rounded-b-lg px-4 py-4 border-b border-gray-500 mb-3">
-                <a href="/job/{{$job->id}}/view" class="cursor-pointer">
+                <a href="/job/{{$job->id}}/view" target="_blank" class="cursor-pointer">
                     <div class="flex flex-col justify-start">
                         <div class="flex justify-between items-center w-96">
                             <div class="text-lg font-semibold text-bookmark-blue flex space-x-1 items-center mb-2">
@@ -53,9 +53,14 @@
                         </div>
                         <div>
                             @auth
+                            @if(auth()->user()->register_for == 'user')
                             <div class="mt-5">
-                                <button class="mr-2 my-1 uppercase tracking-wider px-2 text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white border text-sm font-semibold rounded py-1 transition transform duration-500 cursor-pointer">Apply</button>
+                                @php
+                                $jobId = $job->id;
+                                @endphp
+                                <livewire:job.job-apply :jobId="$jobId" />
                             </div>
+                            @endif
                             @endauth
                         </div>
                     </div>

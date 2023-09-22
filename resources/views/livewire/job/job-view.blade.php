@@ -1,4 +1,16 @@
 <div>
+    <div class="mt-2 mb-4">
+        @if (session()->has('message'))
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+            <p class="font-bold text-xs">{{ session('message') }}</p>
+        </div>
+        @endif
+        @if (session()->has('error'))
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+            <p class="font-bold text-xs">{{ session('error') }}</p>
+        </div>
+        @endif
+    </div>
     <div class="flex bg-white shadow-lg rounded-xl mb-2 w-full">
         <div class="w-full">
             <div class="flex items-center justify-between px-4 pt-6 pb-1">
@@ -59,9 +71,13 @@
                 </div>
                 <div class="w-1/2">
                     @auth
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Apply</button>
-                    @else
-                    <a href="/login" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Login to Apply</a>
+                    @if(auth()->user()->register_for == 'user')
+
+                    @php
+                    $jobId = $job->id;
+                    @endphp
+                    <livewire:job.job-apply :jobId="$jobId" />
+                    @endif
                     @endauth
                 </div>
 

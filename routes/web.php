@@ -9,6 +9,9 @@ use App\Livewire\Job\JobCreate;
 use App\Livewire\Job\JobIndex;
 use App\Livewire\Job\JobSearch;
 use App\Livewire\Job\JobView;
+use App\Livewire\Recruiter\Job\JobEdit;
+use App\Livewire\Recruiter\Job\JobListing;
+use App\Livewire\Recruiter\Job\JobPosting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +39,9 @@ Route::get('/login', Login::class)->name('login');
 Route::get('/recruiter-login', RecruiterLogin::class)->name('recruiter-login');
 Route::get('/recruiter-register', RecruiterRegister::class)->name('recruiter-register');
 
-Route::get('/recruiter/job-posting', JobCreate::class)->name('recruiter/job-posting');
+Route::get('/recruiter/jobs', JobListing::class)->name('recruiter.jobs');
+Route::get('/recruiter/job-posting', JobPosting::class)->name('recruiter.job-posting');
+Route::get('/recruiter/job/{id}/edit', JobEdit::class)->name('recruiter.job.edit');
 Route::get('/jobs/search/{search}', JobSearch::class)->name('jobs.search');
 Route::get('/jobs', JobIndex::class)->name('jobs');
 Route::get('/job/{id}/view', JobView::class)->name('jobs.view');

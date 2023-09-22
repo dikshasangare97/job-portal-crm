@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'John Doe',
             'email' => 'recruiter@dwebpixel.com',
             'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
-            'register_for' => 'recuiter',
+            'register_for' => 'company',
             'is_active' => '1',
             'is_user' => '0'
         ]);

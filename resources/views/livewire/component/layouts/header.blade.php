@@ -27,8 +27,11 @@
                     {{ __('Contact us')}}
                 </a>
 
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/jobs">
+                    {{ __('Jobs')}}
+                </a>
                 <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/job-posting">
-                    {{ __('Post a Job')}}
+                    {{ __('Apply for Job')}}
                 </a>
                 @elseif(Auth::user()->is_user == 2)
                 <!-- for super admin -->

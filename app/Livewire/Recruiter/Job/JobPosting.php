@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Job;
+namespace App\Livewire\Recruiter\Job;
 
 use App\Models\CompanyType;
 use App\Models\Departments;
@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
-class JobCreate extends Component
+class JobPosting extends Component
 {
-
     #[Rule('required|min:3')]
     public  $job_headline = '';
 
@@ -125,11 +124,11 @@ class JobCreate extends Component
         ]);
         session()->flash('message', 'Job created sucessfully');
         $this->resetInputFields();
-        return redirect('/recruiter/job-posting');
+        return redirect()->to('/recruiter/jobs');
     }
     public function render()
     {
-        return view('livewire.job.job-create', [
+        return view('livewire.recruiter.job.job-posting', [
             'locations' => Location::where('status', 1)->get(),
             'industries' => Industry::where('status', 1)->get(),
             'roles' => Role::where('status', 1)->get(),
