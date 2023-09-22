@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Profile;
 use App\Livewire\Auth\RecruiterLogin;
 use App\Livewire\Auth\RecruiterRegister;
 use App\Livewire\Auth\Register;
@@ -12,6 +13,8 @@ use App\Livewire\Job\JobView;
 use App\Livewire\Recruiter\Job\JobEdit;
 use App\Livewire\Recruiter\Job\JobListing;
 use App\Livewire\Recruiter\Job\JobPosting;
+use App\Livewire\Recruiter\Jobapplication\JobApplication;
+use App\Livewire\Recruiter\Jobapplication\JobApplicationView;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,3 +48,8 @@ Route::get('/recruiter/job/{id}/edit', JobEdit::class)->name('recruiter.job.edit
 Route::get('/jobs/search/{search}', JobSearch::class)->name('jobs.search');
 Route::get('/jobs', JobIndex::class)->name('jobs');
 Route::get('/job/{id}/view', JobView::class)->name('jobs.view');
+
+Route::get('/recruiter/job/{id}/applications', JobApplication::class)->name('recruiter.job.applications');
+Route::get('/recruiter/job/{id}/applications/view', JobApplicationView::class)->name('recruiter.job.applications.view');
+
+Route::get('user/profile', Profile::class)->name('user.profile');

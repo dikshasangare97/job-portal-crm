@@ -13,7 +13,8 @@ class JobApply extends Model
     protected $fillable = [
         'user_id',
         'job_id',
-        'application_status'
+        'application_status',
+        'recruiter_id'
     ];
 
     public function user()

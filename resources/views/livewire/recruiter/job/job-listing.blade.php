@@ -87,29 +87,27 @@
                         </p>
                     </div>
                 </div>
-                <div class="1/12 text-end">
-                    <ul class="py-10">
+                <div class="1/12 text-center">
+                    <ul class="py-10 px-5">
                         <li class="my-2">
-                            <a href="/job/{{$job->id}}/view" target="_blank" class="inline-flex items-center px-3 py-1 border border-emerald-700 rounded-full text-emerald-700 hover:text-white hover:bg-emerald-700 text-sm">
-                                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
+                            <a href="/job/{{$job->id}}/view" target="_blank" class="inline-flex items-center px-3 py-1 border border-emerald-700 rounded-lg text-emerald-700 hover:text-white hover:bg-emerald-700 text-sm">
+                                View Job
                             </a>
                         </li>
                         <li class="my-2">
-                            <a href="/recruiter/job/{{$job->id}}/edit" class="inline-flex items-center px-3 py-1 border border-blue-700 rounded-full text-blue-700 hover:text-white hover:bg-blue-700 text-sm">
-                                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
+                            <a href="/recruiter/job/{{$job->id}}/edit" class="inline-flex items-center px-3 py-1 border border-blue-700 rounded-lg text-blue-700 hover:text-white hover:bg-blue-700 text-sm">
+                                Edit Job
                             </a>
                         </li>
                         <li class="my-2">
-                            <button wire:click="deleteJobId({{ $job->id }})" class="inline-flex items-center px-3 py-1 border border-red-700 rounded-full text-red-700 hover:text-white hover:bg-red-700 text-sm" data-modal-toggle="delete-modal">
-                                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
+                            <button wire:click="deleteJobId({{ $job->id }})" class="inline-flex items-center px-3 py-1 border border-red-700 rounded-lg text-red-700 hover:text-white hover:bg-red-700 text-sm" data-modal-toggle="delete-modal">
+                                Delete Job
                             </button>
+                        </li>
+                        <li class="my-2">
+                            <a href="/recruiter/job/{{$job->id}}/applications" class="inline-flex items-center mt-5 px-3 py-1 border border-blue-700 rounded-lg text-blue-700 hover:text-white hover:bg-blue-700 text-xs text-center">
+                                View Job Apply Details
+                            </a>
                         </li>
                     </ul>
 

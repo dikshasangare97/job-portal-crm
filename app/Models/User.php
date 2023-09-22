@@ -29,7 +29,8 @@ class User extends Authenticatable
         'pin_code',
         'street_address',
         'is_active',
-        'is_user'
+        'is_user',
+        'profile_img'
     ];
 
     /**
