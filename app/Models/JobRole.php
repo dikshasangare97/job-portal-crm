@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class JobRole extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'role_categories';
-
     protected $fillable = [
-        'role_name',
-        'description',
+        'role_category_id',
+        'job_role_name',
         'status'
     ];
 }
