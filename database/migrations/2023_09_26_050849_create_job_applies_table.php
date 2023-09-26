@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('job_id')->constrained('post_jobs');
             $table->boolean('application_status')->nullable();
+            $table->integer('recruiter_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
