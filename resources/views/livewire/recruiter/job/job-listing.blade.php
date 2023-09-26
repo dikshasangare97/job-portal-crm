@@ -140,7 +140,7 @@
                 </div>
                 <div class="flex justify-end p-6 space-x-2">
                     <button data-modal-toggle="delete-modal" type="button" class="bg-red-500 ml-3 rounded-lg text-white hover:bg-red-400  border  text-sm font-medium px-2 py-2 ">Decline</button>
-                    <button wire:click="delete()" class="px-2 py-2 bg-teal-500 ml-3 rounded-lg text-white hover:bg-teal-400">Confirm</button>
+                    <button wire:click="delete()" class="px-2 py-2 bg-blue-500 ml-3 rounded-lg text-white hover:bg-blue-400">Confirm</button>
                 </div>
             </div>
         </div>

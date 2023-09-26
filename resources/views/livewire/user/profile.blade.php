@@ -1,4 +1,34 @@
 <div>
+    <!-- resume upload modal -->
+    @if($userPersonalDetail == null)
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="flex items-start justify-between p-4 border-b rounded-t ">
+                        <h3 class="text-xl font-semibold text-gray-900">Upload Resume</h3>
+                    </div>
+                    <div class="flex items-center justify-center w-full p-5">
+                        <div class="flex flex-col items-center justify-center w-full py-5 border-2 border-gray-300 border-dashed rounded-lg">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <label for="resume" class="mb-2 text-sm text-blue-500 font-semibold border border-blue-600 rounded-full py-2 px-3 cursor-pointer">
+                                    Click to upload resume
+                                </label>
+                                <p class="text-sm text-gray-500">Supported Formats: doc, docx, rtf, pdf, upto 2 MB</p>
+                            </div>
+                            <input id="resume" type="file" wire:model="resume" class="hidden" />
+                            @error('resume')
+                            <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    <!-- end modal -->
     <div class="bg-gray-100">
         <div class="container mx-auto my-5 p-5">
             <div class="w-full text-black bg-white shadow-lg rounded-xl">
@@ -31,6 +61,7 @@
                 </div>
 
                 <div class="w-full md:w-9/12 mx-2 ">
+                    @if($userPersonalDetail != null)
                     <livewire:user.profile.resume-upload />
                     <div class="my-4"></div>
 
@@ -39,9 +70,17 @@
 
                     <livewire:user.profile.profile-summary />
                     <div class="my-4"></div>
-
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        document.getElementById('resume').addEventListener('change', function() {
+            $this.upload('resume', this.files[0]);
+        });
+    </script>
+    @endpush
 </div>

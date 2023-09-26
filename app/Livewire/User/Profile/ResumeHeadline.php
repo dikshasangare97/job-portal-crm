@@ -10,7 +10,13 @@ use Livewire\Component;
 class ResumeHeadline extends Component
 {
     #[Rule('required|min:3')]
-    public $resume_headline;
+    public $resume_headline, $detail;
+
+    public function mount()
+    {
+        $this->detail = UserPersonalDetail::where('user_id', Auth::user()->id)->first();
+        $this->resume_headline = $this->detail->resume_headline;
+    }
 
     public function render()
     {

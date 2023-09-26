@@ -10,7 +10,13 @@ use Livewire\Component;
 class ProfileSummary extends Component
 {
     #[Rule('required|min:3')]
-    public $profile_summary;
+    public $profile_summary, $detail;
+
+    public function mount()
+    {
+        $this->detail = UserPersonalDetail::where('user_id', Auth::user()->id)->first();
+        $this->profile_summary = $this->detail->profile_summary;
+    }
 
     public function render()
     {
@@ -35,7 +41,19 @@ class ProfileSummary extends Component
                 'profile_summary' => $this->profile_summary,
             ]);
         }
-        session()->flash('profilesummarymsg', 'Resume headline has been successfully saved.');
+        session()->flash('profilesummarymsg', 'Profile summary has been successfully saved.');
+        return redirect()->to('/user/profile');
+    }
+
+    public function deleteSummary($id)
+    {
+        $userPersonalDetail = UserPersonalDetail::find($id);
+        if ($userPersonalDetail->profile_summary) {
+            $userPersonalDetail->update([
+                'profile_summary' => null,
+            ]);
+        }
+        session()->flash('profilesummarymsg', 'Profile summary has been successfully deleted.');
         return redirect()->to('/user/profile');
     }
 }
