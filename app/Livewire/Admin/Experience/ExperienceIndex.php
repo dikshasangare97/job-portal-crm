@@ -11,10 +11,25 @@ class ExperienceIndex extends Component
     use WithPagination;
 
     public $search_input = '';
+    public $isOpen = 0;
+    public $experience;
+    public $experienceId;
+
     
     public function search()
     {
         $this->resetPage();
+    }
+
+    
+    public function openModal()
+    {
+        $this->isOpen = true;
+        $this->resetValidation();
+    }
+    public function closeModal()    
+    {
+        $this->isOpen = false;
     }
 
 
@@ -25,6 +40,27 @@ class ExperienceIndex extends Component
         ]);
     }
 
+    public function edit($id)
+    {
+      
+      $experience = Experience::findOrFail($id);   
+      $this->experienceId = $id;
+      $this-> experience = $experience->experience;
+      $this->openModal();
+    }
+    public function update()
+    {
+        if ($this->experienceId) {
+            $post = Experience::findOrFail($this->experienceId);
+            $post->update([
+                'experience' => $this->experience,
+                
+            ]);
+            session()->flash('success', 'Experience  updated successfully.');
+            $this->closeModal();
+            $this->reset('experience', 'experienceId');
+        }  
+    }
     public function delete($id)
     {
         Experience::find($id)->delete();

@@ -95,6 +95,53 @@
                         {{$workmodes->links()}}
                     </div>
                 </div>
+
+
+                 @if($isOpen)
+                <div class="fixed inset-0 flex items-center justify-center z-50">
+                        <div class="absolute inset-0 bg-black opacity-50"></div>
+                        <div class="relative bg-gray-200 p-8 rounded shadow-lg w-1/2">
+                            <!-- Modal content goes here -->
+                            <svg wire:click.prevent="$set('isOpen', false)"
+                            class="ml-auto w-6 h-6 text-gray-900 dark:text-gray-900 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                           <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
+                            </svg>
+                            <!-- <h2 class="text-2xl font-bold mb-4">Create Post</h2> -->
+                            <h2 class="text-2xl font-bold mb-4"></h2>
+                                <form enctype=""  wire:submit.prevent="{{ $workmode ? 'update' : '' }}">
+                                <div class="mb-4">
+                                    <label for="work_mode_name" class="block text-gray-700 font-bold mb-2">Department Name:</label>
+                                    <input type="text" wire:model="work_mode_name" id="work_mode_name" 
+                                    class="w-full border border-gray-300 px-4 py-2 rounded">         	
+                                    <span class="text-red-500">@error('work_mode_name') {{ $message }} @enderror</span>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
+                                    @if($workmode->status == 1)
+                                    <span class="bg-green-200 text-green-600 py-1 font-medium px-3 rounded-full text-xs">Available</span>
+                                    @else
+                                    <span class="bg-red-200 text-red-600 py-1 px-3 font-medium rounded-full text-xs">Not&nbsp;available</span>
+                                    @endif        	
+                                    <span class="text-red-500">@error('status') {{ $message }} @enderror</span>
+                                </div>
+                        <div>
+    
+   
+                                <div class="flex justify-end">
+                                    <button type="submit" 
+                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                                    Update
+                                    </button>
+                                    <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" wire:click="closeModal">Cancel</button>
+                                </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                </div>
+            @endif
+
+
             </div>
         </div>
 
