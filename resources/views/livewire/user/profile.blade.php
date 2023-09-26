@@ -70,6 +70,9 @@
 
                     <livewire:user.profile.profile-summary />
                     <div class="my-4"></div>
+
+                    <livewire:user.profile.career-profile />
+                    <div class="my-4"></div>
                     @endif
                 </div>
             </div>
