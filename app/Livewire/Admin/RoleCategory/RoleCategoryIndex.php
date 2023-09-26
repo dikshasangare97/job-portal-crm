@@ -9,8 +9,23 @@ use Livewire\WithPagination;
 class RoleCategoryIndex extends Component
 {
     use WithPagination;
-
+    public $isOpen = 0;
+    public $roleCategoryId;
     public $search_input = '';
+    public $role;
+    public $role_name;
+   
+
+    public function openModal()
+    {
+        $this->isOpen = true;
+        $this->resetValidation();
+    }
+    public function closeModal()    
+    {
+        $this->isOpen = false;
+    }
+
 
     public function search()
     {
@@ -24,10 +39,35 @@ class RoleCategoryIndex extends Component
         ]);
     }
 
+
+
+    public function edit($id)
+    {
+      
+      $role = Role::findOrFail($id);   
+      $this->roleCategoryId = $id;
+      $this-> role_name = $role->role_name;
+      $this->openModal();
+    }
+
+    public function update()
+    {
+        if ($this->roleCategoryId) {
+            $post = Role::findOrFail($this->roleCategoryId);
+            $post->update([
+                'role_name' => $this->role_name,
+               
+            ]);
+            session()->flash('success', 'Role Category  updated successfully.');
+            $this->closeModal();
+            $this->reset('role_name', 'roleCatgeoryId');
+        }  
+    }
+
     public function delete($id)
     {
         Role::find($id)->delete();
         session()->flash('success', 'role deleted successfully.');
-        $this->reset('city_name');
+        $this->reset('role_name');
     }
 }

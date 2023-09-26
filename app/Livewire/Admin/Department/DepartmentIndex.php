@@ -41,15 +41,15 @@ class DepartmentIndex extends Component
     }
 
     
-   public function show($id)
-   {
+//    public function show($id)
+//    {
 
-    $department = Departments::where('id', $id)->first();
-    $this->departmentId = $department->id;
-    $this->department_name =  $department->department_name;
-    $this->openModal();
+//     $department = Departments::where('id', $id)->first();
+//     $this->departmentId = $department->id;
+//     $this->department_name =  $department->department_name;
+//     $this->openModal();
 
-   }
+//    }
 
     public function edit($id)
     {
