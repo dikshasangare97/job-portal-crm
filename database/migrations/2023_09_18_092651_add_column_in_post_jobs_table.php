@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('locality')->nullable();
             $table->foreignId('industry_id')->constrained('industries');
             $table->string('functional_area')->nullable();
-            $table->foreignId('role_id')->constrained('roles');
+            $table->foreignId('role_id')->constrained('role_categories');
             $table->string('reference_code')->nullable();
             $table->string('vacancy')->nullable();
             $table->foreignId('education_qualification_id')->constrained('education');

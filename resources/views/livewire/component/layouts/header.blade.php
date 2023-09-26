@@ -83,7 +83,7 @@
                         </div>
                         <ul class="py-1" aria-labelledby="dropdown">
                             <li>
-                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
+                                <a href="/user/profile" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
                             </li>
                             <li>
                                 <livewire:component.logout />
@@ -184,7 +184,7 @@
                                     </div>
                                     <ul class="py-1" aria-labelledby="mobile-dropdown">
                                         <li>
-                                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
+                                            <a href="/user/profile" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
                                         </li>
                                         <li>
                                             <livewire:component.logout />
