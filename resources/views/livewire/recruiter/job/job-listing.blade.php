@@ -131,7 +131,7 @@
     <!-- delete modal -->
     <div wire:ignore.self id="delete-modal" data-modal-show="false" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
         <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
-            <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
+            <div class="bg-white rounded-lg shadow relative">
                 <div class="p-6 space-y-6">
                     <svg aria-hidden="true" class="mx-auto mb-4 text-red-500 w-14 h-14 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
