@@ -92,6 +92,10 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
+        tap(new KeySkillSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
         tap(new JobSeeder(), function ($seeder) {
             $seeder->run();
         });

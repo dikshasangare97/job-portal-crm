@@ -68,10 +68,16 @@
                     <livewire:user.profile.resume-headline />
                     <div class="my-4"></div>
 
+                    <livewire:user.profile.key-skills />
+                    <div class="my-4"></div>
+
                     <livewire:user.profile.profile-summary />
                     <div class="my-4"></div>
 
                     <livewire:user.profile.career-profile />
+                    <div class="my-4"></div>
+
+                    <livewire:user.profile.personal-details />
                     <div class="my-4"></div>
                     @endif
                 </div>

@@ -35,6 +35,7 @@ class Profile extends Component
         }
         UserPersonalDetail::create([
             'user_id' => Auth::user()->id,
+            'name' => Auth::user()->name,
             'resume' => $resumeName,
         ]);
         session()->flash('resumemessage', 'Resume has been successfully uploaded.');
