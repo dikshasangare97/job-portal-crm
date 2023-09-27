@@ -2,12 +2,12 @@
 
     <div>
         @if (session()->has('headlinemessage'))
-        <div class="flex items-center p-4 mb-4 text-sm text-green-800 border-b border-green-700" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7 mr-5">
+        <div class="flex items-center p-4 mb-4 text-sm border-b border-lime-400" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7 mr-5 text-lime-400">
                 <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
             </svg>
             <div>
-                <h1 class="text-xl font-bold leading-6 text-gray-800">Success</h1>
+                <h1 class="text-xl font-bold leading-6 text-lime-400">Success</h1>
                 <span class="text-gray-600 font-semibold leading-6">{{ session('headlinemessage') }}</span>
             </div>
         </div>
@@ -62,15 +62,15 @@
                     <div class="px-5 pb-2">
                         <h1 class=" items-center font-semibold tracking-wide text-gray-900 leading-8 text-xl pb-2">Resume headline</h1>
                         <p class="text-sm text-gray-500 pb-2">It is the first thing recruiters notice in your profile. Write concisely what makes you unique and right person for the job you are looking for.</p>
-                        {{ $userPersonalDetail->resume_headline }}
-                        <textarea wire:model="resume_headline" class="border w-full mt-2 rounded-lg p-2" id="resume_headline" cols="30" rows="5">{{ $userPersonalDetail->resume_headline }}</textarea>
+
+                        <textarea wire:model="resume_headline" class="border w-full mt-2 rounded-lg p-2" id="resume_headline" cols="30" rows="5"></textarea>
                         @error('resume_headline')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex justify-end p-6 space-x-2">
                         <button data-modal-toggle="resume-headline-modal" type="button" class="bg-red-500 ml-3 rounded-lg text-white hover:bg-red-400  border  text-sm font-medium px-2 py-2 ">Cancel</button>
-                        <button type="submit" class="px-2 py-2 bg-teal-500 ml-3 rounded-lg text-white hover:bg-teal-400">Save</button>
+                        <button type="submit" class="px-2 py-2 bg-blue-500 ml-3 rounded-lg text-white hover:bg-blue-400">Save</button>
                     </div>
                 </form>
             </div>
