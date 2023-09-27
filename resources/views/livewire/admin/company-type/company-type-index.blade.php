@@ -110,8 +110,8 @@
                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
                             </svg>
                             <!-- <h2 class="text-2xl font-bold mb-4">Create Post</h2> -->
-                            <h2 class="text-2xl font-bold mb-4">{{ $company_typesId  }}</h2>
-                                <form enctype=""  wire:submit.prevent="{{ $company_typesId ? 'update' : '' }}">
+                            <h2 class="text-2xl font-bold mb-4"></h2>
+                                <form enctype=""  wire:submit.prevent="{{ $companyTypeId ? 'update' : '' }}">
                                 <div class="mb-4">
                                     <label for="company_type_name" class="block text-gray-700 font-bold mb-2">Company Type Name:</label>
                                     <input type="text" wire:model="company_type_name" id="company_type_name" 
@@ -128,16 +128,13 @@
                                     <span class="text-red-500">@error('status') {{ $message }} @enderror</span>
                                 </div>
                         <div>
-    
-   
                                 <div class="flex justify-end">
                                     <button type="submit" 
                                     class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
-                                      Update{{ $company_typesId ? 'Update' : '' }}
+                                      Update
                                     </button>
                                     <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" wire:click="closeModal">Cancel</button>
                                 </div>
-                          
                         </div>
                     </div>
                 </div>

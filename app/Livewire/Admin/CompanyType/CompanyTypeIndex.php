@@ -10,11 +10,10 @@ class CompanyTypeIndex extends Component
 {
     use WithPagination;
 
-        public $search_input = '';
-        public $isOpen = 0;
+        public  $search_input = '';
+        public  $isOpen = 0;
         public  $company_type_name = '';
-       
-        public $company_typesId;
+        public  $companyTypeId;
 
     public function openModal()
     {
@@ -38,30 +37,32 @@ class CompanyTypeIndex extends Component
     }
     
 
-      public function edit($id)
+    public function edit($id)
     {
-        $company_types = CompanyType::findOrFail($id);
-      
-        $this-> company_type_name = $company_types->company_type_name;
+        
+        $education = CompanyType::findOrFail($id);   
+        $this->companyTypeId = $id;
+        $this-> company_type_name = $education->company_type_name;
         $this->openModal();
     }
-    public function update($company_typesId)
+   
+    public function update()
     {
-        if ($this->$company_typesId) {
-            $company_types = CompanyType::findOrFail($this->$company_typesId);
-            $company_types->update([
+        if ($this->companyTypeId) {
+            $post = CompanyType::findOrFail($this->companyTypeId);
+            $post->update([
                 'company_type_name' => $this->company_type_name,
-            
+                
             ]);
-            session()->flash('success', 'company type updated successfully.');
+            session()->flash('success', 'Company Type updated successfully.');
             $this->closeModal();
-            $this->reset('company_type_name');
-        }
+            $this->reset('company_type_name', 'companyTypeId');
+        }  
     }
         public function delete($id)
         {
             CompanyType::find($id)->delete();
-            session()->flash('success', 'company_type deleted successfully.');
+            session()->flash('success', 'Company type deleted successfully.');
             $this->reset('company_type_name');
         }
 
