@@ -10,13 +10,7 @@ use Livewire\Component;
 class KeySkills extends Component
 {
     public $key_skill = [], $detail;
-
-    // public function mount()
-    // {
-    //     $this->detail = UserKeySkill::where('user_id', Auth::user()->id)->get();
-    //     $this->key_skill = $this->detail->key_skill;
-    // }
-
+    public $user_key_skill_id;
 
     public function render()
     {
@@ -29,18 +23,26 @@ class KeySkills extends Component
 
     public function saveSkill()
     {
-        $userKeySkills = UserKeySkill::where('user_id', Auth::user()->id)->get();
-        if ($userKeySkills->isNotEmpty()) {
-            $userKeySkills->each->delete();
-        }
         foreach ($this->key_skill as $value) {
             UserKeySkill::create([
                 'user_id' => Auth::user()->id,
                 'key_skill_id' => $value,
             ]);
+            session()->flash('keyskillmsg', 'Key skill has been successfully saved.');
+            return redirect()->to('/user/profile');
         }
         $this->key_skill = [];
-        session()->flash('keyskillmsg', 'Key skill has been successfully saved.');
+    }
+
+    public function deleteKeySkillId($id)
+    {
+        $this->user_key_skill_id = $id;
+    }
+
+    public function deleteKeySkill()
+    {
+        UserKeySkill::find($this->user_key_skill_id)->delete();
+        session()->flash('keyskillmsg', 'Key skill deleted sucessfully');
         return redirect()->to('/user/profile');
     }
 }
