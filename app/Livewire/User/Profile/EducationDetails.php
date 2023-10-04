@@ -11,32 +11,10 @@ class EducationDetails extends Component
 {
 
     public $detail;
-    public $course_duration_to;
-    public $course_type = 'Full Time';
-    public $course_duration_from = '';
+    #[Rule('required')]
+    public $education_name = '', $university_name = '', $course_name = '', $specialization_name = '', $course_type = 'Full time', $course_duration_to = '', $course_duration_from = '', $marks = '';
     public $grading_system = '';
-    public $marks = '';
-    public $education_name = '';
-    public $university_name = '';
-    public $course_name = '';
-    public $specialization_name = '';
-
-    public function mount()
-    {
-        $this->detail = UserEducationDetail::with('user')->where('user_id', Auth::user()->id)->first();
-        // if (($this->detail->education_name)->isNotEmpty()) {
-        //     $this->education_name = $this->detail->education_name;
-        //     $this->university_name = $this->detail->university_name;
-        //     $this->course_name = $this->detail->course_name;
-        //     $this->specialization_name = $this->detail->specialization_name;
-        //     $this->course_type = $this->detail->course_type;
-        //     $this->course_duration_to = $this->detail->course_duration_to;
-        //     $this->course_duration_from = $this->detail->course_duration_from;
-        //     $this->grading_system = $this->detail->grading_system;
-        //     $this->marks = $this->detail->marks;
-        // }
-    }
-
+    public $user_education_id;
 
     public function render()
     {
@@ -48,6 +26,7 @@ class EducationDetails extends Component
 
     public function saveCareerDetail()
     {
+        $this->validate();
         UserEducationDetail::create([
             'user_id' => Auth::user()->id,
             'education_name' => $this->education_name,
@@ -61,6 +40,28 @@ class EducationDetails extends Component
             'marks' => $this->marks,
         ]);
         session()->flash('educationmessage', 'Education detail has been successfully saved.');
+        return redirect()->to('/user/profile');
+    }
+
+    public function getEducationId($id)
+    {
+        $this->user_education_id = $id;
+        $this->detail = UserEducationDetail::find($this->user_education_id);
+        $this->education_name = $this->detail->education_name;
+        $this->university_name = $this->detail->university_name;
+        $this->course_name = $this->detail->course_name;
+        $this->specialization_name = $this->detail->specialization_name;
+        $this->course_type = $this->detail->course_type;
+        $this->course_duration_to = $this->detail->course_duration_to;
+        $this->course_duration_from = $this->detail->course_duration_from;
+        $this->grading_system = $this->detail->grading_system;
+        $this->marks = $this->detail->marks;
+    }
+
+    public function deleteEducation()
+    {
+        UserEducationDetail::find($this->user_education_id)->delete();
+        session()->flash('educationmessage', 'Education detail deleted sucessfully');
         return redirect()->to('/user/profile');
     }
 }

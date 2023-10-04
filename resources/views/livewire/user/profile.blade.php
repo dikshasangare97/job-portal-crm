@@ -74,6 +74,9 @@
                     <livewire:user.profile.education-details />
                     <div class="my-4"></div>
 
+                    <livewire:user.profile.itskill-details />
+                    <div class="my-4"></div>
+
                     <livewire:user.profile.profile-summary />
                     <div class="my-4"></div>
 
