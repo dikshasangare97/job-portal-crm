@@ -71,6 +71,9 @@
                     <livewire:user.profile.key-skills />
                     <div class="my-4"></div>
 
+                    <livewire:user.profile.employment-details />
+                    <div class="my-4"></div>
+
                     <livewire:user.profile.education-details />
                     <div class="my-4"></div>
 
