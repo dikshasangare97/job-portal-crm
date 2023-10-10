@@ -43,11 +43,11 @@
                 <table class="table-auto w-full">
                     <thead class="border-b">
                         <tr>
-                            <th class="text-left text-slate-400 p-4 text-md font-normal">Skills</th>
-                            <th class="text-left text-slate-400 p-4 text-md font-normal">Version</th>
-                            <th class="text-left text-slate-400 p-4 text-md font-normal">Last used</th>
-                            <th class="text-left text-slate-400 p-4 text-md font-normal">Experience</th>
-                            <th class="text-left text-slate-400 p-4 text-md font-normal"></th>
+                            <th class="text-left text-slate-400 p-2 text-md font-normal">Skills</th>
+                            <th class="text-left text-slate-400 p-2 text-md font-normal">Version</th>
+                            <th class="text-left text-slate-400 p-2 text-md font-normal">Last used</th>
+                            <th class="text-left text-slate-400 p-2 text-md font-normal">Experience</th>
+                            <th class="text-left text-slate-400 p-2 text-md font-normal"></th>
                         </tr>
                     </thead>
                     <tbody>

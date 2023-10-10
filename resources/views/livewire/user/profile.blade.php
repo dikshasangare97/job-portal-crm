@@ -88,6 +88,9 @@
 
                     <livewire:user.profile.personal-details />
                     <div class="my-4"></div>
+
+                    <livewire:user.profile.language-details />
+                    <div class="my-4"></div>
                     @endif
                 </div>
             </div>
