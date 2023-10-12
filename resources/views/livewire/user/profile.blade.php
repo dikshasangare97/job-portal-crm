@@ -217,12 +217,12 @@
     <div class="bg-gray-100">
         <div class="container mx-auto my-5 p-5">
             <div class="w-full text-black bg-white shadow-lg rounded-xl">
-                <div class="flex">
-                    <div class="w-1/6 p-6 my-auto">
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full md:w-1/6 p-6 my-auto">
                         <livewire:user.profile.user-profile-image />
                     </div>
-                    <div class="w-3/6 p-10">
-                        <div class="flex">
+                    <div class="w-full md:w-3/6 p-10">
+                        <div class="flex justify-between items-center">
                             <h3 class="text-2xl font-bold capitalize">{{ Auth::user()->name ?? '-' }}</h3>
                             <div>
                                 <button class="inline-flex items-center px-2 py-2 mr-5 text-gray-600 ml-3" data-modal-toggle="basic-detail-modal">
@@ -236,7 +236,7 @@
                         <p class="text-sm  text-slate-500">at <span class="font-semibold capitalize">{{ $userEmployment->company_name ?? '-' }}</span></p>
                         <div class="border-b my-5"></div>
                         <div class="flex">
-                            <div class="w-1/2 border-r">
+                            <div class="w-full md:w-1/2 border-r">
                                 <div class="flex text-sm  text-slate-500 font-normal py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -266,7 +266,7 @@
                                     <p><span class="font-semibold">₹</span> {{ $userPersonalDetail->current_salary ?? '-' }}</p>
                                 </div>
                             </div>
-                            <div class="w-1/2 pl-3">
+                            <div class="w-full md:w-1/2 pl-3">
                                 <div class="flex text-sm  text-slate-500 font-normal py-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -298,40 +298,83 @@
                 <div class="w-full md:w-3/12 md:mx-2">
                     <div class="bg-white p-3 border-t-4 border-blue-400">
                         <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Quick Links</h1>
+                        <ul>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-5 pl-5 py-2 font-medium">
+                                <a href="#resume-upload">Resume</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#resume-headline">Resume headline</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#key-skills">Key skills</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#employment-details">Employment</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#education-details">Education</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#itskill-details">IT skills</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#profile-summary">Profile summary</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#career-profile">Career profile</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#personal-details">Personal details</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 mb-5 pl-5 py-2 font-medium">
+                                <a href="#language-details">Language details</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="w-full md:w-9/12 mx-2 ">
+                <div class="w-full md:w-9/12 mx-2">
                     @if($userPersonalDetail != null)
-                    <livewire:user.profile.resume-upload />
-                    <div class="my-4"></div>
 
-                    <livewire:user.profile.resume-headline />
-                    <div class="my-4"></div>
+                    <div id="resume-upload" class="mb-4" wire:ignore>
+                        <livewire:user.profile.resume-upload />
+                    </div>
 
-                    <livewire:user.profile.key-skills />
-                    <div class="my-4"></div>
+                    <div id="resume-headline" class="my-4" wire:ignore>
+                        <livewire:user.profile.resume-headline />
+                    </div>
 
-                    <livewire:user.profile.employment-details />
-                    <div class="my-4"></div>
+                    <div id="key-skills" class="my-4" wire:ignore>
+                        <livewire:user.profile.key-skills />
+                    </div>
 
-                    <livewire:user.profile.education-details />
-                    <div class="my-4"></div>
+                    <div id="employment-details" class="my-4" wire:ignore>
+                        <livewire:user.profile.employment-details />
+                    </div>
 
-                    <livewire:user.profile.itskill-details />
-                    <div class="my-4"></div>
+                    <div id="education-details" class="my-4" wire:ignore>
+                        <livewire:user.profile.education-details />
+                    </div>
 
-                    <livewire:user.profile.profile-summary />
-                    <div class="my-4"></div>
+                    <div id="itskill-details" class="my-4" wire:ignore>
+                        <livewire:user.profile.itskill-details />
+                    </div>
 
-                    <livewire:user.profile.career-profile />
-                    <div class="my-4"></div>
+                    <div id="profile-summary" class="my-4" wire:ignore>
+                        <livewire:user.profile.profile-summary />
+                    </div>
 
-                    <livewire:user.profile.personal-details />
-                    <div class="my-4"></div>
+                    <div id="career-profile" class="my-4" wire:ignore>
+                        <livewire:user.profile.career-profile />
+                    </div>
 
-                    <livewire:user.profile.language-details />
-                    <div class="my-4"></div>
+                    <div id="personal-details" class="my-4" wire:ignore>
+                        <livewire:user.profile.personal-details />
+                    </div>
+
+                    <div id="language-details" class="my-4" wire:ignore>
+                        <livewire:user.profile.language-details />
+                    </div>
                     @endif
                 </div>
             </div>
@@ -514,6 +557,20 @@
     </div>
     <!-- basic detail modal end -->
 
-
+    @push('script')
+    <script>
+        $(document).ready(function() {
+            $('a').on('click', function(e) {
+                e.preventDefault();
+                var targetId = $(this).attr('href').substring(1);
+                if (targetId) {
+                    $('html, body').animate({
+                        scrollTop: $('#' + targetId).offset().top
+                    }, 500);
+                }
+            });
+        });
+    </script>
+    @endpush
 
 </div>
