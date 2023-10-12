@@ -318,6 +318,9 @@
                                 <a href="#itskill-details">IT skills</a>
                             </li>
                             <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
+                                <a href="#project-detail">Projects</a>
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
                                 <a href="#profile-summary">Profile summary</a>
                             </li>
                             <li class="hover:bg-gray-100 rounded-full text-md mt-3 pl-5 py-2 font-medium">
@@ -358,6 +361,10 @@
 
                     <div id="itskill-details" class="my-4" wire:ignore>
                         <livewire:user.profile.itskill-details />
+                    </div>
+
+                    <div id="project-detail" class="my-4" wire:ignore>
+                        <livewire:user.profile.project-details />
                     </div>
 
                     <div id="profile-summary" class="my-4" wire:ignore>
