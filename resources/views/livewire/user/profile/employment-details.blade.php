@@ -94,9 +94,12 @@
             <p class="font-normal text-sm text-gray-600">{{ $employment_detail->notice_period ?? '-' }} Notice Period</p>
             @endif
             @if($employment_detail->current_employment == 0 )
+            @if($employment_detail->skill_used)
+
             <p class="font-normal text-sm"><span class="font-semibold">Top 5 key skills:</span> <span class="text-gray-600">
                     {{ $this->getSkillNames($employment_detail->skill_used) }}
                 </span></p>
+            @endif
             @endif
 
             @endforeach

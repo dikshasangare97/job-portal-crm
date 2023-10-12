@@ -56,18 +56,20 @@ class EmploymentDetails extends Component
 
     public function getSkillNames($skillUsed)
     {
-        $skillIds = json_decode($skillUsed);
-        $skillNames = [];
-        foreach ($skillIds as $skillId) {
-            if (count($skillNames) >= 5) {
-                break;
+        if ($skillUsed) {
+            $skillIds = json_decode($skillUsed);
+            $skillNames = [];
+            foreach ($skillIds as $skillId) {
+                if (count($skillNames) >= 5) {
+                    break;
+                }
+                $keySkill = KeySkill::where('id', $skillId)->first();
+                if ($keySkill) {
+                    $skillNames[] = $keySkill->key_skill_name;
+                }
             }
-            $keySkill = KeySkill::where('id', $skillId)->first();
-            if ($keySkill) {
-                $skillNames[] = $keySkill->key_skill_name;
-            }
+            return !empty($skillNames) ? implode(', ', $skillNames) : '-';
         }
-        return !empty($skillNames) ? implode(', ', $skillNames) : '-';
     }
 
     public function saveEmploymentDetail()
