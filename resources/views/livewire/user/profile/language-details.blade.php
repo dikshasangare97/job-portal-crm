@@ -159,18 +159,18 @@
 
                             <div class="flex">
                                 <div class="w-1/6">
-                                    <input type="checkbox" id="read" wire:model="read.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="read">
-                                    <label for="read" class="font-semibold text-sm text-gray-700">Read</label>
+                                    <input type="checkbox" id="read.0" wire:model="read.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="read">
+                                    <label for="read.0" class="font-semibold text-sm text-gray-700">Read</label>
                                     <div class="text-xs text-red-600 font-bold">@error('read.0') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
-                                    <input type="checkbox" id="write" wire:model="write.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="write">
-                                    <label for="write" class="font-semibold text-sm text-gray-700">Write</label>
+                                    <input type="checkbox" id="write.0" wire:model="write.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="write">
+                                    <label for="write.0" class="font-semibold text-sm text-gray-700">Write</label>
                                     <div class="text-xs text-red-600 font-bold">@error('write.0') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
-                                    <input type="checkbox" id="speak" wire:model="speak.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="speak">
-                                    <label for="speak" class="font-semibold text-sm text-gray-700">Speak</label>
+                                    <input type="checkbox" id="speak.0" wire:model="speak.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="speak">
+                                    <label for="speak.0" class="font-semibold text-sm text-gray-700">Speak</label>
                                     <div class="text-xs text-red-600 font-bold">@error('speak.0') {{ $message }} @enderror</div>
                                 </div>
                             </div>
@@ -200,18 +200,18 @@
 
                             <div class="flex">
                                 <div class="w-1/6">
-                                    <input type="checkbox" id="read" wire:model="read.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="read">
-                                    <label for="read" class="font-semibold text-sm text-gray-700">Read</label>
+                                    <input type="checkbox" id="read.{{ $value }}" wire:model="read.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="read">
+                                    <label for="read.{{ $value }}" class="font-semibold text-sm text-gray-700">Read</label>
                                     <div class="text-xs text-red-600 font-bold">@error('read.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
-                                    <input type="checkbox" id="write" wire:model="write.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="write">
-                                    <label for="write" class="font-semibold text-sm text-gray-700">Write</label>
+                                    <input type="checkbox" id="write.{{ $value }}" wire:model="write.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="write">
+                                    <label for="write.{{ $value }}" class="font-semibold text-sm text-gray-700">Write</label>
                                     <div class="text-xs text-red-600 font-bold">@error('write.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
-                                    <input type="checkbox" id="speak" wire:model="speak.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="speak">
-                                    <label for="speak" class="font-semibold text-sm text-gray-700">Speak</label>
+                                    <input type="checkbox" id="speak.{{ $value }}" wire:model="speak.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="speak">
+                                    <label for="speak.{{ $value }}" class="font-semibold text-sm text-gray-700">Speak</label>
                                     <div class="text-xs text-red-600 font-bold">@error('speak.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-3/6 text-end">

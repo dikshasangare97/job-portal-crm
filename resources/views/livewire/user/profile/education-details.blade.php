@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="flex my-5">
+    <div class="flex mb-5">
         <div class="w-2/3">
             @foreach($userEducationDetails as $userEducationDetail)
             <p class="font-semibold flex text-md text-gray-700 mt-5">

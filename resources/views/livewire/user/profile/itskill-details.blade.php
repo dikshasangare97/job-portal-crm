@@ -128,7 +128,7 @@
                             <div class="w-1/2 mr-2">
                                 <label for="software_version" class="font-semibold text-sm text-gray-700">Software version</label>
                                 <br>
-                                <input type="text" wire:model="software_version" id="software_version" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="University/Institute" />
+                                <input type="text" wire:model="software_version" id="software_version" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Software version" />
                                 <div class="text-xs text-red-600 font-bold">@error('software_version') {{ $message }} @enderror</div>
                             </div>
                             <div class="w-1/2">
