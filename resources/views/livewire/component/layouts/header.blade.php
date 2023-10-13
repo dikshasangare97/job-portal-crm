@@ -15,11 +15,11 @@
                     </svg>
                 </button>
             </div>
-            <div class="hidden lg:flex lg:gap-x-12">
+            <div class="hidden lg:flex lg:gap-x-12 text-end">
                 @if (Route::has('login'))
                 @auth
                 @if(Auth::user()->is_user == 0)
-
+                <!-- for recruiter -->
                 <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="#">
                     {{ __('About us') }}
                 </a>
@@ -65,10 +65,14 @@
                 <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/admin/jobrole">
                     {{ __('Job Role')}}
                 </a>
-                
-                @else
 
+                @else
+                <!-- for user -->
+                <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/user/myapply">
+                    {{ __('Application Status')}}
+                </a>
                 @endif
+
                 @endauth
                 @endif
             </div>
@@ -76,22 +80,46 @@
                 @if (Route::has('login'))
                 <div class="">
                     @auth
-                    <button class="text-sm font-semibold leading-6 text-gray-900 px-2 py-2 rounded-lg  hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" type="button" data-dropdown-toggle="dropdown">{{ Auth::user()->name}}
-                        <span aria-hidden="true">&#9662;</span>
-                    </button>
-                    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
-                        <div class="px-4 py-3">
-                            <span class="block text-sm">{{ Auth::user()->name}}</span>
-                            <span class="block text-sm font-medium text-gray-900 truncate">{{ Auth::user()->email}}</span>
+                    <div class="flex">
+                        <div class="">
+                            @if(Auth::user()->is_user == 0)
+                            <!-- for recruiter -->
+                            @elseif(Auth::user()->is_user == 2)
+                            <!-- for admin -->
+                            @else
+                            <!-- for user -->
+                            <form wire:submit="searchJobResult">
+                                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+                                <div class="relative">
+                                    <input type="search" wire:model="search_input" id="default-search" class="block w-64 py-3 pl-2 text-sm text-gray-900 border rounded-full border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 focus:outline-none" placeholder="Search job here..." required>
+                                    <button type="submit" class="text-white absolute right-2.5 bottom-1.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                            @endif
                         </div>
-                        <ul class="py-1" aria-labelledby="dropdown">
-                            <li>
-                                <a href="/user/profile" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
-                            </li>
-                            <li>
-                                <livewire:component.logout />
-                            </li>
-                        </ul>
+                        <div class="">
+                            <button class="text-sm font-semibold leading-6 text-gray-900 px-2 py-2 rounded-lg  hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" type="button" data-dropdown-toggle="dropdown">{{ Auth::user()->name}}
+                                <span aria-hidden="true">&#9662;</span>
+                            </button>
+                            <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
+                                <div class="px-4 py-3">
+                                    <span class="block text-sm">{{ Auth::user()->name}}</span>
+                                    <span class="block text-sm font-medium text-gray-900 truncate">{{ Auth::user()->email}}</span>
+                                </div>
+                                <ul class="py-1" aria-labelledby="dropdown">
+                                    <li>
+                                        <a href="/user/profile" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
+                                    </li>
+                                    <li>
+                                        <livewire:component.logout />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     @else
                     <!-- for user login -->
@@ -137,7 +165,7 @@
                             @auth
 
                             @if(Auth::user()->is_user == 0)
-
+                            <!-- for recruiter -->
                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('About us') }}</a>
                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Contact us')}}</a>
 
@@ -167,8 +195,23 @@
 
                             @else
 
-                            @endif
+                            <!-- for user -->
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/user/myapply">
+                                {{ __('Application Status')}}
+                            </a>
+                            <form wire:submit="searchJobResult">
+                                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+                                <div class="flex">
+                                    <input type="search" wire:model="search_input" id="default-search" class="block w-auto py-3 pl-2 text-sm text-gray-900 border rounded-full border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 focus:outline-none" placeholder="Search job here..." required>
+                                    <button type="submit" class="text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
 
+                            </form>
+                            @endif
 
                             @endauth
                             @endif
