@@ -21,195 +21,82 @@
     </div>
 
     <div class="flex m-4 bg-white">
-
-
-
-
-
-
-        <!-- component -->
-        <!-- <div class='flex items-center justify-center h-96'>
-            <ul class="mx-auto grid max-w-full w-full grid-cols-3 gap-x-5 px-8">
-                <li class="">
-                    <input class="peer sr-only" type="radio" value="yes" name="answer" id="yes" checked />
-                    <label class="flex justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-2 px-4 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-indigo-500 transition-all duration-500 ease-in-out" for="yes">Details</label>
-
-                    <div class="absolute bg-white shadow-lg left-0 p-6 border mt-2 border-indigo-300 rounded-lg w-[97vw] mx-auto transition-all duration-500 ease-in-out translate-x-40 opacity-0 invisible peer-checked:opacity-100 peer-checked:visible peer-checked:translate-x-1">
-                        Details
-                    </div>
-                </li>
-
-                <li class="">
-                    <input class="peer sr-only" type="radio" value="no" name="answer" id="no" />
-                    <label class="flex justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-2 px-4 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-indigo-500 transition-all duration-500 ease-in-out" for="no">About</label>
-
-                    <div class="absolute bg-white shadow-lg left-0 p-6 border mt-2 border-indigo-300 rounded-lg w-[97vw] mx-auto transition-all duration-500 ease-in-out translate-x-40 opacity-0 invisible peer-checked:opacity-100 peer-checked:visible peer-checked:translate-x-1">
-                        About
-                    </div>
-                </li>
-
-                <li class="">
-                    <input class="peer sr-only" type="radio" value="yesno" name="answer" id="yesno" />
-                    <label class="flex justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-2 px-4 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-indigo-500 transition-all duration-500 ease-in-out " for="yesno">Something</label>
-
-                    <div class="absolute bg-white shadow-lg left-0 p-6 border mt-2 border-indigo-300 rounded-lg w-[97vw] mx-auto transition-all duration-500 ease-in-out translate-x-40 opacity-0 invisible peer-checked:opacity-100 peer-checked:visible peer-checked:translate-x-1">
-                        Something
-                    </div>
-                </li>
-            </ul>
-
-        </div> -->
-
-
-
-
         <div class="flex flex-col justify-center ">
             <section class="py-5 mx-auto space-y-8 sm:py-5">
-                <div class="container flex flex-row items-stretch  w-full max-w-4xl space-x-12" x-data="{tab: 1}">
+                <div class="container flex flex-row items-stretch  w-full space-x-12" x-data="{tab: 1}">
                     <div class="flex flex-col justify-start w-2/6 space-y-4 border-r pr-2 ">
 
                         <h1 class="font-semibold text-lg mx-auto my-5">Application status</h1>
 
-                        <a class="p-4 text-sm" :class="{'z-20 border-r-2 bg-blue-100 transform translate-x-2 border-blue-500 font-bold': tab === 1, ' transform -translate-x-2': tab !== 1}" href="#" @click.prevent="tab = 1">
-                            BATMAN & ROBIN
-                        </a>
-                        <a class="px-4 py-2 text-sm" :class="{'z-20 border-r-2 bg-blue-100 transform translate-x-2 border-blue-500 font-bold': tab === 2, ' transform -translate-x-2': tab !== 2}" href="#" @click.prevent="tab = 2" @click.prevent="tab = 2">
-                            BATMAN V SUPERMAN: DAWN OF JUSTICE (2016)
-                        </a>
-                        <a class="px-4 py-2 text-sm" :class="{'z-20 border-r-2 bg-blue-100 transform translate-x-2 border-blue-500 font-bold': tab === 3, ' transform -translate-x-2': tab !== 3}" href="#" @click.prevent="tab = 3" @click.prevent="tab = 3">
-                            BATMAN FOREVER (1995)
-                        </a>
-                        <a class="px-4 py-2 text-sm" :class="{'z-20 border-r-2 bg-blue-100 transform translate-x-2 border-blue-500 font-bold': tab === 4, ' transform -translate-x-2': tab !== 4}" href="#" @click.prevent="tab = 4" @click.prevent="tab = 4">
-                            BATMAN: THE KILLING JOKE (2016)
-                        </a>
-                        <a class="px-4 py-2 text-sm" :class="{'z-20 border-r-2 bg-blue-100 transform translate-x-2 border-blue-500 font-bold': tab === 5, ' transform -translate-x-2': tab !== 5}" href="#" @click.prevent="tab = 5" @click.prevent="tab = 5">
-                            JUSTICE LEAGUE (2017)
-                        </a>
+                        @foreach($application_details as $application_detail)
+                        <div class="p-4 font-semibold cursor-pointer" :class="{'z-20 border-r-2 bg-blue-100 transform translate-x-2 border-blue-500': tab === {{$application_detail->id}}, ' transform -translate-x-2': tab !== {{$application_detail->id}}}" @click.prevent="tab = {{$application_detail->id}}">
+                            <p class="font-md">{{strlen($application_detail->job->job_headline) > 30 ? substr($application_detail->job->job_headline, 0, 30) . '...' : $application_detail->job->job_headline ?? '-'}}</p>
+                            <p class="font-sm text-slate-500">{{strlen($application_detail->job->company_name) > 20 ? substr($application_detail->job->company_name, 0, 20) . '...' : $application_detail->job->company_name ?? '-'}}</p>
+                        </div>
+                        @endforeach
                     </div>
-                    <div class="w-3/6">
-                        <div class="space-y-6" x-show="tab === 1">
-                            <h3 class="text-xl font-bold leading-tight" x-show="tab === 1" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                BATMAN & ROBIN
-                            </h3>
-                            <p class="text-base text-gray-600" x-show="tab === 1" x-transition:enter="transition delay-100 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Rottentomatoes 12%
-                            </p>
-                            <p class="text-xl" x-show="tab === 1" x-transition:enter="transition delay-200 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Batman & Robin try to keep their relationship together even as they must stop Mr. Freeze and Poison Ivy from...
-                            </p>
-                            <p class="text-base" x-show="tab === 1" x-transition:enter="transition delay-300 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Is this the right batman for me?
-                            </p>
-                            <a href="https://twitter.com/smilesharks" class="inline-flex items-center justify-center px-8 pt-3 pb-2 mt-4 text-lg text-center text-white no-underline bg-blue-500 border-blue-500 cursor-pointer hover:bg-gray-900 rounded-3xl hover:text-white focus-within:bg-blue-500 focus-within:border-blue-500 focus-within:text-white sm:text-base lg:text-lg" class="text-base" x-show="tab === 1" x-transition:enter="transition delay-500 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Learn more
-                            </a>
-                        </div>
+                    <div class="w-4/6">
 
-                        <div class="space-y-6" x-show="tab === 2">
-                            <h3 class="text-xl font-bold leading-tight" x-show="tab === 2" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                BATMAN V SUPERMAN: DAWN OF JUSTICE (2016)
-                            </h3>
-                            <p class="text-base text-gray-600" x-show="tab === 2" x-transition:enter="transition delay-100 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Rottentomatoes 40%
-                            </p>
-                            <p class="text-xl" x-show="tab === 2" x-transition:enter="transition delay-200 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Batman (Ben Affleck) and Superman (Henry Cavill) share the screen in this Warner Bros./DC Entertainment co-production penned by David S....
-                            </p>
-                            <p class="text-base" x-show="tab === 2" x-transition:enter="transition delay-300 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Is this the right batman for me?
-                            </p>
-                            <a href="https://twitter.com/smilesharks" class="inline-flex items-center justify-center px-8 pt-3 pb-2 mt-4 text-lg text-center text-white no-underline bg-blue-500 border-blue-500 cursor-pointer hover:bg-gray-900 rounded-3xl hover:text-white focus-within:bg-blue-500 focus-within:border-blue-500 focus-within:text-white sm:text-base lg:text-lg" class="text-base" x-show="tab === 2" x-transition:enter="transition delay-500 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Learn more
-                            </a>
-                        </div>
+                        @foreach($application_details as $application_detail)
+                        <div x-show="tab === {{$application_detail->id}}" class="w-[900px]">
 
-                        <div class="space-y-6" x-show="tab === 3">
-                            <h3 class="text-xl font-bold leading-tight" x-show="tab === 3" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                BATMAN FOREVER (1995)
+                            {{$application_detail->id}}
+                            <h3 class="text-xl font-bold leading-tight pt-10" x-show="tab === {{$application_detail->id}}">
+                                {{$application_detail->job->job_headline ?? '-'}}
                             </h3>
-                            <p class="text-base text-gray-600" x-show="tab === 3" x-transition:enter="transition delay-100 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Rottentomatoes 12%
+                            <p class="text-base text-slate-500 mt-2" x-show="tab === {{$application_detail->id}}">
+                                {{$application_detail->job->company_name ?? '-'}}
                             </p>
-                            <p class="text-xl" x-show="tab === 3" x-transition:enter="transition delay-200 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Rottentomatoes 38%
-                            </p>
-                            <p class="text-base" x-show="tab === 3" x-transition:enter="transition delay-300 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Is this the right batman for me?
-                            </p>
-                            <a href="https://twitter.com/smilesharks" class="inline-flex items-center justify-center px-8 pt-3 pb-2 mt-4 text-lg text-center text-white no-underline bg-blue-500 border-blue-500 cursor-pointer hover:bg-gray-900 rounded-3xl hover:text-white focus-within:bg-blue-500 focus-within:border-blue-500 focus-within:text-white sm:text-base lg:text-lg" class="text-base" x-show="tab === 3" x-transition:enter="transition delay-500 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Learn more
-                            </a>
-                        </div>
+                            <div class="border my-5"></div>
 
-                        <div class="space-y-6" x-show="tab === 4">
-                            <h3 class="text-xl font-bold leading-tight" x-show="tab === 4" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                BATMAN: THE KILLING JOKE (2016)
-                            </h3>
-                            <p class="text-base text-gray-600" x-show="tab === 4" x-transition:enter="transition delay-100 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Rottentomatoes 39%
-                            </p>
-                            <p class="text-xl" x-show="tab === 4" x-transition:enter="transition delay-200 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Fathom Events, Warner Bros. and DC Comics invite you to a premiere event when Batman: The Killing Joke comes to...
-                            </p>
-                            <p class="text-base" x-show="tab === 4" x-transition:enter="transition delay-300 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Is this the right batman for me?
-                            </p>
-                            <a href="https://twitter.com/smilesharks" class="inline-flex items-center justify-center px-8 pt-3 pb-2 mt-4 text-lg text-center text-white no-underline bg-blue-500 border-blue-500 cursor-pointer hover:bg-gray-900 rounded-3xl hover:text-white focus-within:bg-blue-500 focus-within:border-blue-500 focus-within:text-white sm:text-base lg:text-lg" class="text-base" x-show="tab === 4" x-transition:enter="transition delay-500 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Learn more
-                            </a>
-                        </div>
 
-                        <div class="space-y-6" x-show="tab === 5">
-                            <h3 class="text-xl font-bold leading-tight" x-show="tab === 5" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                JUSTICE LEAGUE (2017)
-                            </h3>
-                            <p class="text-base text-gray-600" x-show="tab === 5" x-transition:enter="transition delay-100 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Rottentomatoes 40%
-                            </p>
-                            <p class="text-xl" x-show="tab === 5" x-transition:enter="transition delay-200 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his...
-                            </p>
-                            <p class="text-base" x-show="tab === 5" x-transition:enter="transition delay-300 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Is this the right batman for me?
-                            </p>
-                            <a href="https://twitter.com/smilesharks" class="inline-flex items-center justify-center px-8 pt-3 pb-2 mt-4 text-lg text-center text-white no-underline bg-blue-500 border-blue-500 cursor-pointer hover:bg-gray-900 rounded-3xl hover:text-white focus-within:bg-blue-500 focus-within:border-blue-500 focus-within:text-white sm:text-base lg:text-lg" class="text-base" x-show="tab === 5" x-transition:enter="transition delay-500 duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                                Learn more
-                            </a>
+                            <div class="text-xl" x-show="tab === {{$application_detail->id}}">
+                                <ol class="flex items-center w-full mb-4 sm:mb-5">
+                                    @foreach($application_log_details as $application_log_detail)
+
+                                    {{$application_log_detail->job_id}}
+
+                                    <li class="flex w-full items-center text-gray-300  after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-4 after:inline-block  @if($application_log_detail->status == 7) after:border-red-600 @endif @if($application_log_detail->status <= $application_detail->application_status) text-green-600 after:border-green-600 @endif @if($application_log_detail->status == 8) after:border-white @endif" wire:click="setJobId({{ $application_log_detail->id }})">
+                                        <div class="flex items-center justify-center w-6 h-6 bg-gray-300 rounded-full lg:h-6 lg:w-6 shrink-0 @if($application_log_detail->status == 7) bg-red-600 @endif @if($application_log_detail->status <= $application_detail->application_status) bg-green-600 @endif @if($application_log_detail->status == 8) bg-gray-200 @endif">
+                                            @if($application_log_detail->status <= $application_detail->application_status)
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
+                                                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+                                                </svg>
+                                                @elseif($application_log_detail->status == 7)
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                                @elseif($application_log_detail->status == 8)
+                                                <p class="w-2 h-2 border-4 border-gray-300 bg-white rounded-full lg:w-6 lg:h-6 "></p>
+                                                @else
+                                                <p class="w-2 h-2 border-4 border-green-600 bg-white rounded-full lg:w-6 lg:h-6 "></p>
+                                                @endif
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ol>
+                                <ol class="flex">
+                                    @foreach($application_log_details as $application_log_detail)
+                                    <li class="flex w-full items-center text-gray-300  after:content-[''] after:w-full after:h-1 after:inline-block ">
+                                        <div class="flex items-center justify-center rounded-full lg:h-6 lg:w-6 shrink-0 ">
+                                            <p class="mb-4 text-sm font-medium leading-none text-gray-900">
+                                                <span>
+                                                    {{ $application_log_detail->applicationJobStatus->application_status_name }}
+                                                </span> <br>
+                                                <span>
+                                                    {{ date('d M y', strtotime($application_log_detail->created_at)) }}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ol>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                </div>
             </section>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- <div class="w-2/6 m-3 border-r-2">
-            <h1 class="font-semibold text-lg">Application status</h1>
-            <div class="p-3">
-
-            </div>
-        </div>
-        <div class="w-4/6 m-3 p-5">
-            sxcvbnm,
-        </div> -->
-
-
     </div>
-
-
-
 </div>

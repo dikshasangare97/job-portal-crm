@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Job;
 
+use App\Models\ApplicationStatusLog;
 use App\Models\JobApply as ModelsJobApply;
 use App\Models\PostJob;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,7 @@ use Livewire\Component;
 
 class JobApply extends Component
 {
-    public $jobId;
+    public $jobId, $application_status = ['1', '2', '8'];
 
     public function save()
     {
@@ -21,9 +22,16 @@ class JobApply extends Component
             ModelsJobApply::create([
                 'user_id' => Auth::user()->id,
                 'job_id' => $this->jobId,
-                'application_status' => 1,
+                'application_status' => 2,
                 'recruiter_id' => $jobdata->user_id
             ]);
+            foreach ($this->application_status as $appStatus) {
+                ApplicationStatusLog::create([
+                    'user_id' => Auth::user()->id,
+                    'job_id' => $this->jobId,
+                    'status' => $appStatus,
+                ]);
+            }
             session()->flash('message', 'Sucessfully apply for a job.');
         }
         return redirect()->to('/job/' . $this->jobId . '/view');

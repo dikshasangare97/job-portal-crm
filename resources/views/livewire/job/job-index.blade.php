@@ -69,6 +69,18 @@
                         @endif
                         Days Ago
                     </p>
+                    <div class="mt-5">
+                        @auth
+                        @if(auth()->user()->register_for == 'user')
+                        <div>
+                            @php
+                            $jobId = $job->id;
+                            @endphp
+                            <livewire:job.job-apply :jobId="$jobId" />
+                        </div>
+                        @endif
+                        @endauth
+                    </div>
                 </a>
             </div>
         </div>

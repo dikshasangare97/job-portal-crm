@@ -4,17 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class JobApply extends Model
+class ApplicationStatusLog extends Model
 {
-    use HasFactory, SoftDeletes;
-
+    use HasFactory;
     protected $fillable = [
         'user_id',
         'job_id',
-        'application_status',
-        'recruiter_id'
+        'status',
     ];
 
     public function user()
@@ -27,8 +24,8 @@ class JobApply extends Model
         return $this->belongsTo(PostJob::class, 'job_id');
     }
 
-    public function applicationStatus()
+    public function applicationJobStatus()
     {
-        return $this->belongsTo(ApplicationStatus::class, 'application_status');
+        return $this->belongsTo(ApplicationStatus::class, 'status');
     }
 }
