@@ -10,7 +10,7 @@ class ApplicationStatusLog extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'job_id',
+        'job_apply_id',
         'status',
     ];
 
@@ -19,9 +19,9 @@ class ApplicationStatusLog extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function job()
+    public function jobApply()
     {
-        return $this->belongsTo(PostJob::class, 'job_id');
+        return $this->belongsTo(JobApply::class, 'job_apply_id');
     }
 
     public function applicationJobStatus()

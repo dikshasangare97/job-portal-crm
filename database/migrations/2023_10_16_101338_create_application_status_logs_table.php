@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('application_status_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('job_id')->constrained('post_jobs');
+            $table->foreignId('job_apply_id')->constrained('job_applies');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

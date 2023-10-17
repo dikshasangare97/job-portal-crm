@@ -19,7 +19,7 @@ class JobApply extends Component
             session()->flash('error', 'Already apply for this job.');
         } else {
             $jobdata = PostJob::find($this->jobId);
-            ModelsJobApply::create([
+            $modelsJobApply =   ModelsJobApply::create([
                 'user_id' => Auth::user()->id,
                 'job_id' => $this->jobId,
                 'application_status' => 2,
@@ -28,7 +28,7 @@ class JobApply extends Component
             foreach ($this->application_status as $appStatus) {
                 ApplicationStatusLog::create([
                     'user_id' => Auth::user()->id,
-                    'job_id' => $this->jobId,
+                    'job_apply_id' => $modelsJobApply->id,
                     'status' => $appStatus,
                 ]);
             }
