@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Recruiter\Jobapplication;
 
+use App\Models\ApplicationStatusLog;
 use App\Models\JobApply;
-use App\Models\PostJob;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -25,5 +25,21 @@ class JobApplication extends Component
         return view('livewire.recruiter.jobapplication.job-application', [
             'jobapplications' =>  $jobApplications,
         ]);
+    }
+
+    public function viewButtonClicked($userId)
+    {
+        $userClickStatus = JobApply::with('user', 'job', 'applicationStatus')->where([['user_id', $userId], ['job_id', $this->jobAppId], ['application_status', '<', 3]])->first();
+        if ($userClickStatus) {
+            $userClickStatus->update([
+                'application_status' => 3,
+            ]);
+            ApplicationStatusLog::create([
+                'user_id' => $userId,
+                'job_apply_id' => $userClickStatus->id,
+                'status' => 3,
+            ]);
+        }
+        return redirect("/recruiter/job/{$this->jobAppId}/applications/view/{$userId}");
     }
 }

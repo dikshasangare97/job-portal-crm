@@ -17,6 +17,8 @@ class ApplicationStatus extends Component
             'get_first_job_apply' => JobApply::where('user_id', Auth::user()->id)->with('user', 'job', 'applicationStatus')->first(),
             'application_status_details' => ModelsApplicationStatus::get(),
             'application_log_details' => ApplicationStatusLog::where('user_id', Auth::user()->id)->with('user', 'jobApply')->orderBy('status', 'ASC')->get(),
+            'get_all_job_apply' => JobApply::get(),
+            'get_update_job_apply' => JobApply::where('application_status', '>=', 3)->get(),
         ]);
     }
 }

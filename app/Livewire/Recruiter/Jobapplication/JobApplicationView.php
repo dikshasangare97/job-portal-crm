@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Recruiter\Jobapplication;
 
+use App\Models\ApplicationStatusLog;
 use App\Models\JobApply;
 use App\Models\KeySkill;
 use App\Models\User;
@@ -14,22 +15,24 @@ use Livewire\Component;
 
 class JobApplicationView extends Component
 {
-    public $jobAppId;
+    public $jobAppUserId, $jobId;
 
-    public function mount($id)
+    public function mount($jobId, $userId)
     {
-        $this->jobAppId = $id;
+        $this->jobId = $jobId;
+        $this->jobAppUserId = $userId;
     }
 
     public function render()
     {
-        $user = User::find($this->jobAppId);
+        $user = User::find($this->jobAppUserId);
         $userKeySkills = UserKeySkill::with('keySkill')->where('user_id', $user->id)->take(10)->get();
         $userEducationDetails = UserEducationDetail::where('user_id', $user->id)->get();
         $userEmploymentDetails = UserEmploymentDetail::with('location', 'department', 'userSkill')->where('user_id', $user->id)->get();
         $userPersonalDetail = UserPersonalDetail::where('user_id', $user->id)->first();
         $userProjectDetails = UserProjectDetail::where('user_id', $user->id)->get();
         $getUserDesignation = UserEmploymentDetail::where('user_id', $user->id)->orWhere('current_employment', 1)->with('location')->first();
+        $jobApplyStatus = JobApply::with('applicationStatus')->where([['user_id', $this->jobAppUserId], ['job_id', $this->jobId]])->first();
 
         return view('livewire.recruiter.jobapplication.job-application-view', [
             'user' => $user,
@@ -38,7 +41,8 @@ class JobApplicationView extends Component
             'userEmploymentDetails' => $userEmploymentDetails,
             'userPersonalDetail' => $userPersonalDetail,
             'userProjectDetails' => $userProjectDetails,
-            'getUserDesignation' => $getUserDesignation
+            'getUserDesignation' => $getUserDesignation,
+            'jobApplyStatus' => $jobApplyStatus
         ]);
     }
 
@@ -62,6 +66,17 @@ class JobApplicationView extends Component
 
     public function downloadResume($id)
     {
+        $userChangeStatus = JobApply::where([['user_id', $this->jobAppUserId], ['job_id', $this->jobId], ['application_status', '<', 4]])->first();
+        if ($userChangeStatus) {
+            $userChangeStatus->update([
+                'application_status' => 4,
+            ]);
+            ApplicationStatusLog::create([
+                'user_id' => $this->jobAppUserId,
+                'job_apply_id' => $userChangeStatus->id,
+                'status' => 4,
+            ]);
+        }
         $userPersonalDetail = UserPersonalDetail::find($id);
         if ($userPersonalDetail && $userPersonalDetail->resume) {
             $file = $userPersonalDetail->resume;
@@ -71,5 +86,22 @@ class JobApplicationView extends Component
                 return response()->download($filePath, $file);
             }
         }
+    }
+
+    public function saveUserApplyStatus($status)
+    {
+        $userChangeStatus = JobApply::where([['user_id', $this->jobAppUserId], ['job_id', $this->jobId], ['application_status', '<', $status]])->first();
+        if ($userChangeStatus) {
+            $userChangeStatus->update([
+                'application_status' => $status,
+            ]);
+            ApplicationStatusLog::create([
+                'user_id' => $this->jobAppUserId,
+                'job_apply_id' => $userChangeStatus->id,
+                'status' => $status,
+            ]);
+        }
+        session()->flash('jobApplyStatusMess', 'Job application status has been changed successfully.');
+        return redirect()->back();
     }
 }

@@ -49,14 +49,15 @@
             </div>
             <div class="w-2/6">
                 <div class="flex">
-                    <div class="w-1/2 border-r-4 border-gray-200 flex justify-end pr-3">
-                        <span class="text-5xl font-medium">{{ $application_details->count() }}</span>
+                    <!-- border-r-4 border-gray-200 -->
+                    <div class="w-full flex justify-end pr-3">
+                        <span class="text-5xl font-medium pr-2">{{ $application_details->count() }}</span>
                         <span class="text-md text-slate-500 font-semibold px-2 py-1">Total <br> applies</span>
                     </div>
-                    <div class="w-1/2 flex">
+                    <!-- <div class="w-1/2 flex">
                         <span class="text-5xl font-medium ml-3">14</span>
                         <span class="text-md text-slate-500 font-semibold py-1 px-2">Application <br> updates</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -70,9 +71,30 @@
                         <h1 class="font-semibold text-lg mx-auto my-5">Job Applies</h1>
                         <div class="h-96 overflow-x-hidden overflow-y-auto mr-0" id="job-apply-scroll">
                             @foreach($application_details as $application_detail)
-                            <div class="p-4 font-semibold cursor-pointer" :class="{'z-20 border-r-8 bg-blue-100 transform translate-x-2 border-blue-500': tab === {{$application_detail->id}}, ' transform -translate-x-2': tab !== {{$application_detail->id}}}" @click.prevent="tab = {{$application_detail->id}}">
-                                <p class="font-md">{{strlen($application_detail->job->job_headline) > 30 ? substr($application_detail->job->job_headline, 0, 30) . '...' : $application_detail->job->job_headline ?? '-'}}</p>
-                                <p class="font-sm text-slate-500">{{strlen($application_detail->job->company_name) > 20 ? substr($application_detail->job->company_name, 0, 20) . '...' : $application_detail->job->company_name ?? '-'}}</p>
+                            <div class="p-4 font-semibold cursor-pointer" :class="{'z-20 border-r-8 bg-blue-50 transform translate-x-2 border-blue-500': tab === {{$application_detail->id}}, ' transform -translate-x-2': tab !== {{$application_detail->id}}}" @click.prevent="tab = {{$application_detail->id}}">
+                                <div>
+                                    <p class="font-md">{{strlen($application_detail->job->job_headline) > 30 ? substr($application_detail->job->job_headline, 0, 30) . '...' : $application_detail->job->job_headline ?? '-'}}</p>
+                                    <p class="font-sm text-slate-500">{{strlen($application_detail->job->company_name) > 20 ? substr($application_detail->job->company_name, 0, 20) . '...' : $application_detail->job->company_name ?? '-'}}</p>
+                                </div>
+
+                                <div class="flex mt-3">
+                                    <div class="w-full bg-white px-2 py-2 rounded-full border mr-16">
+                                        <div class="flex">
+                                            <div class="w-4 h-4 rounded-full bg-green-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
+                                                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div class="text-xs text-gray-500 px-2">
+                                                {{$application_detail->applicationStatus->application_status_name}}
+                                            </div>
+                                            <div class="text-xs text-gray-500">
+                                                {{$application_detail->updated_at->diffForHumans()}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             @endforeach
                         </div>
@@ -157,6 +179,43 @@
 
                             <div class="border my-5"></div>
 
+                            <h3 class="text-xl font-bold leading-tight my-5" x-show="tab === {{$application_detail->id}}">Activity on this job</h3>
+
+                            @php
+                            $getJobCount = 0;
+                            foreach($get_all_job_apply as $getJob) {
+                            if ($getJob->job_id == $application_detail->job_id) {
+                            $getJobCount++;
+                            }
+                            }
+
+                            $getJobUpdateCount = 0;
+                            foreach($get_update_job_apply as $getJobUpdate) {
+                            if ($getJobUpdate->job_id == $application_detail->job_id) {
+                            $getJobUpdateCount++;
+                            }
+                            }
+                            @endphp
+                            <div class="flex">
+                                <div class="w-1/2">
+                                    <div class="flex border py-4 rounded-lg">
+                                        <div class="w-1/2 border-r-2 border-gray-200 justify-end pr-3">
+                                            <div class="flex px-7">
+                                                <div class="text-4xl my-auto font-medium pr-2">
+                                                    {{ $getJobCount }}
+                                                </div>
+                                                <div class="text-md text-slate-500 font-normal px-2 py-1">Total <br> applications</div>
+                                            </div>
+                                        </div>
+                                        <div class="w-1/2 ">
+                                            <div class="flex px-5">
+                                                <div class="text-4xl my-auto font-medium  pr-2">{{ $getJobUpdateCount }}</div>
+                                                <div class="text-md text-slate-500 font-normal py-1 px-2">Applications <br>viewed by recruiter</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @endforeach
                     </div>

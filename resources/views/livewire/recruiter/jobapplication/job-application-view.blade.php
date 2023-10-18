@@ -1,13 +1,69 @@
 <div class="bg-gray-100 p-4">
 
-    <div class="mb-5 text-end">
-        <button wire:click="downloadResume({{ $userPersonalDetail->id }})" class="inline-flex items-center px-2 py-2 mr-3 bg-blue-500 rounded-full text-white text-xs font-bold">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    <div>
+        @if (session()->has('jobApplyStatusMess'))
+        <div class="flex items-center p-4 mb-4 text-sm border-b border-lime-400" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7 mr-5 text-lime-400">
+                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
             </svg>
-            Download Resume
-        </button>
+            <div>
+                <h1 class="text-xl font-bold leading-6 text-lime-400">Success</h1>
+                <span class="text-gray-600 font-semibold leading-6">{{ session('jobApplyStatusMess') }}</span>
+            </div>
+        </div>
+        @endif
+        @if (session()->has('jobApplyStatusError'))
+        <div class="flex items-center p-4 mb-4 text-sm text-red-800 border-b border-red-700" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7 mr-5">
+                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+            </svg>
+            <div>
+                <h1 class="text-xl font-bold leading-6 text-gray-800">Error</h1>
+                <span class="text-gray-600 font-semibold leading-6">{{ session('jobApplyStatusError') }}</span>
+            </div>
+        </div>
+        @endif
+    </div>
 
+    <div class="flex items-end justify-end">
+        <div class="mb-5">
+            <button wire:click="downloadResume({{ $userPersonalDetail->id }})" class="inline-flex items-center px-2 py-2 mr-3 border border-blue-500 rounded-full text-blue-700 text-xs font-bold bg-transparent hover:bg-blue-500 hover:text-white hover:border-transparent">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                &nbsp; Download Resume
+            </button>
+        </div>
+        <div class="mb-5">
+            @php
+            $jobApplyStatusId = $jobApplyStatus->application_status;
+            $jobApplyStatusName = $jobApplyStatus->applicationStatus->application_status_name;
+            @endphp
+
+            @if($jobApplyStatusId == 5)
+            <p class="font-poppins text-green-500 font-semibold text-heading  text-xl">
+                {{$jobApplyStatusName}}
+            </p>
+            @elseif($jobApplyStatusId == 6)
+            <p class="font-poppins text-gray-500 font-semibold text-heading  text-xl">
+                {{$jobApplyStatusName}}
+            </p>
+            @elseif($jobApplyStatusId == 7)
+            <p class="font-poppins text-red-500 font-semibold text-heading  text-xl">
+                {{$jobApplyStatusName}}
+            </p>
+            @else
+            <button wire:click="saveUserApplyStatus(5)" class="inline-flex items-center px-2 py-2 mr-3 border border-green-500 rounded-full text-green-700 text-xs font-bold bg-transparent hover:bg-green-500 hover:text-white hover:border-transparent">
+                Shortlisted
+            </button>
+            <button wire:click="saveUserApplyStatus(6)" class="inline-flex items-center px-2 py-2 mr-3 border border-gray-500 rounded-full text-gray-700 text-xs font-bold bg-transparent hover:bg-gray-500 hover:text-white hover:border-transparent">
+                Contact By Email
+            </button>
+            <button wire:click="saveUserApplyStatus(7)" class="inline-flex items-center px-2 py-2 mr-3 border border-red-500 rounded-full text-red-700 text-xs font-bold bg-transparent hover:bg-red-500 hover:text-white hover:border-transparent">
+                Not Shortlisted
+            </button>
+            @endif
+        </div>
     </div>
 
     <div class="border-1 shadow-lg shadow-gray-700 rounded-lg">
@@ -203,5 +259,4 @@
         </div>
 
     </div>
-
 </div>
