@@ -18,6 +18,8 @@ use App\Livewire\Admin\Location\LocationCreate;
 use App\Livewire\Admin\Location\LocationIndex;
 use App\Livewire\Admin\RoleCategory\RoleCategoryCreate;
 use App\Livewire\Admin\RoleCategory\RoleCategoryIndex;
+use App\Livewire\Admin\Skills\SkillsCreate;
+use App\Livewire\Admin\Skills\SkillsIndex;
 use App\Livewire\Admin\Workmode\WorkmodeCreate;
 use App\Livewire\Admin\Workmode\WorkmodeIndex;
 use Illuminate\Support\Facades\Route;
@@ -64,3 +66,6 @@ Route::get('/admin/experience/create', ExperienceCreate::class)->name('admin.exp
  
 Route::get('/admin/jobrole', JobRoleIndex::class)->name('admin.jobrole.index')->middleware(['admin']);
 Route::get('/admin/jobrole/create', JobRoleCreate::class)->name('admin.jobrole.create')->middleware(['admin']);
+
+Route::get('/admin/skills', SkillsIndex::class)->name('admin.skills.index')->middleware(['admin']);
+Route::get('/admin/skills/create', SkillsCreate::class)->name('admin.skills.create')->middleware(['admin']);
