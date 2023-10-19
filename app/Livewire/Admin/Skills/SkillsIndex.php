@@ -14,15 +14,15 @@ class SkillsIndex extends Component
     public $search_input = '';
     public $isOpen = 0;
     public $skillId;
-   public  $key_skill_name;
-   public $skills;
+    public  $key_skill_name;
+    public $skills;
 
     public function openModal()
     {
         $this->isOpen = true;
         $this->resetValidation();
     }
-    public function closeModal()    
+    public function closeModal()
     {
         $this->isOpen = false;
     }
@@ -32,15 +32,12 @@ class SkillsIndex extends Component
         $this->resetPage();
     }
 
-    
+
     public function render()
     {
+        $skills = KeySkill::where('key_skill_name', 'like', '%' . $this->search_input . '%')->paginate(5);
         return view('livewire.admin.skills.skills-index', [
-            'key_skills' => KeySkill::where('key_skill_name', 'like', '%' . $this->search_input . '%')->paginate(5)
+            'skills' => $skills
         ]);
     }
-
-
-    
-
 }

@@ -14,17 +14,58 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     @livewireStyles
-   
+
 </head>
 
 <body>
     <livewire:component.layouts.header />
+
+    @if (Route::has('login'))
+    @auth
+    @if(Auth::user()->is_user == 2)
+    @can('user')
     <div class="min-h-screen p-5 bg-gray-100">
         @yield('content')
         @isset($slot)
         {{$slot}}
         @endisset
     </div>
+    @else
+    <div class="min-h-screen w-full bg-gray-50 !pl-0 sm:!pl-60" id="content">
+        <div class="p-5">
+            @yield('content')
+            @isset($slot)
+            {{$slot}}
+            @endisset
+        </div>
+    </div>
+    @endcan
+
+    @else
+    <div class="min-h-screen p-5 bg-gray-100">
+        @yield('content')
+        @isset($slot)
+        {{$slot}}
+        @endisset
+    </div>
+    @endif
+    @else
+    <div class="min-h-screen p-5 bg-gray-100">
+        @yield('content')
+        @isset($slot)
+        {{$slot}}
+        @endisset
+    </div>
+    @endauth
+    @else
+    <div class="min-h-screen p-5 bg-gray-100">
+        @yield('content')
+        @isset($slot)
+        {{$slot}}
+        @endisset
+    </div>
+    @endif
+
     <livewire:component.layouts.footer />
     @livewireScripts
 </body>
