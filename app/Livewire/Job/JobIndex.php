@@ -14,7 +14,7 @@ class JobIndex extends Component
     {
         return view('livewire.job.job-index', [
             'jobs' =>  PostJob::with('location', 'industry', 'role', 'education', 'companyType')
-                ->orderBy('id', 'DESC')->simplePaginate(15)
+                ->orderBy('id', 'DESC')->paginate(15)
         ]);
     }
 }

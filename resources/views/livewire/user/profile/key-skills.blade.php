@@ -66,7 +66,7 @@
                         </svg>
                     </button>
                 </div>
-                <form wire:submit="saveSkill">
+                <form wire:submit="saveKeySkillDetail">
                     <div class="px-5 pb-2">
                         <h1 class=" items-center font-semibold tracking-wide text-gray-900 leading-8 text-xl pb-2">Key skills</h1>
                         <p class="text-sm text-gray-500 pb-2">Tell recruiters what you know or what you are known for e.g. Direct Marketing, Oracle, Java etc. We will send you job recommendations based on these skills. each skill is separated by a comma.</p>

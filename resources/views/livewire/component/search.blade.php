@@ -9,7 +9,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="text" wire:model="search_input" id="simple-search" class="bg-gray-50 border-b text-gray-900 text-sm block w-full rounded-full pl-10 p-2.5" placeholder="Search book here..." required>
+                <input type="text" wire:model="search_input" id="simple-search" class="bg-gray-50 border-b text-gray-900 text-sm block w-full rounded-full pl-10 p-2.5" placeholder="Search job here..." required>
             </div>
             <button type="submit" class="ml-2 rounded-full bg-blue-500 p-2 text-white hover:bg-blue-600">Search</button>
         </div>

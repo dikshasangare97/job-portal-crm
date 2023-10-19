@@ -24,7 +24,7 @@ class EducationDetails extends Component
         ]);
     }
 
-    public function saveCareerDetail()
+    public function saveEducationDetail()
     {
         $this->validate();
         UserEducationDetail::create([

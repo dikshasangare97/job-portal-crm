@@ -15,6 +15,7 @@ use App\Livewire\Recruiter\Job\JobListing;
 use App\Livewire\Recruiter\Job\JobPosting;
 use App\Livewire\Recruiter\Jobapplication\JobApplication;
 use App\Livewire\Recruiter\Jobapplication\JobApplicationView;
+use App\Livewire\User\Application\ApplicationStatus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,7 @@ Route::get('/jobs', JobIndex::class)->name('jobs');
 Route::get('/job/{id}/view', JobView::class)->name('jobs.view');
 
 Route::get('/recruiter/job/{id}/applications', JobApplication::class)->name('recruiter.job.applications');
-Route::get('/recruiter/job/{id}/applications/view', JobApplicationView::class)->name('recruiter.job.applications.view');
+Route::get('/recruiter/job/{jobId}/applications/view/{userId}', JobApplicationView::class)->name('recruiter.job.applications.view');
 
 Route::get('user/profile', Profile::class)->name('user.profile');
+Route::get('user/myapply', ApplicationStatus::class)->name('user.myapply');

@@ -96,6 +96,10 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
+        tap(new ApplicationStatusSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
         tap(new JobSeeder(), function ($seeder) {
             $seeder->run();
         });

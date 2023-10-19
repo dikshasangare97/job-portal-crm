@@ -21,16 +21,16 @@ class KeySkills extends Component
         ]);
     }
 
-    public function saveSkill()
+    public function saveKeySkillDetail()
     {
         foreach ($this->key_skill as $value) {
             UserKeySkill::create([
                 'user_id' => Auth::user()->id,
                 'key_skill_id' => $value,
             ]);
-            session()->flash('keyskillmsg', 'Key skill has been successfully saved.');
-            return redirect()->to('/user/profile');
         }
+        session()->flash('keyskillmsg', 'Key skill has been successfully saved.');
+        return redirect()->to('/user/profile');
         $this->key_skill = [];
     }
 

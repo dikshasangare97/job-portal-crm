@@ -43,4 +43,9 @@ class UserEmploymentDetail extends Model
     {
         return $this->belongsTo(Departments::class, 'department');
     }
+
+    public function userSkill()
+    {
+        return $this->belongsTo(KeySkill::class, 'skill_used');
+    }
 }

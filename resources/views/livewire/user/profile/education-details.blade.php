@@ -30,13 +30,13 @@
             <span class="tracking-wide">Education</span>
         </h1>
         <div class="text-end">
-            <button class="inline-flex items-center px-2 py-2 mr-5 font-bold text-blue-500 text-sm ml-3" data-modal-toggle="career-profile-modal">
+            <button class="inline-flex items-center px-2 py-2 mr-5 font-bold text-blue-500 text-sm ml-3" data-modal-toggle="education-modal">
                 Add Education
             </button>
         </div>
     </div>
 
-    <div class="flex my-5">
+    <div class="flex mb-5">
         <div class="w-2/3">
             @foreach($userEducationDetails as $userEducationDetail)
             <p class="font-semibold flex text-md text-gray-700 mt-5">
@@ -47,7 +47,7 @@
                 @else
                 {{ $userEducationDetail->education_name ?? '-' }}
                 @endif
-                <!-- <button wire:click="getEducationId({{$userEducationDetail->id}})" class="text-blue-500 rounded-full" data-modal-toggle="career-profile-modal">
+                <!-- <button wire:click="getEducationId({{$userEducationDetail->id}})" class="text-blue-500 rounded-full" data-modal-toggle="education-modal">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 ml-3">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                     </svg>
@@ -71,11 +71,11 @@
     </div>
 
     <!-- education modal -->
-    <div wire:ignore.self id="career-profile-modal" data-modal-show="false" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center">
+    <div wire:ignore.self id="education-modal" data-modal-show="false" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center">
         <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
             <div class="bg-white rounded-lg shadow relative">
                 <div class="text-end pt-5 pr-5">
-                    <button data-modal-toggle="career-profile-modal" class="modal-close cursor-pointer z-50">
+                    <button data-modal-toggle="education-modal" class="modal-close cursor-pointer z-50">
                         <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                             <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
                             </path>
@@ -83,7 +83,7 @@
                     </button>
                 </div>
 
-                <form wire:submit="saveCareerDetail">
+                <form wire:submit="saveEducationDetail">
                     <div class="px-5 pb-2">
                         <h1 class=" items-center font-semibold tracking-wide text-gray-900 leading-8 text-xl pb-2">Add education</h1>
 
@@ -362,7 +362,7 @@
 
                     </div>
                     <div class="flex justify-end p-6 space-x-2">
-                        <button data-modal-toggle="career-profile-modal" type="button" class="bg-red-500 ml-3 rounded-lg text-white hover:bg-red-400  border  text-sm font-medium px-2 py-2 ">Cancel</button>
+                        <button data-modal-toggle="education-modal" type="button" class="bg-red-500 ml-3 rounded-lg text-white hover:bg-red-400  border  text-sm font-medium px-2 py-2 ">Cancel</button>
                         <button type="submit" class="px-2 py-2 bg-blue-500 ml-3 rounded-lg text-white hover:bg-blue-400">Save</button>
                     </div>
                 </form>
