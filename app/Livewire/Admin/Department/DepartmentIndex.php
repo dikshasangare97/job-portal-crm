@@ -13,52 +13,37 @@ class DepartmentIndex extends Component
     public $search_input = '';
     public $isOpen = 0;
     public $department_name;
-    public $departmentId;
+    public $departmentId, $status;
 
     public function search()
     {
         $this->resetPage();
     }
 
-
     public function openModal()
     {
         $this->isOpen = true;
         $this->resetValidation();
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
 
-
     public function render()
     {
-        return view(
-            'livewire.admin.department.department-index',
-            [
-                'departments' => Departments::where('department_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
-            ]
-        );
+        return view('livewire.admin.department.department-index', [
+            'departments' => Departments::where('department_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
+        ]);
     }
-
-
-    //    public function show($id)
-    //    {
-
-    //     $department = Departments::where('id', $id)->first();
-    //     $this->departmentId = $department->id;
-    //     $this->department_name =  $department->department_name;
-    //     $this->openModal();
-
-    //    }
 
     public function edit($id)
     {
-
         $department = Departments::findOrFail($id);
         $this->departmentId = $id;
         $this->department_name = $department->department_name;
+        $this->status = $department->status;
         $this->openModal();
     }
 
@@ -68,11 +53,10 @@ class DepartmentIndex extends Component
             $post = Departments::findOrFail($this->departmentId);
             $post->update([
                 'department_name' => $this->department_name,
-
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Department updated successfully.');
-            $this->closeModal();
-            $this->reset('department_name', 'departmentId');
+            session()->flash('message', 'Department detail updated sucessfully');
+            return redirect()->to('/admin/department');
         }
     }
 

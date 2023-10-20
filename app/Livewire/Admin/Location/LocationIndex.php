@@ -12,39 +12,37 @@ class LocationIndex extends Component
     public $isOpen = 0;
     public $search_input = '';
     public $city_name;
-    public $locationId;
+    public $locationId, $status;
 
     public function openModal()
     {
         $this->isOpen = true;
         $this->resetValidation();
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
-
 
     public function search()
     {
         $this->resetPage();
     }
 
-
     public function render()
     {
         return view('livewire.admin.location.location-index', [
-            'locations' => Location::where('city_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
+            'locations' => Location::where('city_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
-
     public function edit($id)
     {
-
         $location = Location::findOrFail($id);
         $this->locationId = $id;
         $this->city_name = $location->city_name;
+        $this->status = $location->status;
         $this->openModal();
     }
 
@@ -54,11 +52,10 @@ class LocationIndex extends Component
             $post = Location::findOrFail($this->locationId);
             $post->update([
                 'city_name' => $this->city_name,
-
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Location updated successfully.');
-            $this->closeModal();
-            $this->reset('city_name', 'locationId');
+            session()->flash('message', 'Location detail updated sucessfully');
+            return redirect()->to('/admin/location');
         }
     }
 

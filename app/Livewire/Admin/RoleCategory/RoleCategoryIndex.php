@@ -13,7 +13,7 @@ class RoleCategoryIndex extends Component
     public $roleCategoryId;
     public $search_input = '';
     public $role;
-    public $role_name;
+    public $role_name, $status, $description;
 
 
     public function openModal()
@@ -21,11 +21,11 @@ class RoleCategoryIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
-
 
     public function search()
     {
@@ -35,18 +35,17 @@ class RoleCategoryIndex extends Component
     public function render()
     {
         return view('livewire.admin.role-category.role-category-index', [
-            'roles' => Role::where('role_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
+            'roles' => Role::where('role_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
-
-
     public function edit($id)
     {
-
         $role = Role::findOrFail($id);
         $this->roleCategoryId = $id;
         $this->role_name = $role->role_name;
+        $this->description = $role->description;
+        $this->status = $role->status;
         $this->openModal();
     }
 
@@ -56,11 +55,11 @@ class RoleCategoryIndex extends Component
             $post = Role::findOrFail($this->roleCategoryId);
             $post->update([
                 'role_name' => $this->role_name,
-
+                'description' => $this->description,
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Role Category  updated successfully.');
-            $this->closeModal();
-            $this->reset('role_name', 'roleCatgeoryId');
+            session()->flash('message', 'Role category detail updated sucessfully');
+            return redirect()->to('/admin/role');
         }
     }
 

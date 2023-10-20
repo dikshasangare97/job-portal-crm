@@ -12,13 +12,14 @@ class EducationIndex extends Component
     public $search_input = '';
     public $isOpen = 0;
     public $educationId;
-    public  $education_name;
+    public  $education_name, $status;
 
     public function openModal()
     {
         $this->isOpen = true;
         $this->resetValidation();
     }
+    
     public function closeModal()
     {
         $this->isOpen = false;
@@ -29,20 +30,19 @@ class EducationIndex extends Component
         $this->resetPage();
     }
 
-
     public function render()
     {
         return view('livewire.admin.education.education-index', [
-            'educations' => Education::where('education_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
+            'educations' => Education::where('education_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
     public function edit($id)
     {
-
         $education = Education::findOrFail($id);
         $this->educationId = $id;
         $this->education_name = $education->education_name;
+        $this->status = $education->status;
         $this->openModal();
     }
 
@@ -52,11 +52,10 @@ class EducationIndex extends Component
             $post = Education::findOrFail($this->educationId);
             $post->update([
                 'education_name' => $this->education_name,
-
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Department updated successfully.');
-            $this->closeModal();
-            $this->reset('education_name', 'educationId');
+            session()->flash('message', 'Education detail updated sucessfully');
+            return redirect()->to('/admin/education');
         }
     }
 

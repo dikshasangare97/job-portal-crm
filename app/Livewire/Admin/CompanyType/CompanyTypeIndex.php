@@ -13,7 +13,7 @@ class CompanyTypeIndex extends Component
     public  $search_input = '';
     public  $isOpen = 0;
     public  $company_type_name = '';
-    public  $companyTypeId;
+    public  $companyTypeId, $status;
 
     public function openModal()
     {
@@ -32,17 +32,17 @@ class CompanyTypeIndex extends Component
     public function render()
     {
         return view('livewire.admin.company-type.company-type-index', [
-            'company_types' => CompanyType::where('company_type_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
+            'company_types' => CompanyType::where('company_type_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
 
     public function edit($id)
     {
-
         $education = CompanyType::findOrFail($id);
         $this->companyTypeId = $id;
         $this->company_type_name = $education->company_type_name;
+        $this->status = $education->status;
         $this->openModal();
     }
 
@@ -52,11 +52,10 @@ class CompanyTypeIndex extends Component
             $post = CompanyType::findOrFail($this->companyTypeId);
             $post->update([
                 'company_type_name' => $this->company_type_name,
-
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Company Type updated successfully.');
-            $this->closeModal();
-            $this->reset('company_type_name', 'companyTypeId');
+            session()->flash('message', 'Company type detail updated sucessfully');
+            return redirect()->to('/admin/company-type');
         }
     }
     public function delete($id)

@@ -13,7 +13,7 @@ class IndustryIndex extends Component
     public $search_input = '';
     public $isOpen = 0;
     public $industry_name;
-    public $IndustryId;
+    public $IndustryId, $status;
 
     public function search()
     {
@@ -25,6 +25,7 @@ class IndustryIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
@@ -32,10 +33,10 @@ class IndustryIndex extends Component
 
     public function edit($id)
     {
-
         $industry = Industry::findOrFail($id);
         $this->IndustryId = $id;
         $this->industry_name = $industry->industry_name;
+        $this->status = $industry->status;
         $this->openModal();
     }
 
@@ -45,17 +46,17 @@ class IndustryIndex extends Component
             $post = Industry::findOrFail($this->IndustryId);
             $post->update([
                 'industry_name' => $this->industry_name,
-
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Industry updated successfully.');
-            $this->closeModal();
-            $this->reset('industry_name', 'IndustryId');
+            session()->flash('message', 'Industry detail updated sucessfully');
+        return redirect()->to('/admin/industry');
         }
     }
+    
     public function render()
     {
         return view('livewire.admin.industry.industry-index', [
-            'industries' => Industry::where('industry_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
+            'industries' => Industry::where('industry_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
     public function delete($id)
