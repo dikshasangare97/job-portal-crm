@@ -21,6 +21,7 @@ class DepartmentCreate extends Component
         $this->validate();
         Departments::create([
             'department_name' => $this->department_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Department is created sucessfully');
         $this->resetInputFields();

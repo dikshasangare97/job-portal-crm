@@ -25,44 +25,43 @@ class IndustryIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
-    public function closeModal()    
+    public function closeModal()
     {
         $this->isOpen = false;
     }
 
     public function edit($id)
     {
-        
-        $industry = Industry::findOrFail($id);   
+
+        $industry = Industry::findOrFail($id);
         $this->IndustryId = $id;
-        $this-> industry_name = $industry->industry_name;
+        $this->industry_name = $industry->industry_name;
         $this->openModal();
     }
-   
+
     public function update()
     {
         if ($this->IndustryId) {
             $post = Industry::findOrFail($this->IndustryId);
             $post->update([
                 'industry_name' => $this->industry_name,
-                
+
             ]);
             session()->flash('success', 'Industry updated successfully.');
             $this->closeModal();
             $this->reset('industry_name', 'IndustryId');
-        }  
+        }
     }
     public function render()
     {
         return view('livewire.admin.industry.industry-index', [
-            'industries' => Industry::where('industry_name', 'like', '%' . $this->search_input . '%')->paginate(5)
+            'industries' => Industry::where('industry_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
         ]);
     }
     public function delete($id)
     {
         Industry::find($id)->delete();
-        session()->flash('success', 'industry deleted successfully.');
-        $this->reset('industry_name');
+        session()->flash('message', 'Industry detail deleted sucessfully');
+        return redirect()->to('/admin/industry');
     }
-    
 }

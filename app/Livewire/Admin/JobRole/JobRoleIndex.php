@@ -19,7 +19,7 @@ class JobRoleIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
-    public function closeModal()    
+    public function closeModal()
     {
         $this->isOpen = false;
     }
@@ -32,16 +32,16 @@ class JobRoleIndex extends Component
     public function render()
     {
         return view('livewire.admin.job-role.job-role-index', [
-            'jobroles' => JobRole::where('job_role_name', 'like', '%' . $this->search_input . '%')->paginate(5)
+            'jobroles' => JobRole::with('roleCategory')->where('job_role_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
         ]);
     }
 
     public function edit($id)
     {
-        $jobrole = JobRole::findOrFail($id);   
+        $jobrole = JobRole::findOrFail($id);
         $this->jobroleId = $id;
-        $this-> job_role_name = $jobrole->job_role_name;
-        $this ->status=  $jobrole ->status;
+        $this->job_role_name = $jobrole->job_role_name;
+        $this->status =  $jobrole->status;
         $this->openModal();
     }
 
@@ -53,20 +53,18 @@ class JobRoleIndex extends Component
             $post->update([
                 'job_role_name' => $this->job_role_name,
                 'status' => $this->status,
-                
+
             ]);
             session()->flash('success', 'Job role updated successfully.');
             $this->closeModal();
             $this->reset('job_role_name', 'status', 'jobroleId');
-        }  
-        
+        }
     }
 
     public function delete($id)
     {
         JobRole::find($id)->delete();
-        session()->flash('success', 'Job role deleted successfully.');
-        $this->reset('job_role_name');  
+        session()->flash('message', 'Job role detail deleted sucessfully');
+        return redirect()->to('/admin/jobrole');
     }
-   
 }

@@ -16,6 +16,8 @@ use App\Livewire\Admin\JobRole\JobRoleCreate;
 use App\Livewire\Admin\JobRole\JobRoleIndex;
 use App\Livewire\Admin\Location\LocationCreate;
 use App\Livewire\Admin\Location\LocationIndex;
+use App\Livewire\Admin\PostJob\PostJobCreate;
+use App\Livewire\Admin\PostJob\PostJobIndex;
 use App\Livewire\Admin\RoleCategory\RoleCategoryCreate;
 use App\Livewire\Admin\RoleCategory\RoleCategoryIndex;
 use App\Livewire\Admin\Skills\SkillsCreate;
@@ -69,3 +71,6 @@ Route::get('/admin/jobrole/create', JobRoleCreate::class)->name('admin.jobrole.c
 
 Route::get('/admin/skills', SkillsIndex::class)->name('admin.skills.index')->middleware(['admin']);
 Route::get('/admin/skills/create', SkillsCreate::class)->name('admin.skills.create')->middleware(['admin']);
+
+Route::get('/admin/post-job', PostJobIndex::class)->name('admin.post-job.index')->middleware(['admin']);
+Route::get('/admin/post-job/create', PostJobCreate::class)->name('admin.post-job.create')->middleware(['admin']);

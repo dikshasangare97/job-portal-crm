@@ -21,6 +21,7 @@ class EducationCreate extends Component
         $this->validate();
         Education::create([
             'education_name' => $this->education_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Education is created sucessfully');
         $this->resetInputFields();

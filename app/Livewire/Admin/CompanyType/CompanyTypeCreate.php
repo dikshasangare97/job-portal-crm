@@ -21,6 +21,7 @@ class CompanyTypeCreate extends Component
         $this->validate();
         CompanyType::create([
             'company_type_name' => $this->company_type_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Company type is created sucessfully');
         $this->resetInputFields();

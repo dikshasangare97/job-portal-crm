@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class SkillsCreate extends Component
 {
-
     #[Rule('required|min:3')]
     public  $key_skill_name = '';
 
@@ -16,18 +15,18 @@ class SkillsCreate extends Component
     {
         $this->key_skill_name = '';
     }
-    
+
     public function store()
     {
         $this->validate();
         KeySkill::create([
             'key_skill_name' => $this->key_skill_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Skill is created sucessfully');
         $this->resetInputFields();
         return redirect('/admin/skills');
     }
-
 
     public function render()
     {

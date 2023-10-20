@@ -27,7 +27,7 @@ class RoleCategoryCreate extends Component
         Role::create([
             'role_name' => $this->role_name,
             'description' => $this->description,
-
+            'status' => 1
         ]);
         session()->flash('message', 'Role category is created sucessfully');
         $this->resetInputFields();

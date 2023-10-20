@@ -76,7 +76,7 @@
                             <tbody class="text-gray-600 text-sm font-light">
                                 @if($workmodes)
                                 @foreach($workmodes as $workmode)
-                                <tr class="border-b border-gray-200 hover:bg-gray-100" wire:key="{{$workmode->id}}">
+                                <tr class="border-b border-gray-200 hover:bg-gray-100 font-normal" wire:key="{{$workmode->id}}">
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
                                             <span>{{$workmode->work_mode_name}}</span>

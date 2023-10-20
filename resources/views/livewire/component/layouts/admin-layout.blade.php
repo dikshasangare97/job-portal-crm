@@ -18,15 +18,96 @@
     </style>
     <div class="[&>*]:leading-[1.6]">
 
-        <!-- Sidebar Toggler Button -->
-        <button id="toggler" class="mt-5 ml-5 inline-block rounded bg-zinc-800 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-zinc-900 active:shadow-lg sm:hidden" data-te-sidenav-toggle-ref data-te-target="#full-screen-example" data-te-ripple-init data-te-ripple-color="white">
-            <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                    <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
-                </svg>
-            </span>
-        </button>
-        <!-- Sidebar Toggler Button -->
+        <header class="fixed top-0 left-0 lg:left-0 w-full bg-white shadow-md  border-b-4 border-indigo-600 p-2 lg:p-4 h-20 z-[1035]">
+            <div class="flex">
+                <div class="w-1/2">
+                    <!-- Sidebar Toggler Button -->
+                    <button id="toggler" class="mt-5 ml-5 inline-block rounded bg-zinc-800 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-zinc-900 active:shadow-lg sm:hidden" data-te-sidenav-toggle-ref data-te-target="#full-screen-example" data-te-ripple-init data-te-ripple-color="white">
+                        <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <!-- Sidebar Toggler Button -->
+                </div>
+
+                <div class="w-1/2 mt-5 mr-5 lg:mt-0">
+                    <div class="flex items-end justify-end">
+                        <!-- search input -->
+                        <div class="w-full  lg:w-auto">
+                            <div class="hidden lg:flex items-center ml-4">
+                                <span class="relative">
+                                    <svg class="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </span>
+                                <input class="w-32 pl-10 pr-4 rounded-md border form-input sm:w-64 focus:border-indigo-600" type="text" placeholder="Search">
+                            </div>
+                        </div>
+                        <div class="w-full border-r-2 border-gray-400 lg:w-auto">
+                            <!-- notification -->
+                            <div x-data="{ notificationOpen: false }" class="relative">
+                                <button @click="notificationOpen = ! notificationOpen" class="flex mx-4 text-gray-600 focus:outline-none">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        </path>
+                                    </svg>
+                                </button>
+
+                                <div x-show="notificationOpen" @click="notificationOpen = false" class="fixed inset-0 z-10 w-full h-full" style="display: none;"></div>
+
+                                <div x-show="notificationOpen" class="absolute right-0 z-10 mt-2 overflow-hidden bg-white rounded-lg shadow-xl w-80" style="width: 20rem; display: none;">
+                                    <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
+                                        <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80" alt="avatar">
+                                        <p class="mx-2 text-sm">
+                                            <span class="font-bold" href="#">Sara Salah</span> replied on the <span class="font-bold text-indigo-400" href="#">Upload Image</span> artical . 2m
+                                        </p>
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
+                                        <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" alt="avatar">
+                                        <p class="mx-2 text-sm">
+                                            <span class="font-bold" href="#">Slick Net</span> start following you . 45m
+                                        </p>
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
+                                        <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1450297350677-623de575f31c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80" alt="avatar">
+                                        <p class="mx-2 text-sm">
+                                            <span class="font-bold" href="#">Jane Doe</span> Like Your reply on <span class="font-bold text-indigo-400" href="#">Test with TDD</span> artical . 1h
+                                        </p>
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
+                                        <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=398&amp;q=80" alt="avatar">
+                                        <p class="mx-2 text-sm">
+                                            <span class="font-bold" href="#">Abigail Bennett</span> start following you . 3h
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-auto pl-3">
+                            <!-- profile -->
+                            <div x-data="{ dropdownOpen: false }" class="relative">
+                                <button @click="dropdownOpen = ! dropdownOpen" class="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none  border border-gray-800">
+                                    <img class="object-cover w-full h-full" src="https://static.naukimg.com/s/5/105/i/displayProfilePlaceholder.png" alt="admin">
+                                </button>
+
+                                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 z-10 w-full h-full" style="display: none;"></div>
+
+                                <div x-show="dropdownOpen" class="absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl" style="display: none;">
+                                    <a href="/user/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
+                                    <a wire:click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+
 
         <!-- Sidenav -->
         <nav id="full-screen-example" class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] md:data-[te-sidenav-hidden='false']:translate-x-0" data-te-sidenav-init data-te-sidenav-mode-breakpoint-over="0" data-te-sidenav-mode-breakpoint-side="sm" data-te-sidenav-hidden="false" data-te-sidenav-color="dark" data-te-sidenav-content="#content" data-te-sidenav-scroll-container="#scrollContainer">
@@ -39,8 +120,29 @@
                 </div>
                 <hr class="border-gray-300" />
             </div>
-            <div class="h-[350px] lg:h-[500px] md:h-[500px] xl:h-[500px] overflow-x-hidden overflow-y-auto mr-0" id="scrollContainer">
+            <div class="h-[350px] lg:h-[550px] md:h-[550px] xl:h-[550px] overflow-x-hidden overflow-y-auto mr-0" id="scrollContainer">
                 <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+
+                    <li class="relative">
+                        <a class="group flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-gray-300/30 hover:text-inherit hover:outline-none focus:bg-gray-300/30 focus:text-inherit focus:outline-none active:bg-gray-300/30 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none" href="/admin" data-te-sidenav-link-ref>
+                            <span class="mr-4 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                </svg>
+                            </span>
+                            <span>{{ __('Dashboard')}}</span>
+                        </a>
+                    </li>
+                    <li class="relative">
+                        <a class="group flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-gray-300/30 hover:text-inherit hover:outline-none focus:bg-gray-300/30 focus:text-inherit focus:outline-none active:bg-gray-300/30 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none" href="/admin/post-job" data-te-sidenav-link-ref>
+                            <span class="mr-4 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
+                                </svg>
+                            </span>
+                            <span>{{ __('Post a Job')}}</span>
+                        </a>
+                    </li>
                     <li class="relative">
                         <a class="group flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-gray-300/30 hover:text-inherit hover:outline-none focus:bg-gray-300/30 focus:text-inherit focus:outline-none active:bg-gray-300/30 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none" href="/admin/company-type" data-te-sidenav-link-ref>
                             <span class="mr-4 [&>svg]:h-3.5 [&>svg]:w-3.5">
@@ -194,6 +296,10 @@
             </div>
             <!-- Close Button -->
         </nav>
+
+
+
+
     </div>
 
     <script>

@@ -27,6 +27,7 @@ class JobRoleCreate extends Component
         $this->validate();
         JobRole::create([
             'job_role_name' => $this->job_role_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Job Role is created sucessfully');
         $this->resetInputFields();

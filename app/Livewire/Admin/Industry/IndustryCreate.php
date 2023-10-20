@@ -21,6 +21,7 @@ class IndustryCreate extends Component
         $this->validate();
         Industry::create([
             'industry_name' => $this->industry_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Industry is created sucessfully');
         $this->resetInputFields();

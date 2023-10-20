@@ -31,8 +31,9 @@
         @endisset
     </div>
     @else
+    <!-- admin -->
     <div class="min-h-screen w-full bg-gray-50 !pl-0 sm:!pl-60" id="content">
-        <div class="p-5">
+        <div class="mx-5 mt-24 mb-10">
             @yield('content')
             @isset($slot)
             {{$slot}}

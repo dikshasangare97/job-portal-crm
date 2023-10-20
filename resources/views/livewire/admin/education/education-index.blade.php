@@ -76,7 +76,7 @@
                             <tbody class="text-gray-600 text-sm font-light">
                                 @if($educations)
                                 @foreach($educations as $education)
-                                <tr class="border-b border-gray-200 hover:bg-gray-100" wire:key="{{$education->id}}">
+                                <tr class="border-b border-gray-200 hover:bg-gray-100 font-normal" wire:key="{{$education->id}}">
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
                                             <span>{{$education->education_name}}</span>

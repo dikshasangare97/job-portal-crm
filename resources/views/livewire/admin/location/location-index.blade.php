@@ -76,7 +76,7 @@
                             <tbody class="text-gray-600 text-sm font-light">
                                 @if($locations)
                                 @foreach($locations as $location)
-                                <tr class="border-b border-gray-200 hover:bg-gray-100" wire:key="{{$location->id}}">
+                                <tr class="border-b border-gray-200 hover:bg-gray-100 font-normal" wire:key="{{$location->id}}">
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
                                             <span>{{$location->city_name}}</span>

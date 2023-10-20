@@ -26,7 +26,7 @@ class DepartmentIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
-    public function closeModal()    
+    public function closeModal()
     {
         $this->isOpen = false;
     }
@@ -34,52 +34,52 @@ class DepartmentIndex extends Component
 
     public function render()
     {
-        return view('livewire.admin.department.department-index',
-        [
-            'departments' => Departments::where('department_name', 'like', '%' . $this->search_input . '%')->paginate(5)
-    ]);
+        return view(
+            'livewire.admin.department.department-index',
+            [
+                'departments' => Departments::where('department_name', 'like', '%' . $this->search_input . '%')->orderBy('id','desc')->paginate(10)
+            ]
+        );
     }
 
-    
-//    public function show($id)
-//    {
 
-//     $department = Departments::where('id', $id)->first();
-//     $this->departmentId = $department->id;
-//     $this->department_name =  $department->department_name;
-//     $this->openModal();
+    //    public function show($id)
+    //    {
 
-//    }
+    //     $department = Departments::where('id', $id)->first();
+    //     $this->departmentId = $department->id;
+    //     $this->department_name =  $department->department_name;
+    //     $this->openModal();
+
+    //    }
 
     public function edit($id)
     {
-        
-        $department = Departments::findOrFail($id);   
+
+        $department = Departments::findOrFail($id);
         $this->departmentId = $id;
-        $this-> department_name = $department->department_name;
+        $this->department_name = $department->department_name;
         $this->openModal();
     }
-   
+
     public function update()
     {
         if ($this->departmentId) {
             $post = Departments::findOrFail($this->departmentId);
             $post->update([
                 'department_name' => $this->department_name,
-                
+
             ]);
             session()->flash('success', 'Department updated successfully.');
             $this->closeModal();
             $this->reset('department_name', 'departmentId');
-        }  
+        }
     }
-
 
     public function delete($id)
     {
         Departments::find($id)->delete();
-        session()->flash('success', 'department deleted successfully.');
-        $this->reset('department_name');
+        session()->flash('message', 'Department detail deleted sucessfully');
+        return redirect()->to('/admin/department');
     }
-    
 }

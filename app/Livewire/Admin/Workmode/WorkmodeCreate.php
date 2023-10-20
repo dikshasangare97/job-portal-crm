@@ -23,6 +23,7 @@ class WorkmodeCreate extends Component
         $this->validate();
         Workmode::create([
             'work_mode_name' => $this->work_mode_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Workmode is created sucessfully');
         $this->resetInputFields();

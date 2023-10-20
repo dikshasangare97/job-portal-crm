@@ -10,14 +10,14 @@ class WorkmodeIndex extends Component
 {
 
     use WithPagination;
-    
+
     public $isOpen = 0;
-    
+
     public $workmodeId;
     public $work_mode_name;
 
     public $search_input = '';
-    
+
     public function search()
     {
         $this->resetPage();
@@ -28,7 +28,7 @@ class WorkmodeIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
-    public function closeModal()    
+    public function closeModal()
     {
         $this->isOpen = false;
     }
@@ -36,39 +36,36 @@ class WorkmodeIndex extends Component
 
     public function render()
     {
-        return view('livewire.admin.workmode.workmode-index',[
-            
-                'workmodes' => Workmode::where('work_mode_name', 'like', '%' . $this->search_input . '%')->paginate(5)
-    
+        return view('livewire.admin.workmode.workmode-index', [
+            'workmodes' => Workmode::where('work_mode_name', 'like', '%' . $this->search_input . '%')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
-        public function edit($id)
-        {
-            
-            $workmode = Workmode::findOrFail($id);   
-            $this->workmodeId = $id;
-            $this-> work_mode_name = $workmode->work_mode_name;
-            $this->openModal();
+    public function edit($id)
+    {
+        $workmode = Workmode::findOrFail($id);
+        $this->workmodeId = $id;
+        $this->work_mode_name = $workmode->work_mode_name;
+        $this->openModal();
+    }
+    public function update()
+    {
+        if ($this->workmodeId) {
+            $post = Workmode::findOrFail($this->workmodeId);
+            $post->update([
+                'work_mode_name' => $this->work_mode_name,
+
+            ]);
+            session()->flash('success', 'Workmode  updated successfully.');
+            $this->closeModal();
+            $this->reset('work_mode_name', 'workmodeId');
         }
-        public function update()
-        {
-            if ($this->workmodeId) {
-                $post = Workmode::findOrFail($this->workmodeId);
-                $post->update([
-                    'work_mode_name' => $this->work_mode_name,
-                    
-                ]);
-                session()->flash('success', 'Workmode  updated successfully.');
-                $this->closeModal();
-                $this->reset('work_mode_name', 'workmodeId');
-            }  
-        }
-        
+    }
+
     public function delete($id)
     {
         Workmode::find($id)->delete();
-        session()->flash('success', 'workmode deleted successfully.');
-        $this->reset('work_mode_name');
+        session()->flash('message', 'Workmode detail deleted sucessfully');
+        return redirect()->to('/admin/workmode');
     }
 }

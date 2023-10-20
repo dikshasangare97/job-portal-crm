@@ -15,4 +15,10 @@ class JobRole extends Model
         'job_role_name',
         'status'
     ];
+
+    public function roleCategory()
+    {
+        return $this->belongsTo(Role::class, 'role_category_id');
+    }
+
 }

@@ -23,6 +23,7 @@ class ExperienceCreate extends Component
         $this->validate();
         Experience::create([
             'experience' => $this->experience,
+            'status' => 1
         ]);
         session()->flash('message', 'Experience is created sucessfully');
         $this->resetInputFields();

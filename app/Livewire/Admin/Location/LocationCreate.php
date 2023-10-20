@@ -21,6 +21,7 @@ class LocationCreate extends Component
         $this->validate();
         Location::create([
             'city_name' => $this->city_name,
+            'status' => 1
         ]);
         session()->flash('message', 'Location is created sucessfully');
         $this->resetInputFields();

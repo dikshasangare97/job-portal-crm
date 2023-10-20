@@ -106,7 +106,7 @@
                     </div>
                     <div class="flex flex-col mb-6">
                         <label for="pin_code" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Pin code:</label>
-                        <input id="pin_code" type="text" wire:model="pin_code" class="text-sm sm:text-base placeholder-gray-500 pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
+                        <input id="pin_code" type="text" wire:model="pin_code" class="text-sm sm:text-base placeholder-gray-500 pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" minlength="6" maxlength="6" onkeypress="return isNumber(event)" />
                         <div class="text-xs text-red-600 font-bold">@error('pin_code') {{ $message }} @enderror</div>
                     </div>
                     <div class="flex flex-col mb-6">
