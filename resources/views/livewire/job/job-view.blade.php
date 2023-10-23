@@ -76,7 +76,15 @@
                     @php
                     $jobId = $job->id;
                     @endphp
+
+                    @if($job_apply)
+                    @if($job_apply->job_id == $jobId)
+                    <p class="text-blue-600 font-bold">Already Apply</p>
+                    @endif
+                    @else
                     <livewire:job.job-apply :jobId="$jobId" />
+                    @endif
+
                     @endif
                     @endauth
                 </div>

@@ -14,7 +14,7 @@
             </div>
             @else
             <img class="w-40 h-40 p-1 rounded-full ring-4 ring-blue-400" src="https://static.naukimg.com/s/5/105/i/displayProfilePlaceholder.png" alt="profile" />
-            <div class="absolute bottom-0 left-0 right-0 top-0 sm:w-40 sm:h-40 md:w-40 md:h-40 lg:w-40 lg:h-40 xl:w-40 xl:h-40 rounded-full overflow-hidden bg-black bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-50 flex items-center justify-center flex-col">
+            <div class="absolute bottom-0 left-5 right-0 top-0 sm:w-40 sm:h-40 md:w-40 md:h-40 lg:w-40 lg:h-40 xl:w-40 xl:h-40 rounded-full overflow-hidden bg-black bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-50 flex items-center justify-center flex-col">
                 <p class="text-white font-bold flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-center">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

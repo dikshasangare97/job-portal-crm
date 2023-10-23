@@ -58,7 +58,24 @@
                                 @php
                                 $jobId = $job->id;
                                 @endphp
+
+                                @php
+                                $alreadyApplied = false;
+                                @endphp
+
+                                @foreach($job_applies as $job_apply)
+                                @if($job_apply->job_id == $jobId)
+                                <p class="text-blue-600 font-bold">Already Apply</p>
+                                @php
+                                $alreadyApplied = true;
+                                @endphp
+                                @break
+                                @endif
+                                @endforeach
+
+                                @if (!$alreadyApplied)
                                 <livewire:job.job-apply :jobId="$jobId" />
+                                @endif
                             </div>
                             @endif
                             @endauth

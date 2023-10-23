@@ -7,34 +7,22 @@ use App\Models\Departments;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Industry;
+use App\Models\JobApply;
 use App\Models\JobPostedBy;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
 use App\Models\Workmode;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class JobSearch extends Component
 {
     use WithPagination;
-    public $records;
-    public $selectedEducations = [];
-    public $selectedLocations = [];
-    public $selectedCompanyTypes = [];
-    public $selectedRoleCategories = [];
-    public $selectedIndustries = [];
-    public $selectedPostedBy = [];
-    public $selectedExperiences = [];
-    public $selectedWorkmodes = [];
-    public $selectedDepartments = [];
-    public $selectedSalary = [];
-    public $selectedFreshnesses = [];
-    public $jobs;
-    public $search;
-
-    public $clearFilterBtn = false;
+    public $records, $search, $clearFilterBtn = false;
+    public $selectedEducations = [], $selectedLocations = [], $selectedCompanyTypes = [], $selectedRoleCategories = [], $selectedIndustries = [], $selectedPostedBy = [], $selectedExperiences = [], $selectedWorkmodes = [], $selectedDepartments = [], $selectedSalary = [], $selectedFreshnesses = [];
 
     public function mount($search)
     {
@@ -55,9 +43,10 @@ class JobSearch extends Component
         $this->selectedSalary = [];
         $this->selectedFreshnesses = [];
     }
+    
     public function  render()
     {
-        $this->jobs = PostJob::query()->where('job_headline', 'like', '%' . $this->search . '%')
+        $jobs = PostJob::query()->where('job_headline', 'like', '%' . $this->search . '%')
             ->with('location', 'industry', 'role', 'education', 'companyType')->when($this->selectedEducations, function ($query) {
                 $query->where(function ($query) {
                     $query->whereIn('education_qualification_id', $this->selectedEducations);
@@ -106,8 +95,8 @@ class JobSearch extends Component
                 $freshnessIds = array_map('intval', $this->selectedFreshnesses);
                 $date = Carbon::now()->subDays($freshnessIds[0]);
                 $query->where('created_at', '>=', $date);
-            })->orderBy('id', 'DESC')->get();
-        return view('livewire.job.job-search', ['jobs' =>  $this->jobs, 'getJobs' =>  $this->records, 'educations' => Education::get(), 'locations' => Location::get(), 'company_types' => CompanyType::get(), 'role_categories' => Role::get(), 'industries' => Industry::get(), 'posted_bies' => JobPostedBy::get(), 'workmodes' => Workmode::get(), 'departments' => Departments::get(), 'experiences' => Experience::get(),]);
+            })->orderBy('id', 'DESC')->paginate(15);
+        return view('livewire.job.job-search', ['jobs' =>  $jobs, 'getJobs' =>  $this->records, 'educations' => Education::get(), 'locations' => Location::get(), 'company_types' => CompanyType::get(), 'role_categories' => Role::get(), 'industries' => Industry::get(), 'posted_bies' => JobPostedBy::get(), 'workmodes' => Workmode::get(), 'departments' => Departments::get(), 'experiences' => Experience::get(), 'job_applies' => JobApply::where('user_id', Auth::user()->id)->get()]);
     }
 
     public function toggleEducation($educationId)
