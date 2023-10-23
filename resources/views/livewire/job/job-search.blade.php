@@ -41,18 +41,18 @@
 
             <hr class="my-3">
             <!-- Experience -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ experienceOpen: true }">
+                <div @click="experienceOpen = !experienceOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Experience</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': experienceOpen,' -translate-y-0.0': !experienceOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="experienceOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($experiences as $experience)
                         <li class="py-1">
@@ -66,18 +66,18 @@
 
             <hr class="my-3">
             <!-- department -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ departmentOpen: true }">
+                <div @click="departmentOpen = !departmentOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Department</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': departmentOpen,' -translate-y-0.0': !departmentOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="departmentOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($departments as $department)
                         <li class="py-1">
@@ -92,18 +92,18 @@
             <hr class="my-3">
 
             <!-- Location -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ locationOpen: true }">
+                <div @click="locationOpen = !locationOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Location</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': locationOpen,' -translate-y-0.0': !locationOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="locationOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($locations as $location)
                         <li class="py-1">
@@ -118,18 +118,18 @@
             <hr class="my-3">
 
             <!-- salary -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ salaryOpen: true }">
+                <div @click="salaryOpen = !salaryOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Salary</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': salaryOpen,' -translate-y-0.0': !salaryOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="salaryOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         <li class="py-1">
                             <input type="checkbox" wire:model="selectedSalary" wire:click="toggleLocation(0-300000)" value="0-300000" id="salary_1">
@@ -179,18 +179,18 @@
             <hr class="my-3">
 
             <!-- company type -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ companyTypeOpen: true }">
+                <div @click="companyTypeOpen = !companyTypeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Company Type</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': companyTypeOpen,' -translate-y-0.0': !companyTypeOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="companyTypeOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($company_types as $company_type)
                         <li class="py-1">
@@ -205,18 +205,18 @@
             <hr class="my-3">
 
             <!-- role category -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ roleCategoryOpen: true }">
+                <div @click="roleCategoryOpen = !roleCategoryOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Role Category</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': roleCategoryOpen,' -translate-y-0.0': !roleCategoryOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="roleCategoryOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($role_categories as $role_category)
                         <li class="py-1">
@@ -231,18 +231,18 @@
             <hr class="my-3">
 
             <!-- education -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ educationOpen: true }">
+                <div @click="educationOpen = !educationOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Education</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': educationOpen,' -translate-y-0.0': !educationOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="educationOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($educations as $education)
                         <li class="py-1">
@@ -257,18 +257,18 @@
             <hr class="my-3">
 
             <!-- industry -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ industryOpen: true }">
+                <div @click="industryOpen = !industryOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Industry</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': industryOpen,' -translate-y-0.0': !industryOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="industryOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($industries as $industry)
                         <li class="py-1">
@@ -283,18 +283,18 @@
             <hr class="my-3">
 
             <!-- posted by -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ postedByOpen: true }">
+                <div @click="postedByOpen = !postedByOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Posted By</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': postedByOpen,' -translate-y-0.0': !postedByOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="postedByOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         @foreach($posted_bies as $posted_by)
                         <li class="py-1">
@@ -308,18 +308,18 @@
 
             <hr class="my-3">
             <!-- freshness -->
-            <div x-data="{ workModeOpen: true }">
-                <div @click="workModeOpen = !workModeOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
+            <div x-data="{ freshnessOpen: true }">
+                <div @click="freshnessOpen = !freshnessOpen" class='flex items-center text-gray-600 w-full  overflow-hidden mt-32 md:mt-0  mx-auto'>
                     <div class='w-5/6 items-center font-bold text-black py-3'>
                         <button class="hover:underline">Freshness</button>
                     </div>
-                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': workModeOpen,' -translate-y-0.0': !workModeOpen }">
+                    <div class=' text-end transform transition duration-300 ease-in-out' :class="{'rotate-180': freshnessOpen,' -translate-y-0.0': !freshnessOpen }">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                     </div>
                 </div>
-                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="workModeOpen" x-collapse x-collapse.duration.500ms>
+                <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="freshnessOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
                         <li class="py-1">
                             <input type="checkbox" wire:model="selectedFreshnesses" wire:click="toggleFreshness(1)" value="1 day" id="freshness_1">
