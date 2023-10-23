@@ -12,10 +12,8 @@ class WorkmodeIndex extends Component
     use WithPagination;
 
     public $isOpen = 0;
-
     public $workmodeId;
-    public $work_mode_name;
-
+    public $work_mode_name, $status;
     public $search_input = '';
 
     public function search()
@@ -28,11 +26,11 @@ class WorkmodeIndex extends Component
         $this->isOpen = true;
         $this->resetValidation();
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
-
 
     public function render()
     {
@@ -46,19 +44,20 @@ class WorkmodeIndex extends Component
         $workmode = Workmode::findOrFail($id);
         $this->workmodeId = $id;
         $this->work_mode_name = $workmode->work_mode_name;
+        $this->status = $workmode->status;
         $this->openModal();
     }
+
     public function update()
     {
         if ($this->workmodeId) {
             $post = Workmode::findOrFail($this->workmodeId);
             $post->update([
                 'work_mode_name' => $this->work_mode_name,
-
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Workmode  updated successfully.');
-            $this->closeModal();
-            $this->reset('work_mode_name', 'workmodeId');
+            session()->flash('message', 'Workmode detail updated sucessfully');
+            return redirect()->to('/admin/workmode');
         }
     }
 

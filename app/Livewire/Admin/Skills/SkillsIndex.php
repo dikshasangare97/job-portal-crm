@@ -13,13 +13,14 @@ class SkillsIndex extends Component
     public $search_input = '';
     public $isOpen = 0;
     public $skillId;
-    public $key_skill_name;
+    public $key_skill_name, $status;
 
     public function openModal()
     {
         $this->isOpen = true;
         $this->resetValidation();
     }
+    
     public function closeModal()
     {
         $this->isOpen = false;
@@ -42,6 +43,7 @@ class SkillsIndex extends Component
         $workmode = KeySkill::findOrFail($id);
         $this->skillId = $id;
         $this->key_skill_name = $workmode->key_skill_name;
+        $this->status = $workmode->status;
         $this->openModal();
     }
 
@@ -51,10 +53,10 @@ class SkillsIndex extends Component
             $post = KeySkill::findOrFail($this->skillId);
             $post->update([
                 'key_skill_name' => $this->key_skill_name,
+                'status' => $this->status,
             ]);
-            session()->flash('success', 'Skill  updated successfully.');
-            $this->closeModal();
-            $this->reset('key_skill_name', 'skillId');
+            session()->flash('message', 'Skill detail updated sucessfully');
+            return redirect()->to('/admin/skills');
         }
     }
 

@@ -84,9 +84,9 @@
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         @if($location->status == 1)
-                                        <span class="bg-green-200 text-green-600 py-1 font-medium px-3 rounded-full text-xs">Available</span>
+                                        <span class="bg-green-200 text-green-600 py-1 font-medium px-3 rounded-full text-xs">Active</span>
                                         @else
-                                        <span class="bg-red-200 text-red-600 py-1 px-3 font-medium rounded-full text-xs">Not&nbsp;available</span>
+                                        <span class="bg-red-200 text-red-600 py-1 px-3 font-medium rounded-full text-xs">In&nbsp;Active</span>
                                         @endif
                                     </td>
                                     <td class="py-3 px-6 text-center">
