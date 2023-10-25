@@ -12,16 +12,16 @@ class JobApply extends Component
 {
     public $jobId, $application_status = ['1', '2', '8'];
 
-    public function save()
+    public function save($jobId)
     {
-        $jobApplyData = ModelsJobApply::where('user_id', Auth::user()->id)->where('job_id', $this->jobId)->first();
+        $jobApplyData = ModelsJobApply::where('user_id', Auth::user()->id)->where('job_id', $jobId)->first();
         if ($jobApplyData) {
             session()->flash('error', 'Already apply for this job.');
         } else {
-            $jobdata = PostJob::find($this->jobId);
+            $jobdata = PostJob::find($jobId);
             $modelsJobApply =   ModelsJobApply::create([
                 'user_id' => Auth::user()->id,
-                'job_id' => $this->jobId,
+                'job_id' => $jobId,
                 'application_status' => 2,
                 'recruiter_id' => $jobdata->user_id
             ]);
@@ -34,11 +34,17 @@ class JobApply extends Component
             }
             session()->flash('message', 'Sucessfully apply for a job.');
         }
-        return redirect()->to('/job/' . $this->jobId . '/view');
+        return redirect()->to('/job/' . $jobId . '/view');
     }
 
     public function render()
     {
-        return view('livewire.job.job-apply');
+        $jobApplies = [];
+        if (auth()->check()) {
+            $jobApplies = ModelsJobApply::where('user_id', auth()->user()->id)->get();
+        }
+        return view('livewire.job.job-apply',[
+            'job_applies' => $jobApplies
+        ]);
     }
 }

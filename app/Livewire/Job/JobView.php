@@ -19,7 +19,7 @@ class JobView extends Component
     {
         return view('livewire.job.job-view', [
             'job' =>  $this->detail,
-            'job_apply' => JobApply::where([['user_id', Auth::user()->id],['job_id' , $this->detail->id]])->first()
+            'job_apply' => JobApply::where('job_id' , $this->detail->id)->first()
         ]);
     }
 }

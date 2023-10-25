@@ -70,23 +70,11 @@
                     </div>
                 </div>
                 <div class="w-1/2">
-                    @auth
-                    @if(auth()->user()->register_for == 'user')
-
                     @php
-                    $jobId = $job->id;
+                        $jobId = $job->id;
                     @endphp
 
-                    @if($job_apply)
-                    @if($job_apply->job_id == $jobId)
-                    <p class="text-blue-600 font-bold">Already Apply</p>
-                    @endif
-                    @else
                     <livewire:job.job-apply :jobId="$jobId" />
-                    @endif
-
-                    @endif
-                    @endauth
                 </div>
 
             </div>
