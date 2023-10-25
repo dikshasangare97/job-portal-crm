@@ -352,12 +352,12 @@
     </div>
     <div class="w-2/4">
         @if(isset($getPostedjobs) && $getPostedjobs->count() > 0)
-        
+
         @foreach ($getPostedjobs as $getPostedjob)
 
         <div class="flex bg-white shadow-lg rounded-xl mb-2 max-w-full ">
             <div class="flex items-start px-4 py-6">
-                <a href="/job/{{$job->id}}/view" target="_blank">
+                <a href="/job/{{$getPostedjob->id}}/view" target="_blank">
                     <div class="flex items-center justify-between">
                         <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{$getPostedjob->job_headline}} </h2>
                     </div>
