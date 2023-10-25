@@ -10,9 +10,10 @@
             <div class="bg-white shadow-xl rounded-b-lg px-4 py-4 border-b border-gray-500 mb-3">
                 <a href="/job/{{$job->id}}/view" target="_blank" class="cursor-pointer">
                     <div class="flex flex-col justify-start">
-                        <div class="flex justify-between items-center w-96">
+                        <div class="md:flex justify-between items-center w-96">
                             <div class="text-lg font-semibold text-bookmark-blue flex space-x-1 items-center mb-2">
                                 <svg class="w-10 h-10 text-gray-700 border rounded-lg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+
                                     <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
                                     <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
                                 </svg>
@@ -36,8 +37,8 @@
                         <span class="text-md font-semibold"> {{$job->job_headline}}</span>
                         <span class="text-xs text-gray-500"> {{$job->company_name}}</span>
 
-                        <div class="flex justify-between items-center w-96 mt-3">
-                            <div class="text-xs flex space-x-1 items-center text-gray-500">
+                        <div class="md:flex justify-between items-center w-96">
+                            <div class="text-lg font-semibold text-bookmark-blue flex space-x-1 items-center mb-2">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
