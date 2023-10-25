@@ -11,9 +11,14 @@ class Homepage extends Component
 {
     public function render()
     {
+        if (Auth::user()) {
+            $jobApplies = JobApply::where('user_id', Auth::user()->id)->get();
+        } else {
+            $jobApplies = JobApply::get();
+        }
         return view('livewire.homepage', [
             'jobs' => PostJob::with('user', 'location', 'industry', 'role', 'education', 'companyType', 'postedBy', 'workMode', 'department', 'workExperience')->orderBy('id', 'DESC')->take(9)->get(),
-            'job_applies' => JobApply::where('user_id', Auth::user()->id)->get()
+            'job_applies' =>  $jobApplies
         ]);
     }
 }
