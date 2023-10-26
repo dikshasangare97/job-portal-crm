@@ -17,7 +17,7 @@ class Homepage extends Component
             $jobApplies = JobApply::get();
         }
         return view('livewire.homepage', [
-            'jobs' => PostJob::with('user', 'location', 'industry', 'role', 'education', 'companyType', 'postedBy', 'workMode', 'department', 'workExperience')->orderBy('id', 'DESC')->take(9)->get(),
+            'jobs' => PostJob::with('user', 'location', 'industry', 'role', 'education', 'companyType', 'postedBy', 'workMode', 'department', 'workExperience')->where('status', 1)->orderBy('id', 'DESC')->take(9)->get(),
             'job_applies' =>  $jobApplies
         ]);
     }

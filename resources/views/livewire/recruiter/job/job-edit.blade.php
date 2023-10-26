@@ -237,6 +237,18 @@
                     </div>
                 </div>
 
+                <div class="flex">
+                    <div class="w-1/2 mb-6 ml-2">
+                        <label for="status" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job status:</label>
+                        <br>
+                        <select wire:model="status" id="status" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                            <option value="null">Select</option>
+                            <option value="0">Inactive</option>
+                            <option value="1">Active</option>
+                        </select>
+                        <div class="text-xs text-red-600 font-bold">@error('status') {{ $message }} @enderror</div>
+                    </div>
+                </div>
 
 
                 <div class="flex flex-col mt-5">

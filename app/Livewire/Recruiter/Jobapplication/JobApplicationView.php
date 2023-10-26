@@ -95,6 +95,10 @@ class JobApplicationView extends Component
             $userChangeStatus->update([
                 'application_status' => $status,
             ]);
+            if ($status == 7) {
+                $applicationStatus =  ApplicationStatusLog::where([['user_id', $this->jobAppUserId], ['job_apply_id', $userChangeStatus->id], ['status', 8]])->first();
+                $applicationStatus->delete();
+            }
             ApplicationStatusLog::create([
                 'user_id' => $this->jobAppUserId,
                 'job_apply_id' => $userChangeStatus->id,

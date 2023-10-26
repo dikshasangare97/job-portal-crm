@@ -33,7 +33,6 @@ class JobPosting extends Component
     #[Rule('required')]
     public  $work_experience = '';
 
-    #[Rule('required|min:3')]
     public  $annual_salary = '';
 
     public  $salary_hide_status = '';
@@ -105,7 +104,7 @@ class JobPosting extends Component
             'job_description' => $this->job_description,
             'key_skill' => $this->key_skill,
             'work_experience' => $this->work_experience,
-            'annual_salary' => $this->annual_salary,
+            'annual_salary' => $this->annual_salary ?? 0,
             'salary_hide_status' => $this->salary_hide_status,
             'location_id' => $this->location,
             'locality' => $this->locality,
@@ -121,6 +120,7 @@ class JobPosting extends Component
             'posted_by_id' => $this->posted_by,
             'work_mode_id' => $this->work_mode,
             'department_id' => $this->department,
+            'status' => 1,
         ]);
         session()->flash('message', 'Job created sucessfully');
         $this->resetInputFields();

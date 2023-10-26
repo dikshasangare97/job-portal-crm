@@ -19,13 +19,13 @@ use Livewire\Component;
 class PostJobCreate extends Component
 {
     #[Rule('required|min:3')]
-    public  $job_headline = '', $job_description = '', $annual_salary = '', $locality = '', $functional_area = '', $company_name = '', $company_detail = '';
+    public  $job_headline = '', $job_description = '', $locality = '', $functional_area = '', $company_name = '', $company_detail = '';
 
     #[Rule('required')]
     public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '';
 
     public $salary_hide_status = '';
-    public $work_mode = '';
+    public $work_mode = '', $annual_salary = '';
     public $department = '', $reference_code = '';
 
     public function resetInputFields()
@@ -61,7 +61,7 @@ class PostJobCreate extends Component
             'job_description' => $this->job_description,
             'key_skill' => $this->key_skill,
             'work_experience' => $this->work_experience,
-            'annual_salary' => $this->annual_salary,
+            'annual_salary' => $this->annual_salary ?? 0,
             'salary_hide_status' => $this->salary_hide_status,
             'location_id' => $this->location,
             'locality' => $this->locality,
@@ -77,6 +77,7 @@ class PostJobCreate extends Component
             'posted_by_id' => $this->posted_by,
             'work_mode_id' => $this->work_mode,
             'department_id' => $this->department,
+            'status' => 1,
         ]);
         session()->flash('message', 'Job created sucessfully');
         $this->resetInputFields();

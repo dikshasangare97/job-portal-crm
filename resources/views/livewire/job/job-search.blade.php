@@ -131,47 +131,12 @@
                 </div>
                 <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="salaryOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
+                        @foreach($salaries as $salary)
                         <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleLocation(0-300000)" value="0-300000" id="salary_1">
-                            <label class="ml-2" for="salary_1">0-3 Lakhs</label>
+                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary({{ $salary->id }})" value="{{ $salary->salary_to }}-{{ $salary->salary_from }}" id="salary_{{ $salary->id }}">
+                            <label class="ml-2" for="salary_{{ $salary->id }}">{{ $this->formatNumber($salary->salary_to) }} - {{ $this->formatNumber($salary->salary_from) }}</label>
                         </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(300000-600000)" value="300000-600000" id="salary_2">
-                            <label class="ml-2" for="salary_2">3-6 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(600000-1000000)" value="600000-1000000" id="salary_3">
-                            <label class="ml-2" for="salary_3">6-10 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(1000000-1500000)" value="1000000-1500000" id="salary_4">
-                            <label class="ml-2" for="salary_4">10-15 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(1500000-2500000)" value="1500000-2500000" id="salary_5">
-                            <label class="ml-2" for="salary_5">15-25 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(2500000-5000000)" value="2500000-5000000" id="salary_6">
-                            <label class="ml-2" for="salary_6">25-50 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(5000000-7500000)" value="5000000-7500000" id="salary_7">
-                            <label class="ml-2" for="salary_7">50-75 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(7500000-10000000)" value="7500000-10000000" id="salary_8">
-                            <label class="ml-2" for="salary_8">75-100 Lakhs</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(10000000-50000000)" value="10000000-50000000" id="salary_9">
-                            <label class="ml-2" for="salary_9">1-5 Cr</label>
-                        </li>
-                        <li class="py-1">
-                            <input type="checkbox" wire:model="selectedSalary" wire:click="toggleSalary(50000000-100000000)" value="50000000-100000000" id="salary_10">
-                            <label class="ml-2" for="salary_10">5+ Cr</label>
-                        </li>
-
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -321,7 +286,15 @@
                 </div>
                 <div class="flex p-5 md:p-0 w-full transform transition duration-300 ease-in-out " x-cloak x-show="freshnessOpen" x-collapse x-collapse.duration.500ms>
                     <ul class="text-gray-500 text-sm">
+
+                        @foreach($freshnesses as $freshness)
                         <li class="py-1">
+                            <input type="checkbox" wire:model="selectedFreshnesses" wire:click="toggleFreshness({{$freshness->id}})" value="{{$freshness->last_day_number}} day" id="freshness_{{ $freshness->id }}">
+                            <label class="ml-2" for="freshness_{{ $freshness->id }}">Last {{$freshness->last_day_number}} day</label>
+                        </li>
+                        @endforeach
+
+                        <!-- <li class="py-1">
                             <input type="checkbox" wire:model="selectedFreshnesses" wire:click="toggleFreshness(1)" value="1 day" id="freshness_1">
                             <label class="ml-2" for="freshness_1">Last 1 day</label>
                         </li>
@@ -342,7 +315,7 @@
                         <li class="py-1">
                             <input type="checkbox" wire:model="selectedFreshnesses" wire:click="toggleFreshness(30)" value="30 day" id="freshness_30">
                             <label class="ml-2" for="freshness_30">Last 30 day</label>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -372,7 +345,7 @@
                         </div>
                         <div class="flex text-gray-700 text-sm mr-8 border-r pr-3">
                             <span class="text-lg mr-1"> ₹ </span>
-                            <span class="">
+                            <span class="pt-1">
                                 @if($getPostedjob->salary_hide_status == 1)
                                 Not disclosed
                                 @else
@@ -397,7 +370,7 @@
                     </div>
 
                     <div class="flex mt-3 text-gray-700">
-                        <svg class="w-4 h-4 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <svg class="w-6 h-6 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                         </svg>
                         <p class="text-sm">

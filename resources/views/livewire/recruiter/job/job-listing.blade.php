@@ -24,7 +24,24 @@
                 <div class=" items-start px-4 py-6 w-11/12">
                     <div>
                         <div class="flex items-center justify-between">
-                            <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{$job->job_headline}} </h2>
+                            <h2 class="text-lg font-semibold text-gray-900 -mt-1">{{$job->job_headline}}
+                                @if($job->status == 0)
+                                <span class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-full mr-2  border border-red-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    In&nbsp;Active
+                                </span>
+                                @else
+                                <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-full mr-2  border border-green-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+
+                                    Active
+                                </span>
+                                @endif
+                            </h2>
                         </div>
                         <p class="text-gray-700">{{$job->company_name}} </p>
 

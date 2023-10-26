@@ -25,7 +25,7 @@ class PostJobEdit extends Component
     #[Rule('required')]
     public $employment_type, $work_experience, $key_skill, $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $work_mode, $department;
 
-    public $job_description, $salary_hide_status, $job_edit_id;
+    public $job_description, $salary_hide_status, $job_edit_id, $status;
 
     public function mount($id)
     {
@@ -51,7 +51,7 @@ class PostJobEdit extends Component
         $this->posted_by = $this->detail->postedBy->id;
         $this->work_mode = $this->detail->workMode->id;
         $this->department = $this->detail->department->id;
-
+        $this->status = $this->detail->status;
         $this->job_edit_id = $this->detail->id;
     }
 
@@ -79,6 +79,7 @@ class PostJobEdit extends Component
         $post_job_detail->posted_by_id = $this->posted_by;
         $post_job_detail->work_mode_id = $this->work_mode;
         $post_job_detail->department_id = $this->department;
+        $post_job_detail->status = $this->status;
         $post_job_detail->save();
 
         session()->flash('message', 'Job updated sucessfully');
@@ -100,5 +101,4 @@ class PostJobEdit extends Component
             'experiences' => Experience::where('status', 1)->get(),
         ]);
     }
-
 }

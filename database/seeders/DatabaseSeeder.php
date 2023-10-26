@@ -100,6 +100,14 @@ class DatabaseSeeder extends Seeder
             $seeder->run();
         });
 
+        tap(new SalarySeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
+        tap(new JobFreshnessSeeder(), function ($seeder) {
+            $seeder->run();
+        });
+
         tap(new JobSeeder(), function ($seeder) {
             $seeder->run();
         });

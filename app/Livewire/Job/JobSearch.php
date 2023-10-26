@@ -7,10 +7,12 @@ use App\Models\Departments;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Industry;
+use App\Models\JobFreshness;
 use App\Models\JobPostedBy;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
+use App\Models\Salary;
 use App\Models\Workmode;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -43,7 +45,7 @@ class JobSearch extends Component
 
     public function  render()
     {
-        $getPostedjobs = PostJob::where('job_headline', 'like', '%' . $this->search . '%')->with('location', 'industry', 'role', 'education', 'companyType')->when($this->selectedEducations, function ($query) {
+        $getPostedjobs = PostJob::query()->where('job_headline', 'like', '%' . $this->search . '%')->with('location', 'industry', 'role', 'education', 'companyType')->where('status', 1)->when($this->selectedEducations, function ($query) {
             $query->where(function ($query) {
                 $query->orWhereIn('education_qualification_id', $this->selectedEducations);
             });
@@ -83,15 +85,17 @@ class JobSearch extends Component
             foreach ($this->selectedSalary as $salaryRange) {
                 list($minSalary, $maxSalary) = explode('-', $salaryRange);
                 $query->where(function ($query) use ($minSalary, $maxSalary) {
-                    $query->where('annual_salary', '>=', $minSalary)->where('annual_salary', '<=', $maxSalary);
+                    $query->whereRaw('CAST(annual_salary AS DECIMAL) >= ?', [$minSalary])->whereRaw('CAST(annual_salary AS DECIMAL) <= ?', [$maxSalary]);
                 });
             }
         })->when($this->selectedFreshnesses, function ($query) {
-            $freshnessIds = array_map('intval', $this->selectedFreshnesses);
-            $date = Carbon::now()->subDays($freshnessIds[0]);
+            $lastSelectedId = end($this->selectedFreshnesses);
+            $freshness = JobFreshness::find($lastSelectedId);
+            $freshnessIds = $freshness ? $freshness->last_day_number : 0;
+            $date = Carbon::now()->subDays($freshnessIds);
             $query->where('created_at', '>=', $date);
         })->orderBy('id', 'DESC')->paginate(15);
-        return view('livewire.job.job-search', ['getPostedjobs' =>  $getPostedjobs, 'getJobs' =>  $this->records, 'educations' => Education::get(), 'locations' => Location::get(), 'company_types' => CompanyType::get(), 'role_categories' => Role::get(), 'industries' => Industry::get(), 'posted_bies' => JobPostedBy::get(), 'workmodes' => Workmode::get(), 'departments' => Departments::get(), 'experiences' => Experience::get()]);
+        return view('livewire.job.job-search', ['getPostedjobs' =>  $getPostedjobs, 'getJobs' =>  $this->records, 'educations' => Education::get(), 'locations' => Location::get(), 'company_types' => CompanyType::get(), 'role_categories' => Role::get(), 'industries' => Industry::get(), 'posted_bies' => JobPostedBy::get(), 'workmodes' => Workmode::get(), 'departments' => Departments::get(), 'experiences' => Experience::get(), 'salaries' => Salary::get(), 'freshnesses' => JobFreshness::get()]);
     }
 
     public function toggleEducation($educationId)
@@ -204,10 +208,15 @@ class JobSearch extends Component
             $this->selectedSalary = [];
         }
         $this->clearFilterBtn = true;
-        if (in_array($salaryRange, $this->selectedSalary)) {
-            $this->selectedSalary = array_diff($this->selectedSalary, [$salaryRange]);
-        } else {
-            $this->selectedSalary[] = $salaryRange;
+        if (is_string($salaryRange) && strpos($salaryRange, '-') !== false) {
+            list($minSalary, $maxSalary) = explode('-', $salaryRange);
+            if (is_numeric($minSalary) && is_numeric($maxSalary)) {
+                if (in_array($salaryRange, $this->selectedSalary)) {
+                    $this->selectedSalary = array_diff($this->selectedSalary, [$salaryRange]);
+                } else {
+                    $this->selectedSalary[] = $salaryRange;
+                }
+            }
         }
     }
 
@@ -241,5 +250,16 @@ class JobSearch extends Component
     {
         $this->clearFilterBtn = false;
         $this->resetFilters();
+    }
+
+    public function formatNumber($number)
+    {
+        if ($number >= 10000000) {
+            return number_format($number / 10000000) . ' Cr';
+        } elseif ($number >= 100000) {
+            return number_format($number / 100000) . ' Lakhs';
+        } else {
+            return number_format($number);
+        }
     }
 }

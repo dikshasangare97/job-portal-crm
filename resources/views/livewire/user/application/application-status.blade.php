@@ -119,21 +119,30 @@
 
                                     @if($application_log_detail->job_apply_id == $application_detail->id)
 
-                                    <li class="flex w-full items-center text-gray-300  after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-4 after:inline-block  @if($application_log_detail->status == 7) after:border-red-600 @endif @if($application_log_detail->status <= $application_detail->application_status) text-green-600 after:border-green-600 @endif @if($application_log_detail->status == 8) after:border-white @endif">
-                                        <div class=" flex items-center justify-center w-6 h-6 bg-gray-300 rounded-full lg:h-6 lg:w-6 shrink-0 @if($application_log_detail->status == 7) bg-red-600 @endif @if($application_log_detail->status <= $application_detail->application_status) bg-green-600 @endif @if($application_log_detail->status == 8) bg-gray-200 @endif">
+                                    <li class="flex w-full items-center text-gray-300  after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-4 after:inline-block  @if($application_log_detail->status == 7) after:border-white @endif @if($application_log_detail->status <= $application_detail->application_status) text-green-600 after:border-green-600 @endif @if($application_log_detail->status == 8) after:border-white @endif">
+                                        <div class=" flex items-center justify-center w-6 h-6 bg-gray-300 rounded-full lg:h-6 lg:w-6 shrink-0 @if($application_log_detail->status == 7) bg-red-600  @endif @if($application_log_detail->status <= $application_detail->application_status) bg-green-600 @endif @if($application_log_detail->status == 8) bg-gray-200 @endif">
+
+
+                                            @if($application_log_detail->status == 7)
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+
+                                            @else
+
                                             @if($application_log_detail->status <= $application_detail->application_status)
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
                                                     <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
-                                                </svg>
-                                                @elseif($application_log_detail->status == 7)
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                                 </svg>
                                                 @elseif($application_log_detail->status == 8)
                                                 <p class="w-2 h-2 border-4 border-gray-300 bg-white rounded-full lg:w-6 lg:h-6 "></p>
                                                 @else
                                                 <p class="w-2 h-2 border-4 border-green-600 bg-white rounded-full lg:w-6 lg:h-6 "></p>
                                                 @endif
+
+
+                                            @endif
+
                                         </div>
                                     </li>
 

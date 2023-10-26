@@ -8,15 +8,7 @@ use Livewire\Component;
 
 class Header extends Component
 {
-    public $search_input = '';
-    public $records;
-
-    public function searchJobResult()
-    {
-        $this->records = PostJob::orderby('id', 'DESC')->where('job_headline', 'like', '%' . $this->search_input . '%')->get();
-        return  redirect('jobs/search/' . $this->search_input);
-    }
-
+    
     public function logout()
     {
         Auth::logout();

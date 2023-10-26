@@ -21,12 +21,12 @@
                     @auth
                     @if(Auth::user()->is_user == 0)
                     <!-- for recruiter -->
-                    <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="#">
+                    <!-- <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="#">
                         {{ __('About us') }}
                     </a>
                     <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="#">
                         {{ __('Contact us')}}
-                    </a>
+                    </a> -->
 
                     <a class="text-sm font-semibold leading-6 text-blue-900 px-2 py-2 rounded-lg  hover:bg-blue-100 focus:outline-none focus:bg-blue-100 transition duration-150 ease-in-out" href="/recruiter/jobs">
                         {{ __('Jobs')}}
@@ -131,8 +131,8 @@
 
                                 @if(Auth::user()->is_user == 0)
                                 <!-- for recruiter -->
-                                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('About us') }}</a>
-                                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Contact us')}}</a>
+                                <!-- <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('About us') }}</a>
+                                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ __('Contact us')}}</a> -->
 
                                 <a class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" href="/recruiter/jobs">
                                     {{ __('Jobs')}}
