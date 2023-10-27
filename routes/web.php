@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Auth\ChangePassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Profile;
 use App\Livewire\Auth\RecruiterLogin;
@@ -55,3 +56,4 @@ Route::get('/recruiter/job/{jobId}/applications/view/{userId}', JobApplicationVi
 
 Route::get('user/profile', Profile::class)->name('user.profile');
 Route::get('user/myapply', ApplicationStatus::class)->name('user.myapply');
+Route::get('change-password', ChangePassword::class)->name('change-password');

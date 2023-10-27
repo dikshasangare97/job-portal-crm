@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Auth\ChangePassword;
 use App\Livewire\Admin\Auth\Dashboard;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\CompanyType\CompanyTypeCreate;
@@ -78,3 +79,5 @@ Route::get('/admin/post-job', PostJobIndex::class)->name('admin.post-job.index')
 Route::get('/admin/post-job/create', PostJobCreate::class)->name('admin.post-job.create')->middleware(['admin']);
 Route::get('/admin/job/{id}/view', PostJobView::class)->name('admin.jobs.view')->middleware(['admin']);
 Route::get('/admin/job/{id}/edit', PostJobEdit::class)->name('admin.jobs.edit')->middleware(['admin']);
+
+Route::get('/admin/change-password', ChangePassword::class)->name('admin.change-password')->middleware(['admin']);

@@ -96,6 +96,7 @@
 
                                 <div x-show="dropdownOpen" class="absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl" style="display: none;">
                                     <a href="/user/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
+                                    <a href="/admin/change-password" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Change Password</a>
                                     <a wire:click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
                                 </div>
                             </div>
@@ -113,14 +114,13 @@
         <nav id="full-screen-example" class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] md:data-[te-sidenav-hidden='false']:translate-x-0" data-te-sidenav-init data-te-sidenav-mode-breakpoint-over="0" data-te-sidenav-mode-breakpoint-side="sm" data-te-sidenav-hidden="false" data-te-sidenav-color="dark" data-te-sidenav-content="#content" data-te-sidenav-scroll-container="#scrollContainer">
             <div class="pt-6">
                 <div id="header-content" class="pl-4">
-                    <img src="https://static.naukimg.com/s/5/105/i/displayProfilePlaceholder.png" alt="Avatar" class="mb-4 h-auto rounded-full align-middle" style="max-width: 50px;" />
-
+                    <!-- <img src="https://static.naukimg.com/s/5/105/i/displayProfilePlaceholder.png" alt="Avatar" class="mb-4 h-auto rounded-full align-middle" style="max-width: 30px;" /> -->
                     <h4 class="mb-2 text-2xl font-medium leading-[1.2]">Admin Panel</h4>
                     <p class="mb-4">{{ auth()->user()->email }}</p>
                 </div>
                 <hr class="border-gray-300" />
             </div>
-            <div class="h-[350px] lg:h-[550px] md:h-[550px] xl:h-[550px] overflow-x-hidden overflow-y-auto mr-0" id="scrollContainer">
+            <div class="h-[350px] lg:h-[380px] md:h-[380px] xl:h-[380px] overflow-x-hidden overflow-y-auto mr-0" id="scrollContainer">
                 <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
 
                     <li class="relative">
@@ -256,6 +256,8 @@
                     </li>
 
                 </ul>
+            </div>
+            <div class="absolute bottom-0 h-24 w-full bg-inherit text-center">
                 <hr class="border-gray-300" />
                 <ul class="relative m-0 list-none px-[0.2rem]">
                     <li class="relative">
@@ -282,10 +284,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- <div class="absolute bottom-0 h-24 w-full bg-inherit text-center">
-                <hr class="mb-6 border-gray-300" />
-                <p>tailwind-elements.com</p>
-            </div> -->
             <!-- Close Button (Initially Hidden) -->
             <div class="flex item-end justify-end">
                 <button id="closeButton" class="absolute top-4 right-4 bg-white rounded-full p-2 text-gray-700 hover:text-gray-900 focus:outline-none transition duration-150 ease-in-out transform scale-0" data-te-sidenav-toggle-ref data-te-target="#full-screen-example">

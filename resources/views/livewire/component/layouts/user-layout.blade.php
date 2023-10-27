@@ -80,6 +80,9 @@
                                             <a href="/user/profile" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
                                         </li>
                                         <li>
+                                            <a href="/change-password" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Change Password</a>
+                                        </li>
+                                        <li class="border-t">
                                             <livewire:component.logout />
                                         </li>
                                     </ul>
