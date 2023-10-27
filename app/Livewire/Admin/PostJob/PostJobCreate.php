@@ -19,14 +19,12 @@ use Livewire\Component;
 class PostJobCreate extends Component
 {
     #[Rule('required|min:3')]
-    public  $job_headline = '', $job_description = '', $locality = '', $functional_area = '', $company_name = '', $company_detail = '';
+    public  $job_headline = '', $job_description = '', $company_name = '', $company_detail = '';
 
     #[Rule('required')]
     public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '';
 
-    public $salary_hide_status = '';
-    public $work_mode = '', $annual_salary = '';
-    public $department = '', $reference_code = '';
+    public $salary_hide_status = '', $work_mode = '', $annual_salary = '', $locality = '', $functional_area = '', $department = '', $reference_code = '';
 
     public function resetInputFields()
     {
@@ -97,5 +95,19 @@ class PostJobCreate extends Component
             'departments' => Departments::where('status', 1)->get(),
             'experiences' => Experience::where('status', 1)->get(),
         ]);
+    }
+    // for salary
+    public function validateAndFormatSalary()
+    {
+        $this->validate([
+            'annual_salary' => ['regex:/^[0-9,]+$/', 'numeric'],
+        ]);
+        $this->annual_salary = preg_replace('/[^0-9,]/', '', $this->annual_salary);
+    }
+
+    public function formatSalary()
+    {
+        $numericSalary = (float) preg_replace('/[^0-9]/', '', $this->annual_salary);
+        $this->annual_salary = number_format($numericSalary, 0);
     }
 }

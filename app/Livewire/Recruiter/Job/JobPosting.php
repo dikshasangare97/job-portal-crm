@@ -19,57 +19,12 @@ use Livewire\Component;
 class JobPosting extends Component
 {
     #[Rule('required|min:3')]
-    public  $job_headline = '';
+    public  $job_headline = '', $job_description = '', $company_name = '', $company_detail = '';
 
     #[Rule('required')]
-    public  $employment_type = '';
+    public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '';
 
-    #[Rule('required|min:3')]
-    public  $job_description = '';
-
-    #[Rule('required')]
-    public  $key_skill = '';
-
-    #[Rule('required')]
-    public  $work_experience = '';
-
-    public  $annual_salary = '';
-
-    public  $salary_hide_status = '';
-
-    #[Rule('required')]
-    public  $location = '';
-
-    #[Rule('required|min:3')]
-    public  $locality = '';
-
-    #[Rule('required')]
-    public  $industry = '';
-
-    #[Rule('required|min:3')]
-    public  $functional_area = '';
-
-    #[Rule('required')]
-    public  $role = '';
-
-    #[Rule('required|min:3')]
-    public  $reference_code = '';
-
-    #[Rule('required|min:3')]
-    public  $vacancy = '';
-
-    #[Rule('required')]
-    public  $education_qualification = '';
-
-    #[Rule('required|min:3')]
-    public  $company_name = '';
-
-    #[Rule('required|min:3')]
-    public  $company_detail = '';
-    public $company_type_id = '';
-    public $posted_by = '';
-    public $work_mode = '';
-    public $department = '';
+    public $salary_hide_status = '', $work_mode = '', $annual_salary = '', $locality = '', $functional_area = '', $department = '', $reference_code = '';
 
     public function resetInputFields()
     {
@@ -139,5 +94,20 @@ class JobPosting extends Component
             'departments' => Departments::where('status', 1)->get(),
             'experiences' => Experience::where('status', 1)->get(),
         ]);
+    }
+
+    // for salary
+    public function validateAndFormatSalary()
+    {
+        $this->validate([
+            'annual_salary' => ['regex:/^[0-9,]+$/', 'numeric'],
+        ]);
+        $this->annual_salary = preg_replace('/[^0-9,]/', '', $this->annual_salary);
+    }
+
+    public function formatSalary()
+    {
+        $numericSalary = (float) preg_replace('/[^0-9]/', '', $this->annual_salary);
+        $this->annual_salary = number_format($numericSalary, 0);
     }
 }

@@ -20,12 +20,12 @@ class JobEdit extends Component
     public $detail;
 
     #[Rule('required|min:3')]
-    public  $job_headline, $annual_salary, $locality, $functional_area, $reference_code, $vacancy, $company_name, $company_detail;
+    public  $job_headline, $job_description, $company_name, $company_detail;
 
     #[Rule('required')]
-    public $employment_type, $work_experience, $key_skill, $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $work_mode, $department;
+    public  $employment_type, $key_skill, $work_experience,  $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $vacancy;
 
-    public $job_description, $salary_hide_status, $job_edit_id, $status;
+    public $salary_hide_status, $work_mode, $annual_salary, $locality, $functional_area, $department, $reference_code, $job_edit_id, $status;
 
     public function mount($id)
     {
@@ -100,5 +100,20 @@ class JobEdit extends Component
             'departments' => Departments::where('status', 1)->get(),
             'experiences' => Experience::where('status', 1)->get(),
         ]);
+    }
+
+    // for salary
+    public function validateAndFormatSalary()
+    {
+        $this->validate([
+            'annual_salary' => ['regex:/^[0-9,]+$/', 'numeric'],
+        ]);
+        $this->annual_salary = preg_replace('/[^0-9,]/', '', $this->annual_salary);
+    }
+
+    public function formatSalary()
+    {
+        $numericSalary = (float) preg_replace('/[^0-9]/', '', $this->annual_salary);
+        $this->annual_salary = number_format($numericSalary, 0);
     }
 }
