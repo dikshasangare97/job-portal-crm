@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         // for admin
         $admin = User::factory()->create([
-            'name' => 'John Doe',
+            'name' => 'Admin',
             'email' => 'admin@dwebpixel.com',
             'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
             'register_for' => 'admin',
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         // for user 
         $user = User::factory()->create([
-            'name' => 'John Doe',
+            'name' => 'User',
             'email' => 'user@dwebpixel.com',
             'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
             'register_for' => 'user',
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
         // for recuiter
         $recruiter = User::factory()->create([
-            'name' => 'John Doe',
+            'name' => 'Recruiter',
             'email' => 'recruiter@dwebpixel.com',
             'password' => Hash::make('Password1!'), // '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password,
             'register_for' => 'company',
