@@ -141,7 +141,7 @@
                                     <label for="Transgender" class="block cursor-pointer border border-gray-400 select-none text-xs rounded-full px-1 py-2 text-center peer-checked:bg-gray-200 peer-checked:font-semibold peer-checked:text-black">Transgender</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('gender') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('gender') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
@@ -172,7 +172,7 @@
                                     <label for="Other" class="block cursor-pointer border border-gray-400 select-none text-xs rounded-full px-1 py-2 text-center peer-checked:bg-gray-200 peer-checked:font-semibold peer-checked:text-black">Other</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('marital_status') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('marital_status') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
@@ -180,7 +180,7 @@
                             <div class="relative mb-3" data-te-datepicker-init data-te-inline="true" data-te-input-wrapper-init>
                                 <input type="date" wire:model="date_of_birth" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="Select a date" onfocus="this.showPicker()" />
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('date_of_birth') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('date_of_birth') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
@@ -212,7 +212,7 @@
                                     <label for="Other" class="block cursor-pointer border border-gray-400 select-none text-xs rounded-full px-1 py-2 text-center peer-checked:bg-gray-200 peer-checked:font-semibold peer-checked:text-black">Other</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('category') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('category') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -229,7 +229,7 @@
                                     <label for="No" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">No</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('differently_abled') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('differently_abled') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -246,7 +246,7 @@
                                     <label for="No" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">No</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('career_break') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('career_break') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -262,7 +262,7 @@
                                 <option value="US Citizen">US Citizen</option>
                                 <option value="Authorized to work in US">Authorized to work in US</option>
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('work_permit_usa') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('work_permit_usa') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
@@ -311,7 +311,7 @@
                                 <option value="United States">United States</option>
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('work_permit_country') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('work_permit_country') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -319,21 +319,21 @@
                             <label for="permanent_address" class="font-semibold text-sm text-gray-700">Permanent address</label>
                             <br>
                             <input type="text" wire:model="permanent_address" id="permanent_address" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="Permanent address">
-                            <div class="text-xs text-red-600 font-bold">@error('permanent_address') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('permanent_address') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
                             <label for="hometown" class="font-semibold text-sm text-gray-700">Hometown</label>
                             <br>
                             <input type="text" id="hometown" wire:model="hometown" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="Hometown">
-                            <div class="text-xs text-red-600 font-bold">@error('hometown') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('hometown') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
                             <label for="pincode" class="font-semibold text-sm text-gray-700">Pincode</label>
                             <br>
-                            <input type="text" id="pincode" wire:model="pincode" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" minlength="6" maxlength="6" placeholder="Pincode">
-                            <div class="text-xs text-red-600 font-bold">@error('pincode') {{ $message }} @enderror</div>
+                            <input type="text" id="pincode" wire:model="pincode" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" minlength="6" maxlength="6" placeholder="Pincode" onkeypress="return isNumber(event)">
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('pincode') {{ $message }} @enderror</div>
                         </div>
 
 

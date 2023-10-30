@@ -37,7 +37,7 @@
                                 </svg>
                             </div>
                             <input id="name" type="text" wire:model="name" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
-                            <div class="text-xs text-red-600 font-bold">@error('name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('name') {{ $message }} @enderror</div>
 
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                                 </svg>
                             </div>
                             <input id="email" type="email" wire:model="email" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
-                            <div class="text-xs text-red-600 font-bold">@error('email') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('email') {{ $message }} @enderror</div>
 
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                 </svg>
                             </button>
 
-                            <div class="text-xs text-red-600 font-bold">@error('password') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('password') {{ $message }} @enderror</div>
 
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                 +91
                             </div>
                             <input id="contact_number" type="tel" wire:model="contact_number" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
-                            <div class="text-xs text-red-600 font-bold">@error('contact_number') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('contact_number') {{ $message }} @enderror</div>
                         </div>
                     </div>
                 </div>
@@ -111,22 +111,22 @@
                     <div class="flex flex-col mb-6 mt-5">
                         <label for="company_name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Company name (as per KYC documents) :</label>
                         <input id="company_name" type="text" wire:model="company_name" class="text-sm sm:text-base placeholder-gray-500 pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
-                        <div class="text-xs text-red-600 font-bold">@error('company_name') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('company_name') {{ $message }} @enderror</div>
                     </div>
                     <div class="flex flex-col mb-6">
                         <label for="designation" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Your designation:</label>
                         <input id="designation" type="text" wire:model="designation" class="text-sm sm:text-base placeholder-gray-500 pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
-                        <div class="text-xs text-red-600 font-bold">@error('designation') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('designation') {{ $message }} @enderror</div>
                     </div>
                     <div class="flex flex-col mb-6">
                         <label for="pin_code" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Pin code:</label>
                         <input id="pin_code" type="text" wire:model="pin_code" class="text-sm sm:text-base placeholder-gray-500 pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" minlength="6" maxlength="6" onkeypress="return isNumber(event)" />
-                        <div class="text-xs text-red-600 font-bold">@error('pin_code') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('pin_code') {{ $message }} @enderror</div>
                     </div>
                     <div class="flex flex-col mb-6">
                         <label for="street_address" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Street address:</label>
                         <textarea wire:model="street_address" class="text-sm sm:text-base placeholder-gray-500 rounded-lg border border-gray-400 w-full focus:outline-none focus:border-blue-400 p-1" id="" cols="10" rows="4"></textarea>
-                        <div class="text-xs text-red-600 font-bold">@error('street_address') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('street_address') {{ $message }} @enderror</div>
                     </div>
                 </div>
 

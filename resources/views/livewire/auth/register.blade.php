@@ -25,7 +25,7 @@
                         </div>
 
                         <input id="name" type="text" wire:model="name" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Full Name" />
-                        <div class="text-xs text-red-600 font-bold">@error('name') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('name') {{ $message }} @enderror</div>
 
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         </div>
 
                         <input id="email" type="email" wire:model="email" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="E-Mail Address" />
-                        <div class="text-xs text-red-600 font-bold">@error('email') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('email') {{ $message }} @enderror</div>
 
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             </svg>
                         </button>
 
-                        <div class="text-xs text-red-600 font-bold">@error('password') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('password') {{ $message }} @enderror</div>
 
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                         </div>
 
                         <input id="contact_number" type="tel" wire:model="contact_number" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Mobile Number" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
-                        <div class="text-xs text-red-600 font-bold">@error('contact_number') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('contact_number') {{ $message }} @enderror</div>
 
                     </div>
                 </div>

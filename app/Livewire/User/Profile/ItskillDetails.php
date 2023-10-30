@@ -26,6 +26,7 @@ class ItskillDetails extends Component
 
     public function saveItSkill()
     {
+        $this->validate();
         if ($this->software_version == '') {
             $software_version = null;
         } else {

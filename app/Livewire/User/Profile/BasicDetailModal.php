@@ -7,15 +7,18 @@ use App\Models\User;
 use App\Models\UserEmploymentDetail;
 use App\Models\UserPersonalDetail;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class BasicDetailModal extends Component
 {
-    public $name, $contact_number;
+    #[Rule('required')]
+    public $name;
+    public $contact_number;
     public $notice_period;
     public $salary;
-    public $total_experience_year;
-    public $total_experience_month;
+    #[Rule('required')]
+    public $total_experience_year , $total_experience_month;
     public $company_name;
     public $designation_name;
     public $current_location = 'India';
@@ -54,6 +57,7 @@ class BasicDetailModal extends Component
 
     public function saveBasicDetail()
     {
+        $this->validate();
         if ($this->total_experience_year == '') {
             $totalexperienceYear = null;
         } else {
@@ -88,7 +92,7 @@ class BasicDetailModal extends Component
             'total_experience_year' => $totalexperienceYear,
             'total_experience_month' => $totalexperienceMonth,
         ]);
-        session()->flash('profilesummarymsg', 'Career profile has been successfully saved.');
+        session()->flash('basicdetailmessage', 'Basic detail has been successfully saved.');
         return redirect()->to('/user/profile');
     }
 }

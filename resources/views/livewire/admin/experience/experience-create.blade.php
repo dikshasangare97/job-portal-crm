@@ -48,7 +48,7 @@
                     <div class="w-full mb-6 mr-2">
                         <label for="experience" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Experience </label>
                         <input id="experience" type="text" wire:model="experience" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Experience" />
-                        <div class="text-xs text-red-600 font-bold">@error('workmode_name') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('workmode_name') {{ $message }} @enderror</div>
                     </div>
                 </div>
 

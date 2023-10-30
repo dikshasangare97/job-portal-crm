@@ -29,7 +29,7 @@ class User extends Authenticatable
         'pin_code',
         'street_address',
         'is_active',
-        'is_user',
+        'is_user', // [is_user == 0 -> recruiter]  && [is_user == 1 -> user] && [is_user == 2 -> admin] 
         'profile_img'
     ];
 

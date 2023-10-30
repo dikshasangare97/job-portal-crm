@@ -65,7 +65,7 @@
 
                         <textarea wire:model="resume_headline" class="border w-full mt-2 rounded-lg p-2" id="resume_headline" cols="30" rows="5"></textarea>
                         @error('resume_headline')
-                        <span class="text-red-500">{{ $message }}</span>
+                        <div class="text-xs text-red-600 font-semibold pt-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="flex justify-end p-6 space-x-2">

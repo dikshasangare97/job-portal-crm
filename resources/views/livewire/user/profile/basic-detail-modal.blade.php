@@ -10,7 +10,7 @@
                     </label>
                     <br>
                     <input type="text" wire:model="name" id="name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Name" value="{{ Auth::user()->name }}" />
-                    <div class="text-xs text-red-600 font-bold">@error('name') {{ $message }} @enderror</div>
+                    <div class="text-xs text-red-600 font-semibold pt-1">@error('name') {{ $message }} @enderror</div>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                             <option value="30 Year">30 Year</option>
                             <option value="30+ Year">30+ Year</option>
                         </select>
-                        <div class="text-xs text-red-600 font-bold">@error('total_experience_year') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('total_experience_year') {{ $message }} @enderror</div>
                     </div>
                     <div class="w-1/2">
                         <select class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" wire:model="total_experience_month">
@@ -80,7 +80,7 @@
                             <option value="10 Months">10 Months</option>
                             <option value="11 Months">11 Months</option>
                         </select>
-                        <div class="text-xs text-red-600 font-bold">@error('total_experience_month') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('total_experience_month') {{ $message }} @enderror</div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 </label>
                 <br>
                 <input type="text" wire:model="salary" id="salary" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " wire:keydown.debounce.500ms="validateAndFormatSalary" wire:blur="formatSalary" placeholder="Eg. 15,000" />
-                <div class="text-xs text-red-600 font-bold">@error('salary') {{ $message }} @enderror</div>
+                <div class="text-xs text-red-600 font-semibold pt-1">@error('salary') {{ $message }} @enderror</div>
             </div>
 
             <div class="my-3">
@@ -101,7 +101,7 @@
                 <br>
                 <input type="hidden" wire:model="current_location_name" readonly value="India">
                 <input type="text" wire:model="current_location_name" id="current_location_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Current location" />
-                <div class="text-xs text-red-600 font-bold">@error('current_location_name') {{ $message }} @enderror</div>
+                <div class="text-xs text-red-600 font-semibold pt-1">@error('current_location_name') {{ $message }} @enderror</div>
             </div>
 
             <div class="my-3">
@@ -109,8 +109,8 @@
                     Mobile number
                 </label>
                 <br>
-                <input type="text" wire:model="contact_number" id="contact_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Mobile number" value="{{ Auth::user()->contact_number }}" />
-                <div class="text-xs text-red-600 font-bold">@error('contact_number') {{ $message }} @enderror</div>
+                <input type="tel" wire:model="contact_number" id="contact_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Mobile number" value="{{ Auth::user()->contact_number }}" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
+                <div class="text-xs text-red-600 font-semibold pt-1">@error('contact_number') {{ $message }} @enderror</div>
             </div>
 
             <div class="my-3 flex">
@@ -150,7 +150,7 @@
                         <label for="serving_notice_period" class="block cursor-pointer border border-gray-400 select-none text-xs rounded-full px-1 py-2 text-center peer-checked:bg-gray-200 peer-checked:font-semibold peer-checked:text-black">Serving Notice Period</label>
                     </div>
                 </div>
-                <div class="text-xs text-red-600 font-bold">@error('notice_period') {{ $message }} @enderror</div>
+                <div class="text-xs text-red-600 font-semibold pt-1">@error('notice_period') {{ $message }} @enderror</div>
             </div>
         </div>
         <div class="flex justify-end p-6 space-x-2">

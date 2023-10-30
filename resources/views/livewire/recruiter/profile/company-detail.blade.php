@@ -137,7 +137,7 @@
                                     <option value="{{ $company_type_detail->id}}">{{ $company_type_detail->company_type_name}}</option>
                                     @endforeach
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('company_type_id') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('company_type_id') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -153,7 +153,7 @@
                                     <option value="{{ $industry_detail->id}}">{{ $industry_detail->industry_name}}</option>
                                     @endforeach
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('industry_type_id') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('industry_type_id') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -164,7 +164,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="contact_person" id="contact_person" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Contact person name" />
-                                <div class="text-xs text-red-600 font-bold">@error('contact_person') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('contact_person') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -175,7 +175,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="contact_person_designation" id="contact_person_designation" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Contact person designation" />
-                                <div class="text-xs text-red-600 font-bold">@error('contact_person_designation') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('contact_person_designation') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -186,7 +186,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="website_url" id="website_url" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Website url" />
-                                <div class="text-xs text-red-600 font-bold">@error('website_url') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('website_url') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -195,8 +195,8 @@
                                 Phone number 1
                             </label>
                             <br>
-                            <input type="text" wire:model="phone_number_1" id="phone_number_1" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Phone number 1" />
-                            <div class="text-xs text-red-600 font-bold">@error('phone_number_1') {{ $message }} @enderror</div>
+                            <input type="tel" wire:model="phone_number_1" id="phone_number_1" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Phone number 1" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('phone_number_1') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -204,8 +204,8 @@
                                 Phone number 2
                             </label>
                             <br>
-                            <input type="text" wire:model="phone_number_2" id="phone_number_2" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Phone number 2" />
-                            <div class="text-xs text-red-600 font-bold">@error('phone_number_2') {{ $message }} @enderror</div>
+                            <input type="tel" wire:model="phone_number_2" id="phone_number_2" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Phone number 2" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('phone_number_2') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -214,7 +214,7 @@
                             </label>
                             <br>
                             <input type="text" wire:model="fax_number" id="fax_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="FAX number" />
-                            <div class="text-xs text-red-600 font-bold">@error('fax_number') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('fax_number') {{ $message }} @enderror</div>
                         </div>
 
 

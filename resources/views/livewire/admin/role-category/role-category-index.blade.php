@@ -152,12 +152,12 @@
                                     <div class="mb-4">
                                         <label for="role_name" class="block text-gray-700 font-bold mb-2">Role Name :</label>
                                         <input type="text" wire:model="role_name" id="role_name" class="w-full border border-gray-300 px-4 py-2 rounded">
-                                        <span class="text-red-500">@error('role') {{ $message }} @enderror</span>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('role') {{ $message }} @enderror</div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="description" class="block text-gray-700 font-bold mb-2">Role Description :</label>
                                         <textarea wire:model="description" id="description" cols="10" rows="5" class="w-full border border-gray-300 px-4 py-2 rounded"></textarea>
-                                        <span class="text-red-500">@error('description') {{ $message }} @enderror</span>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('description') {{ $message }} @enderror</div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
@@ -165,7 +165,7 @@
                                             <option value="1">Active</option>
                                             <option value="0">Not Active</option>
                                         </select>
-                                        <span class="text-red-500">@error('status') {{ $message }} @enderror</span>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('status') {{ $message }} @enderror</div>
                                     </div>
                                 </div>
                             </div>

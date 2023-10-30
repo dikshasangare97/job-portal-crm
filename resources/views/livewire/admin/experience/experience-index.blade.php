@@ -146,7 +146,7 @@
                                     <div class="mb-4">
                                         <label for="experience" class="block text-gray-700 font-bold mb-2">Experience :</label>
                                         <input type="text" wire:model="experience" id="experience" class="w-full border border-gray-300 px-4 py-2 rounded">
-                                        <span class="text-red-500">@error('experience') {{ $message }} @enderror</span>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('experience') {{ $message }} @enderror</div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="status" class="block text-gray-700 font-bold mb-2">Status:</label>
@@ -154,7 +154,7 @@
                                             <option value="1">Active</option>
                                             <option value="0">Not Active</option>
                                         </select>
-                                        <span class="text-red-500">@error('status') {{ $message }} @enderror</span>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('status') {{ $message }} @enderror</div>
                                     </div>
                                 </div>
                             </div>

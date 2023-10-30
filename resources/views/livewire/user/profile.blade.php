@@ -51,7 +51,7 @@
                                         <label for="current_employment_no" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">No</label>
                                     </div>
                                 </div>
-                                <div class="text-xs text-red-600 font-bold">@error('current_employment') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('current_employment') {{ $message }} @enderror</div>
                             </div>
 
                             @if($current_employment == 0)
@@ -95,7 +95,7 @@
                                             <option value="30 Year">30 Year</option>
                                             <option value="30+ Year">30+ Year</option>
                                         </select>
-                                        <div class="text-xs text-red-600 font-bold">@error('total_experience_year') {{ $message }} @enderror</div>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('total_experience_year') {{ $message }} @enderror</div>
                                     </div>
 
                                     <div class="w-1/2">
@@ -114,7 +114,7 @@
                                             <option value="10 Months">10 Months</option>
                                             <option value="11 Months">11 Months</option>
                                         </select>
-                                        <div class="text-xs text-red-600 font-bold">@error('total_experience_month') {{ $message }} @enderror</div>
+                                        <div class="text-xs text-red-600 font-semibold pt-1">@error('total_experience_month') {{ $message }} @enderror</div>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                     </label>
                                     <br>
                                     <input type="text" wire:model="company_name" id="company_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Type your organization" />
-                                    <div class="text-xs text-red-600 font-bold">@error('company_name') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('company_name') {{ $message }} @enderror</div>
                                 </div>
                             </div>
 
@@ -146,7 +146,7 @@
                                         <option value="{{ $location->city_name }}">{{ $location->city_name }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('current_location_name') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('current_location_name') {{ $message }} @enderror</div>
                                 </div>
                             </div>
 
@@ -162,7 +162,7 @@
                                     </label>
                                     <br>
                                     <input type="text" wire:model="designation_name" id="designation_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Type your designation" />
-                                    <div class="text-xs text-red-600 font-bold">@error('designation_name') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('designation_name') {{ $message }} @enderror</div>
                                 </div>
                             </div>
 
@@ -172,7 +172,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="salary" id="salary" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " wire:keydown.debounce.500ms="validateAndFormatSalary" wire:blur="formatSalary" placeholder="Eg. 15,000" />
-                                <div class="text-xs text-red-600 font-bold">@error('salary') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('salary') {{ $message }} @enderror</div>
                             </div>
 
                             @if($current_employment == 0)
@@ -188,7 +188,7 @@
                                     <option value="More than 3 Months">More than 3 Months </option>
                                     <option value="Serving Notice Period">Serving Notice Period </option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('notice_period') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('notice_period') {{ $message }} @enderror</div>
                             </div>
                             @endif
 
@@ -197,7 +197,7 @@
                                 <p class="text-sm text-gray-500">Supported Formats: doc, docx, pdf, upto 2 MB</p>
                                 <input id="resume" type="file" wire:model="resume" class="mt-3 text-sm basicDetailResume" />
 
-                                <div class="text-xs text-red-600 font-bold">@error('resume') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('resume') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -420,5 +420,14 @@
         });
     </script>
     @endpush
-
+    <script>
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
 </div>

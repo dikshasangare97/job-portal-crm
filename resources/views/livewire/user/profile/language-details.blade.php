@@ -142,7 +142,7 @@
                                     <label for="language_name" class="font-semibold text-sm text-gray-700">Language <span class="text-sm text-red-600">*</span></label>
                                     <br>
                                     <input type="text" id="language_name" wire:model="language_name.0" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="language">
-                                    <div class="text-xs text-red-600 font-bold">@error('language_name.0') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('language_name.0') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/2 my-5">
                                     <label for="proficiency" class="font-semibold text-sm text-gray-700">Proficiency <span class="text-sm text-red-600">*</span></label>
@@ -153,7 +153,7 @@
                                         <option value="Proficient">Proficient</option>
                                         <option value="Expert">Expert</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('proficiency.0') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('proficiency.0') {{ $message }} @enderror</div>
                                 </div>
                             </div>
 
@@ -161,17 +161,17 @@
                                 <div class="w-1/6">
                                     <input type="checkbox" id="read.0" wire:model="read.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="read">
                                     <label for="read.0" class="font-semibold text-sm text-gray-700">Read</label>
-                                    <div class="text-xs text-red-600 font-bold">@error('read.0') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('read.0') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
                                     <input type="checkbox" id="write.0" wire:model="write.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="write">
                                     <label for="write.0" class="font-semibold text-sm text-gray-700">Write</label>
-                                    <div class="text-xs text-red-600 font-bold">@error('write.0') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('write.0') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
                                     <input type="checkbox" id="speak.0" wire:model="speak.0" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="speak">
                                     <label for="speak.0" class="font-semibold text-sm text-gray-700">Speak</label>
-                                    <div class="text-xs text-red-600 font-bold">@error('speak.0') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('speak.0') {{ $message }} @enderror</div>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                                     <label for="language_name" class="font-semibold text-sm text-gray-700">Language <span class="text-sm text-red-600">*</span></label>
                                     <br>
                                     <input type="text" id="language_name" wire:model="language_name.{{ $value }}" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="language">
-                                    <div class="text-xs text-red-600 font-bold">@error('language_name.'. $value) {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('language_name.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/2 my-5">
                                     <label for="proficiency" class="font-semibold text-sm text-gray-700">Proficiency <span class="text-sm text-red-600">*</span></label>
@@ -194,7 +194,7 @@
                                         <option value="Proficient">Proficient</option>
                                         <option value="Expert">Expert</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('proficiency.'. $value ) {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('proficiency.'. $value ) {{ $message }} @enderror</div>
                                 </div>
                             </div>
 
@@ -202,17 +202,17 @@
                                 <div class="w-1/6">
                                     <input type="checkbox" id="read.{{ $value }}" wire:model="read.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="read">
                                     <label for="read.{{ $value }}" class="font-semibold text-sm text-gray-700">Read</label>
-                                    <div class="text-xs text-red-600 font-bold">@error('read.'. $value) {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('read.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
                                     <input type="checkbox" id="write.{{ $value }}" wire:model="write.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="write">
                                     <label for="write.{{ $value }}" class="font-semibold text-sm text-gray-700">Write</label>
-                                    <div class="text-xs text-red-600 font-bold">@error('write.'. $value) {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('write.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/6">
                                     <input type="checkbox" id="speak.{{ $value }}" wire:model="speak.{{ $value }}" class="text-xs placeholder-gray-500  border border-gray-400 " placeholder="speak">
                                     <label for="speak.{{ $value }}" class="font-semibold text-sm text-gray-700">Speak</label>
-                                    <div class="text-xs text-red-600 font-bold">@error('speak.'. $value) {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('speak.'. $value) {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-3/6 text-end">
                                     <button wire:click.prevent="removeLanguage({{$key}})" class="text-red-600 font-bold text-xs mt-2" type="button">Delete</button>

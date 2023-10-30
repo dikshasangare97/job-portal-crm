@@ -289,7 +289,7 @@
                                 <option value="0">Inactive</option>
                                 <option value="1">Active</option>
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('status') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('status') {{ $message }} @enderror</div>
                         </div>
                     </div>
 

@@ -25,7 +25,7 @@
                         </div>
 
                         <input id="email" type="email" wire:model="email" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="E-Mail Address" />
-                        <div class="text-xs text-red-600 font-bold">@error('email') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('email') {{ $message }} @enderror</div>
 
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         </div>
 
                         <input id="password" type="password" wire:model="password" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Password" />
-                        <div class="text-xs text-red-600 font-bold">@error('password') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('password') {{ $message }} @enderror</div>
 
                     </div>
                 </div>

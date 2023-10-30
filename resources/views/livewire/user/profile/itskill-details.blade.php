@@ -121,7 +121,7 @@
                                 <option value="{{ $key_skill->id }}">{{ $key_skill->key_skill_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('software_name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('software_name') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3 flex">
@@ -129,7 +129,7 @@
                                 <label for="software_version" class="font-semibold text-sm text-gray-700">Software version</label>
                                 <br>
                                 <input type="text" wire:model="software_version" id="software_version" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Software version" />
-                                <div class="text-xs text-red-600 font-bold">@error('software_version') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('software_version') {{ $message }} @enderror</div>
                             </div>
                             <div class="w-1/2">
                                 <label for="last_used" class="font-semibold text-sm text-gray-700">Last used</label>
@@ -221,7 +221,7 @@
                                     <option value="1941">1941</option>
                                     <option value="1940">1940</option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('last_used') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('last_used') {{ $message }} @enderror</div>
                             </div>
 
                         </div>
@@ -265,7 +265,7 @@
                                         <option value="29 Year">29 Year</option>
                                         <option value="30 Year">30 Year</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('experience_year') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('experience_year') {{ $message }} @enderror</div>
                                 </div>
 
                                 <div class="w-1/2">
@@ -284,7 +284,7 @@
                                         <option value="10 Months">10 Months</option>
                                         <option value="11 Months">11 Months</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('experience_month') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('experience_month') {{ $message }} @enderror</div>
                                 </div>
                             </div>
                         </div>
@@ -349,7 +349,7 @@
                                 <option value="{{ $key_skill->id }}">{{ $key_skill->key_skill_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('software_name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('software_name') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3 flex">
@@ -357,7 +357,7 @@
                                 <label for="software_version" class="font-semibold text-sm text-gray-700">Software version</label>
                                 <br>
                                 <input type="text" wire:model="software_version" id="software_version" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="University/Institute" />
-                                <div class="text-xs text-red-600 font-bold">@error('software_version') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('software_version') {{ $message }} @enderror</div>
                             </div>
                             <div class="w-1/2">
                                 <label for="last_used" class="font-semibold text-sm text-gray-700">Last used</label>
@@ -449,7 +449,7 @@
                                     <option value="1941">1941</option>
                                     <option value="1940">1940</option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('last_used') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('last_used') {{ $message }} @enderror</div>
                             </div>
 
                         </div>
@@ -493,7 +493,7 @@
                                         <option value="29 Year">29 Year</option>
                                         <option value="30 Year">30 Year</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('experience_year') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('experience_year') {{ $message }} @enderror</div>
                                 </div>
 
                                 <div class="w-1/2">
@@ -512,7 +512,7 @@
                                         <option value="10 Months">10 Months</option>
                                         <option value="11 Months">11 Months</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('experience_month') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('experience_month') {{ $message }} @enderror</div>
                                 </div>
                             </div>
                         </div>

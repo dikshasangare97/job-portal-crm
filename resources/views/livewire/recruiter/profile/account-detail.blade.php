@@ -127,7 +127,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="name" id="name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Name" />
-                                <div class="text-xs text-red-600 font-bold">@error('name') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('name') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -138,7 +138,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="email" id="email" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="email" />
-                                <div class="text-xs text-red-600 font-bold">@error('email') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('email') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -152,7 +152,7 @@
                                     <option value="company">company</option>
                                     <option value="individual">individual</option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('register_for') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('register_for') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -163,7 +163,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="designation" id="designation" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="designation" />
-                                <div class="text-xs text-red-600 font-bold">@error('designation') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('designation') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -172,8 +172,8 @@
                                 Mobile number
                             </label>
                             <br>
-                            <input type="text" wire:model="contact_number" id="contact_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Mobile number" />
-                            <div class="text-xs text-red-600 font-bold">@error('contact_number') {{ $message }} @enderror</div>
+                            <input type="tel" wire:model="contact_number" id="contact_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Mobile number" minlength="10" maxlength="10" onkeypress="return isNumber(event)" />
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('contact_number') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3 flex">
@@ -183,7 +183,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="street_address" id="street_address" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Address" />
-                                <div class="text-xs text-red-600 font-bold">@error('street_address') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('street_address') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -194,7 +194,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="pin_code" id="pin_code" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Pin code" />
-                                <div class="text-xs text-red-600 font-bold">@error('pin_code') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('pin_code') {{ $message }} @enderror</div>
                             </div>
                         </div>
 

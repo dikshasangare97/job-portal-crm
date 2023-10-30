@@ -123,7 +123,7 @@
                                 <option value="{{ $industry->id }}">{{ $industry->industry_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('industry') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('industry') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -135,7 +135,7 @@
                                 <option value="{{ $department->id }}">{{ $department->department_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('department') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('department') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -147,7 +147,7 @@
                                 <option value="{{ $role->id }}">{{ $role->role_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('role_category') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('role_category') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -159,7 +159,7 @@
                                 <option value="{{ $job_role->id }}">{{ $job_role->job_role_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('job_role') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('job_role') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -176,7 +176,7 @@
                                     <label for="Contractual" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Contractual</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('desired_job_type') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('desired_job_type') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -193,7 +193,7 @@
                                     <label for="Part-time" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Part time</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('desired_employment_type') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('desired_employment_type') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -214,7 +214,7 @@
                                     <label for="flexible" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Flexible</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('preferred_shift') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('preferred_shift') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -226,7 +226,7 @@
                                 <option value="{{ $location->id }}">{{ $location->city_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('preferred_work_location') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('preferred_work_location') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -234,7 +234,7 @@
                             <label for="expected_salary" class="font-semibold text-sm text-gray-700">Expected salary</label>
                             <br>
                             <input type="text" wire:model="expected_salary" id="expected_salary" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " wire:keydown.debounce.500ms="validateAndFormatSalary" wire:blur="formatSalary" />
-                            <div class="text-xs text-red-600 font-bold">@error('expected_salary') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('expected_salary') {{ $message }} @enderror</div>
                         </div>
 
                     </div>

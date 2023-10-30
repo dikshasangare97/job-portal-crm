@@ -122,7 +122,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="project_title" id="project_title" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Enter project title" />
-                                <div class="text-xs text-red-600 font-bold">@error('project_title') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('project_title') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -154,7 +154,7 @@
                                     </option>
                                     @endforeach
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('project_employment_name') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('project_employment_name') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -165,7 +165,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="project_client_name" id="project_client_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Enter client name" />
-                                <div class="text-xs text-red-600 font-bold">@error('project_client_name') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('project_client_name') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -182,7 +182,7 @@
                                     <label for="project_status_finished" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Finished</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('project_status') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('project_status') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -250,7 +250,7 @@
                                         <option value="1971">1971</option>
                                         <option value="1970">1970</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('worked_from_year') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('worked_from_year') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/2">
                                     <select id="worked_from_month" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" wire:model="worked_from_month">
@@ -268,7 +268,7 @@
                                         <option value="Nov">Nov</option>
                                         <option value="Dec">Dec</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('worked_from_month') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('worked_from_month') {{ $message }} @enderror</div>
                                 </div>
                             </div>
                         </div>
@@ -336,7 +336,7 @@
                                         <option value="1971">1971</option>
                                         <option value="1970">1970</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('worked_till_year') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('worked_till_year') {{ $message }} @enderror</div>
                                 </div>
                                 <div class="w-1/2">
                                     <select id="worked_till_month" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" wire:model="worked_till_month">
@@ -354,7 +354,7 @@
                                         <option value="Nov">Nov</option>
                                         <option value="Dec">Dec</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('worked_till_month') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('worked_till_month') {{ $message }} @enderror</div>
                                 </div>
                             </div>
                         </div>
@@ -364,7 +364,7 @@
                             <label for="project_detail" class="font-semibold text-sm text-gray-700">Details of project <span class="text-sm text-red-600">*</span></label>
                             <br>
                             <textarea type="text" wire:model="project_detail" id="project_detail" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Type here..."></textarea>
-                            <div class="text-xs text-red-600 font-bold">@error('project_detail') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('project_detail') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -378,7 +378,7 @@
                                     <option value="{{ $location->id }}">{{ $location->city_name }}</option>
                                     @endforeach
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('project_location') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('project_location') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -395,7 +395,7 @@
                                     <label for="project_site_onsite" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Onsite</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('project_site') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('project_site') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -415,7 +415,7 @@
                                     <label for="nature_of_employment_contractual" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Contractual</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('nature_of_employment') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('nature_of_employment') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="flex">
@@ -454,7 +454,7 @@
                                     <option value="29">29</option>
                                     <option value="30">30</option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('team_size') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('team_size') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -476,7 +476,7 @@
                                     <option value="Test Engineer">Test Engineer</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('role') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('role') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -484,7 +484,7 @@
                             <label for="role_descripion" class="font-semibold text-sm text-gray-700">Role description</label>
                             <br>
                             <textarea type="text" wire:model="role_descripion" id="role_descripion" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Type here..."></textarea>
-                            <div class="text-xs text-red-600 font-bold">@error('role_descripion') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('role_descripion') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -496,7 +496,7 @@
                                 <option value="{{ $key_skill->id }}">{{ $key_skill->key_skill_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('skill_used') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('skill_used') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="flex justify-end p-6 space-x-2">

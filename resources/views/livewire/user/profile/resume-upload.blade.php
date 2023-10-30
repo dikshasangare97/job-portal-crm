@@ -65,7 +65,7 @@
             </div>
             <input id="resume" type="file" wire:model="resume" class="hidden" />
             @error('resume')
-            <span class="text-red-500">{{ $message }}</span>
+            <div class="text-xs text-red-600 font-semibold pt-1">{{ $message }}</div>
             @enderror
         </div>
     </div>

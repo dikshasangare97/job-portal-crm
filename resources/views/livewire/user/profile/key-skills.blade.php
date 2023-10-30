@@ -100,7 +100,7 @@
                                 @endforeach
                             </select>
                             @error('key_skill')
-                            <span class="text-red-500">{{ $message }}</span>
+                            <div class="text-xs text-red-600 font-semibold pt-1">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

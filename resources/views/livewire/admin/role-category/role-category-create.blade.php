@@ -48,14 +48,14 @@
                     <div class="w-full mb-6 mr-2">
                         <label for="role_name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Role Name</label>
                         <input id="role_name" type="text" wire:model="role_name" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Role Name" />
-                        <div class="text-xs text-red-600 font-bold">@error('role_name') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('role_name') {{ $message }} @enderror</div>
                     </div>
                 </div>
                 <div class="flex">
                     <div class="w-full mb-6 mr-2">
                         <label for="description" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Role Description</label>
                         <textarea wire:model="description" id="description" cols="30" rows="6" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"></textarea>
-                        <div class="text-xs text-red-600 font-bold">@error('description') {{ $message }} @enderror</div>
+                        <div class="text-xs text-red-600 font-semibold pt-1">@error('description') {{ $message }} @enderror</div>
                     </div>
                 </div>
                 <div class="flex flex-col mt-5">

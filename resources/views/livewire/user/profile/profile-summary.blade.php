@@ -72,7 +72,7 @@
 
                         <textarea wire:model="profile_summary" class="border w-full mt-2 rounded-lg p-2" id="profile_summary" cols="30" rows="5">{{ $userPersonalDetail->profile_summary }}</textarea>
                         @error('profile_summary')
-                        <span class="text-red-500">{{ $message }}</span>
+                        <div class="text-xs text-red-600 font-semibold pt-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="flex justify-end p-6 space-x-2">

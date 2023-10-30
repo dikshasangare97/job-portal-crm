@@ -228,7 +228,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="pan_number" id="pan_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Pan number" />
-                                <div class="text-xs text-red-600 font-bold">@error('pan_number') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('pan_number') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -239,7 +239,7 @@
                                 </label>
                                 <br>
                                 <input type="text" wire:model="pan_number_name" id="pan_number_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Name on pan" />
-                                <div class="text-xs text-red-600 font-bold">@error('pan_number_name') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('pan_number_name') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -254,7 +254,7 @@
                                     <option value="Permanent">Permanent</option>
                                     <option value="Temporary">Temporary</option>
                                 </select>
-                                <div class="text-xs text-red-600 font-bold">@error('address_label') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('address_label') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
@@ -264,7 +264,7 @@
                             </label>
                             <br>
                             <input type="text" wire:model="company_address" id="company_address" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Company address" />
-                            <div class="text-xs text-red-600 font-bold">@error('company_address') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('company_address') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -273,7 +273,7 @@
                             </label>
                             <br>
                             <input type="text" wire:model="country" id="country" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Country" />
-                            <div class="text-xs text-red-600 font-bold">@error('country') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('country') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -282,7 +282,7 @@
                             </label>
                             <br>
                             <input type="text" wire:model="state" id="state" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="state" />
-                            <div class="text-xs text-red-600 font-bold">@error('state') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('state') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -291,7 +291,7 @@
                             </label>
                             <br>
                             <input type="text" wire:model="city" id="city" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="city" />
-                            <div class="text-xs text-red-600 font-bold">@error('city') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('city') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -299,8 +299,8 @@
                                 Pin code
                             </label>
                             <br>
-                            <input type="text" wire:model="company_pincode" id="company_pincode" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="pin code" />
-                            <div class="text-xs text-red-600 font-bold">@error('company_pincode') {{ $message }} @enderror</div>
+                            <input type="text" wire:model="company_pincode" id="company_pincode" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="pin code" minlength="6" maxlength="6" onkeypress="return isNumber(event)" />
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('company_pincode') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -309,7 +309,7 @@
                             </label>
                             <br>
                             <input type="text" wire:model="gstin_number" id="gstin_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="gstin number" />
-                            <div class="text-xs text-red-600 font-bold">@error('gstin_number') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('gstin_number') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -323,4 +323,14 @@
         </div>
     </div>
     <!-- other edit modal end -->
+    <script>
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
 </div>

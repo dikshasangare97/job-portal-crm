@@ -98,28 +98,28 @@
                                 <option value="12th">12th</option>
                                 <option value="10th">10th</option>
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('education_name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('education_name') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
                             <label for="university_name" class="font-semibold text-sm text-gray-700">University/Institute <span class="text-red-700">*</span></label>
                             <br>
                             <input type="text" wire:model="university_name" id="university_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="University/Institute" />
-                            <div class="text-xs text-red-600 font-bold">@error('university_name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('university_name') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
                             <label for="course_name" class="font-semibold text-sm text-gray-700">Course <span class="text-red-700">*</span></label>
                             <br>
                             <input type="text" wire:model="course_name" id="course_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Course" />
-                            <div class="text-xs text-red-600 font-bold">@error('course_name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('course_name') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
                             <label for="specialization_name" class="font-semibold text-sm text-gray-700">Specialization <span class="text-red-700">*</span></label>
                             <br>
                             <input type="text" wire:model="specialization_name" id="specialization_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Specialization" />
-                            <div class="text-xs text-red-600 font-bold">@error('specialization_name') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('specialization_name') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
@@ -139,7 +139,7 @@
                                     <label for="Correspondence" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Correspondence/Distance learning</label>
                                 </div>
                             </div>
-                            <div class="text-xs text-red-600 font-bold">@error('course_type') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('course_type') {{ $message }} @enderror</div>
                         </div>
 
 
@@ -235,7 +235,7 @@
                                         <option value="1941">1941</option>
                                         <option value="1940">1940</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('course_duration_to') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('course_duration_to') {{ $message }} @enderror</div>
                                 </div>
                                 <div>
                                     <label class="ml-2 mt-2 text-sm font-medium text-gray-900">To</label>
@@ -335,7 +335,7 @@
                                         <option value="1941">1941</option>
                                         <option value="1940">1940</option>
                                     </select>
-                                    <div class="text-xs text-red-600 font-bold">@error('course_duration_from') {{ $message }} @enderror</div>
+                                    <div class="text-xs text-red-600 font-semibold pt-1">@error('course_duration_from') {{ $message }} @enderror</div>
                                 </div>
                             </div>
                         </div>
@@ -350,14 +350,14 @@
                                 <option value="% Marks of 100 Maximum">% Marks of 100 Maximum</option>
                                 <option value="Course Requires a Pass">Course Requires a Pass</option>
                             </select>
-                            <div class="text-xs text-red-600 font-bold">@error('grading_system') {{ $message }} @enderror</div>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('grading_system') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-3">
                             <label for="marks" class="font-semibold text-sm text-gray-700">Marks <span class="text-red-700">*</span></label>
                             <br>
-                            <input type="text" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" wire:model="marks" />
-                            <div class="text-xs text-red-600 font-bold">@error('marks') {{ $message }} @enderror</div>
+                            <input type="text" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" wire:model="marks" onkeypress="return isNumber(event)" />
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('marks') {{ $message }} @enderror</div>
                         </div>
 
                     </div>
