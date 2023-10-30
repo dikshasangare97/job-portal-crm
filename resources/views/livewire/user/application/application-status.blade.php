@@ -80,10 +80,20 @@
                                 <div class="flex mt-3">
                                     <div class="w-full bg-white px-2 py-2 rounded-full border mr-16">
                                         <div class="flex">
-                                            <div class="w-4 h-4 rounded-full bg-green-600">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
-                                                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
-                                                </svg>
+                                            <div class="w-4 h-4 ">
+                                                @if($application_detail->applicationStatus->application_status_name == 'Not Shortlisted')
+                                                <div class="bg-red-600 rounded-full">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                    </svg>
+                                                </div>
+                                                @else
+                                                <div class="bg-green-600 rounded-full">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-white font-bold lg:w-4 lg:h-4">
+                                                        <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="text-xs text-gray-500 px-2">
                                                 {{$application_detail->applicationStatus->application_status_name}}
@@ -141,7 +151,7 @@
                                                 @endif
 
 
-                                            @endif
+                                                @endif
 
                                         </div>
                                     </li>
