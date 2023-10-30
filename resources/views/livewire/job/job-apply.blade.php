@@ -8,7 +8,7 @@
             @foreach($job_applies as $job_apply)
 
                 @if($job_apply->job_id == $jobId)
-                <p class="text-green-600 font-bold text-lg">Already Apply</p>
+                <p class="text-green-600 font-bold text-lg">Applied</p>
                 @php
                 $alreadyApplied = true;
                 @endphp
