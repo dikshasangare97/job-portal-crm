@@ -127,40 +127,40 @@
 
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
-                                <label for="company_type_id" class="font-semibold text-sm text-gray-700">
-                                    Company type
+                                <label for="company_type" class="font-semibold text-sm text-gray-700">
+                                    Company type <span class="text-sm text-red-600">*</span>
                                 </label>
                                 <br>
-                                <select wire:model="company_type_id" id="company_type_id" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
+                                <select wire:model="company_type" id="company_type" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
                                     <option value="">Select company type</option>
                                     @foreach($company_type_details as $company_type_detail)
                                     <option value="{{ $company_type_detail->id}}">{{ $company_type_detail->company_type_name}}</option>
                                     @endforeach
                                 </select>
-                                <div class="text-xs text-red-600 font-semibold pt-1">@error('company_type_id') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('company_type') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
-                                <label for="industry_type_id" class="font-semibold text-sm text-gray-700">
-                                    Industry type
+                                <label for="industry_type" class="font-semibold text-sm text-gray-700">
+                                    Industry type <span class="text-sm text-red-600">*</span>
                                 </label>
                                 <br>
-                                <select wire:model="industry_type_id" id="industry_type_id" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
+                                <select wire:model="industry_type" id="industry_type" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
                                     <option value="">Select industry type</option>
                                     @foreach($industry_details as $industry_detail)
                                     <option value="{{ $industry_detail->id}}">{{ $industry_detail->industry_name}}</option>
                                     @endforeach
                                 </select>
-                                <div class="text-xs text-red-600 font-semibold pt-1">@error('industry_type_id') {{ $message }} @enderror</div>
+                                <div class="text-xs text-red-600 font-semibold pt-1">@error('industry_type') {{ $message }} @enderror</div>
                             </div>
                         </div>
 
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
                                 <label for="contact_person" class="font-semibold text-sm text-gray-700">
-                                    Contact person
+                                    Contact person <span class="text-sm text-red-600">*</span>
                                 </label>
                                 <br>
                                 <input type="text" wire:model="contact_person" id="contact_person" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Contact person name" />
@@ -171,7 +171,7 @@
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
                                 <label for="contact_person_designation" class="font-semibold text-sm text-gray-700">
-                                    Contact person designation
+                                    Contact person designation <span class="text-sm text-red-600">*</span>
                                 </label>
                                 <br>
                                 <input type="text" wire:model="contact_person_designation" id="contact_person_designation" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Contact person designation" />

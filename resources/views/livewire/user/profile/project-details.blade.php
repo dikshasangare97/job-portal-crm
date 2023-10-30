@@ -275,7 +275,7 @@
 
                         @if($project_status == 1)
                         <div class="my-3">
-                            <label class="font-semibold text-sm text-gray-700">Worked till <span class="text-sm text-red-600">*</span></label>
+                            <label class="font-semibold text-sm text-gray-700">Worked till </label>
                             <br>
                             <div class="flex">
                                 <div class="w-1/2 mr-2">

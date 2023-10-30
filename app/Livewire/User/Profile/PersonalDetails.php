@@ -11,17 +11,16 @@ class PersonalDetails extends Component
 {
     public $detail;
 
-    public $gender = '';
-    public $marital_status = '';
+    #[Rule('required')]
+    public $gender = '', $marital_status = '', $permanent_address = '', $hometown = '';
     public $category = '';
     public $date_of_birth;
     public $differently_abled = 0;
     public $career_break = 0;
     public $work_permit_usa;
     public $work_permit_country;
-    public $permanent_address = '';
-    public $hometown = '';
-    #[Rule('numeric|digits:6')]
+
+    #[Rule('required|numeric|digits:6')]
     public $pincode = '';
 
     public function mount()

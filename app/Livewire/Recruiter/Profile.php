@@ -3,11 +3,14 @@
 namespace App\Livewire\Recruiter;
 
 use App\Models\UserCompanyDetail;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Profile extends Component
 {
-    public $pan_number, $pan_number_name, $address_label, $company_address, $country, $state, $city, $company_pincode, $gstin_number;
+    #[Rule('required')]
+    public $pan_number, $pan_number_name, $company_address, $country, $state, $city, $company_pincode;
+    public $address_label, $gstin_number;
 
     public function mount()
     {
@@ -27,6 +30,7 @@ class Profile extends Component
 
     public function updateOtherDetail()
     {
+        $this->validate();
         $other_detail = UserCompanyDetail::where('user_id', auth()->user()->id)->first();
         if ($other_detail) {
             $other_detail->update([

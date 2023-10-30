@@ -126,7 +126,7 @@
                         <h1 class=" items-center font-semibold tracking-wide text-gray-900 leading-8 text-xl pb-2">Personal details</h1>
 
                         <div class="my-5">
-                            <label for="gender" class="font-semibold text-sm text-gray-700">Gender</label>
+                            <label for="gender" class="font-semibold text-sm text-gray-700">Gender <span class="text-sm text-red-600">*</span></label>
                             <div class="grid w-[30rem] grid-cols-4 gap-2 mt-2">
                                 <div>
                                     <input type="radio" wire:model="gender" id="Male" value="Male" class="peer hidden" checked />
@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="my-5">
-                            <label for="marital_status" class="font-semibold text-sm text-gray-700">Marital status</label>
+                            <label for="marital_status" class="font-semibold text-sm text-gray-700">Marital status <span class="text-sm text-red-600">*</span></label>
                             <div class="grid w-[34rem] grid-cols-4 gap-2 mt-2">
                                 <div>
                                     <input type="radio" wire:model="marital_status" id="Single" value="Single/unmarried" class="peer hidden" checked />
@@ -316,21 +316,21 @@
 
 
                         <div class="my-5">
-                            <label for="permanent_address" class="font-semibold text-sm text-gray-700">Permanent address</label>
+                            <label for="permanent_address" class="font-semibold text-sm text-gray-700">Permanent address <span class="text-sm text-red-600">*</span></label>
                             <br>
                             <input type="text" wire:model="permanent_address" id="permanent_address" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="Permanent address">
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('permanent_address') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
-                            <label for="hometown" class="font-semibold text-sm text-gray-700">Hometown</label>
+                            <label for="hometown" class="font-semibold text-sm text-gray-700">Hometown <span class="text-sm text-red-600">*</span></label>
                             <br>
                             <input type="text" id="hometown" wire:model="hometown" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" placeholder="Hometown">
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('hometown') {{ $message }} @enderror</div>
                         </div>
 
                         <div class="my-5">
-                            <label for="pincode" class="font-semibold text-sm text-gray-700">Pincode</label>
+                            <label for="pincode" class="font-semibold text-sm text-gray-700">Pincode <span class="text-sm text-red-600">*</span></label>
                             <br>
                             <input type="text" id="pincode" wire:model="pincode" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2" minlength="6" maxlength="6" placeholder="Pincode" onkeypress="return isNumber(event)">
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('pincode') {{ $message }} @enderror</div>

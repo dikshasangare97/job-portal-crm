@@ -15,14 +15,10 @@ class ProjectDetails extends Component
 {
     public $project_status = 0;
     #[Rule('required')]
-    public $project_title;
+    public $project_title, $project_client_name, $worked_from_year, $worked_from_month, $project_detail;
     public $project_employment_name;
-    public $project_client_name;
-    public $worked_from_year;
-    public $worked_from_month;
     public $worked_till_year;
     public $worked_till_month;
-    public $project_detail;
     public $project_location;
     public $project_site = 0;
     public $nature_of_employment = 0;

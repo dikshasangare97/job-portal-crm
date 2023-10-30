@@ -224,7 +224,7 @@
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
                                 <label for="pan_number" class="font-semibold text-sm text-gray-700">
-                                    Pan number
+                                    Pan number <span class="text-sm text-red-600">*</span>
                                 </label>
                                 <br>
                                 <input type="text" wire:model="pan_number" id="pan_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Pan number" />
@@ -235,7 +235,7 @@
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
                                 <label for="pan_number_name" class="font-semibold text-sm text-gray-700">
-                                    Name on pan
+                                    Name on pan <span class="text-sm text-red-600">*</span>
                                 </label>
                                 <br>
                                 <input type="text" wire:model="pan_number_name" id="pan_number_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Name on pan" />
@@ -246,7 +246,7 @@
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
                                 <label for="address_label" class="font-semibold text-sm text-gray-700">
-                                    Address label
+                                    Address label 
                                 </label>
                                 <br>
                                 <select wire:model="address_label" id="address_label" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
@@ -260,7 +260,7 @@
 
                         <div class="my-3">
                             <label for="company_address" class="font-semibold text-sm text-gray-700">
-                                Company address
+                                Company address <span class="text-sm text-red-600">*</span>
                             </label>
                             <br>
                             <input type="text" wire:model="company_address" id="company_address" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Company address" />
@@ -269,7 +269,7 @@
 
                         <div class="my-3">
                             <label for="country" class="font-semibold text-sm text-gray-700">
-                                Country
+                                Country <span class="text-sm text-red-600">*</span>
                             </label>
                             <br>
                             <input type="text" wire:model="country" id="country" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Country" />
@@ -278,7 +278,7 @@
 
                         <div class="my-3">
                             <label for="state" class="font-semibold text-sm text-gray-700">
-                                State
+                                State <span class="text-sm text-red-600">*</span>
                             </label>
                             <br>
                             <input type="text" wire:model="state" id="state" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="state" />
@@ -287,7 +287,7 @@
 
                         <div class="my-3">
                             <label for="city" class="font-semibold text-sm text-gray-700">
-                                City
+                                City <span class="text-sm text-red-600">*</span>
                             </label>
                             <br>
                             <input type="text" wire:model="city" id="city" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="city" />
@@ -296,7 +296,7 @@
 
                         <div class="my-3">
                             <label for="company_pincode" class="font-semibold text-sm text-gray-700">
-                                Pin code
+                                Pin code <span class="text-sm text-red-600">*</span>
                             </label>
                             <br>
                             <input type="text" wire:model="company_pincode" id="company_pincode" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="pin code" minlength="6" maxlength="6" onkeypress="return isNumber(event)" />
@@ -305,7 +305,7 @@
 
                         <div class="my-3">
                             <label for="gstin_number" class="font-semibold text-sm text-gray-700">
-                                GSTIN number
+                                GSTIN number 
                             </label>
                             <br>
                             <input type="text" wire:model="gstin_number" id="gstin_number" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="gstin number" />

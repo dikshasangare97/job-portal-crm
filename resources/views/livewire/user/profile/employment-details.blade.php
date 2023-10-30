@@ -158,7 +158,7 @@
 
                         @if($current_employment == 0 && $employment_type == 0)
                         <div class="my-3">
-                            <label class="font-semibold text-sm text-gray-700">Total experience <span class="text-sm text-red-600">*</span></label>
+                            <label class="font-semibold text-sm text-gray-700">Total experience </label>
                             <br>
                             <div class="flex">
                                 <div class="w-1/2 mr-2">
@@ -241,7 +241,7 @@
                         @if($employment_type == 1)
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
-                                <label for="location" class="font-semibold text-sm text-gray-700">Location <span class="text-sm text-red-600">*</span></label>
+                                <label for="location" class="font-semibold text-sm text-gray-700">Location </label>
                                 <br>
                                 <select wire:model="location" id="location" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
                                     <option value="">Select location</option>
@@ -255,7 +255,7 @@
 
                         <div class="my-3 flex">
                             <div class="w-full mr-2">
-                                <label for="department" class="font-semibold text-sm text-gray-700">Department <span class="text-sm text-red-600">*</span></label>
+                                <label for="department" class="font-semibold text-sm text-gray-700">Department </label>
                                 <br>
                                 <select wire:model="department" id="department" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
                                     <option value="">Select department</option>
@@ -277,7 +277,7 @@
                                     @else
                                     Previous designation
                                     @endif
-                                    <span class="text-sm text-red-600">*</span>
+                                    
                                 </label>
                                 <br>
                                 <input type="text" wire:model="designation_name" id="designation_name" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 " placeholder="Type your designation" />
@@ -292,7 +292,7 @@
                                 Working from
                                 @else
                                 Joining date
-                                @endif <span class="text-sm text-red-600">*</span>
+                                @endif 
                             </label>
                             <br>
                             <div class="flex">
@@ -379,7 +379,7 @@
 
                         @if($current_employment != 0)
                         <div class="my-3">
-                            <label class="font-semibold text-sm text-gray-700">Worked till <span class="text-sm text-red-600">*</span></label>
+                            <label class="font-semibold text-sm text-gray-700">Worked till </label>
                             <br>
                             <div class="flex">
                                 <div class="w-1/2 mr-2">
@@ -481,7 +481,7 @@
 
                         @if($current_employment == 0 && $employment_type == 0)
                         <div class="my-3">
-                            <label for="skill_used" class="font-semibold text-sm text-gray-700">Skills used <span class="text-sm text-red-600">*</span></label>
+                            <label for="skill_used" class="font-semibold text-sm text-gray-700">Skills used </label>
                             <br>
                             <select multiple wire:model="skill_used" id="skill_used" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
                                 <option value="">Select skills</option>
@@ -504,7 +504,7 @@
 
                         @if($current_employment == 0 && $employment_type == 0)
                         <div class="my-3">
-                            <label for="notice_period" class="font-semibold text-sm text-gray-700">Notice period <span class="text-sm text-red-600">*</span></label>
+                            <label for="notice_period" class="font-semibold text-sm text-gray-700">Notice period </label>
                             <br>
                             <select wire:model="notice_period" id="notice_period" class="text-xs placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 ">
                                 <option value="">Select notice period</option>

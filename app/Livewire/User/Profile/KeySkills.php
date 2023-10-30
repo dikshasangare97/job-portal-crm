@@ -5,11 +5,14 @@ namespace App\Livewire\User\Profile;
 use App\Models\KeySkill;
 use App\Models\UserKeySkill;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class KeySkills extends Component
 {
-    public $key_skill = [], $detail;
+    #[Rule('required')]
+    public $key_skill = [];
+    public $detail;
     public $user_key_skill_id;
 
     public function render()
@@ -23,6 +26,7 @@ class KeySkills extends Component
 
     public function saveKeySkillDetail()
     {
+        $this->validate();
         foreach ($this->key_skill as $value) {
             UserKeySkill::create([
                 'user_id' => Auth::user()->id,
