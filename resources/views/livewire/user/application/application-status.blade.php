@@ -66,7 +66,8 @@
     <div class="flex m-4 bg-white">
         <div class="flex flex-col justify-center ">
             <section class="py-5 mx-auto space-y-8 sm:py-5">
-                <div class="container flex flex-row items-stretch  w-full space-x-12" x-data="{tab: {{ $get_first_job_apply->id }} }">
+                @if($get_first_job_apply)
+                <div class="container flex flex-row items-stretch  w-full space-x-12" x-data="{tab: {{ $get_first_job_apply->id ?? '' }} }">
                     <div class="flex flex-col justify-start w-2/6 space-y-4 border-r">
                         <h1 class="font-semibold text-lg mx-auto my-5">Job Applies</h1>
                         <div class="h-96 overflow-x-hidden overflow-y-auto mr-0" id="job-apply-scroll">
@@ -238,6 +239,16 @@
                         </div>
                         @endforeach
                     </div>
+                </div>
+                @else
+                <div class="p-10">
+                    <p class="font-bold text-2xl">No any application found!</p>
+                    <div class="mt-5">
+                        <a href="/" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Go back</a>
+                    </div>
+                </div>
+
+                @endif
             </section>
         </div>
 
