@@ -53,19 +53,16 @@ class Profile extends Component
 
     public function validateAndFormatSalary()
     {
-        $value = preg_replace('/[^0-9,]/', '', $this->salary);
-        if ($value !== $this->salary) {
-            $this->salary = $value;
-            $this->addError('salary', 'The salary field must be a number.');
-        } else {
-            $this->resetErrorBag('salary');
-        }
+        $this->validate([
+            'salary' => ['regex:/^[0-9,]+$/', 'numeric'],
+        ]);
+        $this->salary = preg_replace('/[^0-9,]/', '', $this->salary);
     }
 
     public function formatSalary()
     {
-        $this->salary = preg_replace('/[^0-9]/', '', $this->salary);
-        $this->salary = number_format($this->salary, 0);
+        $numericSalary = (float) preg_replace('/[^0-9]/', '', $this->salary);
+        $this->salary = number_format($numericSalary, 0);
     }
 
     public function updateBasicDetail()

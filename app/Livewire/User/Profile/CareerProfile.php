@@ -48,20 +48,16 @@ class CareerProfile extends Component
 
     public function validateAndFormatSalary()
     {
-        $value = preg_replace('/[^0-9,]/', '', $this->expected_salary);
-
-        if ($value !== $this->expected_salary) {
-            $this->expected_salary = $value;
-            $this->addError('expected_salary', 'The expected salary field must be a number.');
-        } else {
-            $this->resetErrorBag('expected_salary');
-        }
+        $this->validate([
+            'expected_salary' => ['regex:/^[0-9,]+$/', 'numeric'],
+        ]);
+        $this->expected_salary = preg_replace('/[^0-9,]/', '', $this->expected_salary);
     }
 
     public function formatSalary()
     {
-        $this->expected_salary = preg_replace('/[^0-9]/', '', $this->expected_salary);
-        $this->expected_salary = number_format($this->expected_salary, 0);
+        $numericSalary = (float) preg_replace('/[^0-9]/', '', $this->expected_salary);
+        $this->expected_salary = number_format($numericSalary, 0);
     }
 
     public function render()
