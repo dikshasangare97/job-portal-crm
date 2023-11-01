@@ -20,12 +20,12 @@ class JobEdit extends Component
     public $detail;
 
     #[Rule('required|min:3')]
-    public  $job_headline, $job_description, $company_name, $company_detail;
+    public  $job_headline, $job_description, $company_name, $company_detail, $job_highlights;
 
     #[Rule('required')]
-    public  $employment_type, $key_skill, $work_experience,  $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $vacancy;
+    public  $employment_type, $key_skill, $work_experience,  $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $vacancy, $work_mode, $department;
 
-    public $salary_hide_status, $work_mode, $annual_salary, $locality, $functional_area, $department, $reference_code, $job_edit_id, $status;
+    public $salary_hide_status, $annual_salary, $locality, $functional_area,  $reference_code, $job_edit_id, $status;
 
     public function mount($id)
     {
@@ -52,6 +52,7 @@ class JobEdit extends Component
         $this->work_mode = $this->detail->workMode->id;
         $this->department = $this->detail->department->id;
         $this->status = $this->detail->status;
+        $this->job_highlights = $this->detail->job_highlights;
         $this->job_edit_id = $this->detail->id;
     }
 
@@ -80,6 +81,7 @@ class JobEdit extends Component
         $post_job_detail->work_mode_id = $this->work_mode;
         $post_job_detail->department_id = $this->department;
         $post_job_detail->status = $this->status;
+        $post_job_detail->job_highlights = $this->job_highlights;
         $post_job_detail->save();
 
         session()->flash('message', 'Job updated sucessfully');

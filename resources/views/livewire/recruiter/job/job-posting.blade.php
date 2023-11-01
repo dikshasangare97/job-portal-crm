@@ -52,8 +52,17 @@
                     <div class="flex">
                         <div class="w-full mb-6">
                             <label for="job_description" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job description <span class="text-red-600 font-bold text-md">*</span></label>
-                            <textarea wire:model="job_description" id="job_description" cols="30" rows="10" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"></textarea>
+                            <div wire:ignore class="mt-3">
+                                <textarea id="job_description" wire:model.defer="job_description"></textarea>
+                            </div>
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('job_description') {{ $message }} @enderror</div>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-full mb-6">
+                            <label for="job_highlights" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job highlights <span class="text-red-600 font-bold text-md">*</span></label>
+                            <textarea id="job_highlights" wire:model="job_highlights" cols="30" rows="2" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Job posting highlight"></textarea>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('job_highlights') {{ $message }} @enderror</div>
                         </div>
                     </div>
                     <div class="flex">
@@ -179,7 +188,7 @@
 
                     <div class="flex">
                         <div class="w-1/3 mb-6 mr-1">
-                            <label for="work_mode" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Work Mode</label>
+                            <label for="work_mode" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Work Mode <span class="text-red-600 font-bold text-md">*</span></label>
                             <br>
                             <select wire:model="work_mode" id="work_mode" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
                                 <option value="null">Select work mode </option>
@@ -190,7 +199,7 @@
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('work_mode') {{ $message }} @enderror</div>
                         </div>
                         <div class="w-1/3 mb-6 ml-1">
-                            <label for="department" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Department</label>
+                            <label for="department" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Department <span class="text-red-600 font-bold text-md">*</span></label>
                             <br>
                             <select wire:model="department" id="department" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
                                 <option value="null">Select department</option>
@@ -202,9 +211,7 @@
                         </div>
                     </div>
 
-
                     <div class="border-b-2 my-3"></div>
-
                     <h5 class="font-medium self-center uppercase text-gray-800">Company Information</h5>
 
                     <div class="flex mt-5">
@@ -250,8 +257,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="flex flex-col mt-5">
                         <button type="submit" class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-40 transition duration-150 ease-in">
                             <span class="mr-2 uppercase">Post a job</span>
@@ -267,4 +272,16 @@
 
         </div>
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector(`#job_description`))
+            .then(editor => {
+                editor.model.document.on('change:data', (e) => {
+                    @this.set("job_description", editor.getData());
+                })
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </div>

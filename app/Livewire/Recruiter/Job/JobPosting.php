@@ -19,12 +19,12 @@ use Livewire\Component;
 class JobPosting extends Component
 {
     #[Rule('required|min:3')]
-    public  $job_headline = '', $job_description = '', $company_name = '', $company_detail = '';
+    public  $job_headline = '', $job_description = '', $company_name = '', $company_detail = '', $job_highlights = '';
 
     #[Rule('required')]
-    public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '';
+    public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '', $work_mode = '', $department = '';
 
-    public $salary_hide_status = '', $work_mode = '', $annual_salary = '', $locality = '', $functional_area = '', $department = '', $reference_code = '';
+    public $salary_hide_status = '',  $annual_salary = '', $locality = '', $functional_area = '', $reference_code = '';
 
     public function resetInputFields()
     {
@@ -47,6 +47,7 @@ class JobPosting extends Component
         $this->company_detail = '';
         $this->company_type_id = '';
         $this->posted_by = '';
+        $this->job_highlights = '';
     }
 
     public function store()
@@ -76,6 +77,7 @@ class JobPosting extends Component
             'work_mode_id' => $this->work_mode,
             'department_id' => $this->department,
             'status' => 1,
+            'job_highlights' => $this->job_highlights,
         ]);
         session()->flash('message', 'Job created sucessfully');
         $this->resetInputFields();

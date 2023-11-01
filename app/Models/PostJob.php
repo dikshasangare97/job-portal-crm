@@ -33,7 +33,8 @@ class PostJob extends Model
         'posted_by_id',
         'status',
         'work_mode_id',
-        'department_id'
+        'department_id',
+        'job_highlights'
     ];
 
 

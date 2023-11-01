@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>CMS</title>
     <!-- Fonts -->
@@ -13,11 +14,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
     @livewireStyles
 
 </head>
 
-<body>
+<body >
     <livewire:component.layouts.header />
 
     @if (Route::has('login'))
@@ -69,6 +71,8 @@
 
     <livewire:component.layouts.footer />
     @livewireScripts
+
+    @stack('scripts')
 </body>
 
 </html>
