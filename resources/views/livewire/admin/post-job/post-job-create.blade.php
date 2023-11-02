@@ -10,6 +10,26 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        #autocomplete-results {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        #autocomplete-results::-webkit-scrollbar {
+            width: 4px;
+            cursor: pointer;
+        }
+
+        #autocomplete-results::-webkit-scrollbar-track {
+            background-color: rgba(229, 231, 235, var(--bg-opacity));
+            cursor: pointer;
+        }
+
+        #autocomplete-results::-webkit-scrollbar-thumb {
+            cursor: pointer;
+            background-color: #cbd5e1;
+        }
     </style>
     <div class="px-4 py-5 bg-white rounded-lg border">
         <nav class="flex mb-4" aria-label="Breadcrumb">
@@ -82,15 +102,34 @@
                     <div class="flex">
                         <div class="w-full mb-6 ml-2">
                             <label for="job_description" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job description <span class="text-red-600 font-bold text-md">*</span></label>
-                            <textarea wire:model="job_description" id="job_description" cols="30" rows="10" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"></textarea>
+                            <div wire:ignore class="mt-3">
+                                <textarea id="job_description" wire:model.defer="job_description"></textarea>
+                            </div>
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('job_description') {{ $message }} @enderror</div>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-full mb-6">
+                            <label for="job_highlights" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Job highlights <span class="text-red-600 font-bold text-md">*</span></label>
+                            <textarea id="job_highlights" wire:model="job_highlights" cols="30" rows="2" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Job posting highlight"></textarea>
+                            <div class="text-xs text-red-600 font-semibold pt-1">@error('job_highlights') {{ $message }} @enderror</div>
                         </div>
                     </div>
                     <div class="flex">
                         <div class="w-full mb-6 ml-2">
                             <label for="key_skill" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Key skills <span class="text-red-600 font-bold text-md">*</span></label>
                             <br>
-                            <input type="text" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400" wire:model="key_skill" id="key_skill" placeholder="Type key skills">
+                            <!-- <input type="text" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-96 py-2 focus:outline-none focus:border-blue-400" wire:model="key_skill" id="key_skill" placeholder="Type key skills"> -->
+
+                            <div id="selected-values" class="my-3 w-full"></div>
+                            <div class="flex">
+                                <div class="w-1/3">
+                                    <input type="text" id="key_skill" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Search key skills" autocomplete="off">
+                                    <div id="autocomplete-results" class="mt-2 overflow-y-auto max-h-40"></div>
+                                    <input type="hidden" id="selected-ids" wire:model="key_skill">
+                                </div>
+                            </div>
+
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('key_skill') {{ $message }} @enderror</div>
                         </div>
                     </div>
@@ -209,7 +248,7 @@
 
                     <div class="flex">
                         <div class="w-1/3 mb-6 ml-2">
-                            <label for="work_mode" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Work Mode</label>
+                            <label for="work_mode" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Work Mode <span class="text-red-600 font-bold text-md">*</span></label>
                             <br>
                             <select wire:model="work_mode" id="work_mode" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
                                 <option value="null">Select work mode </option>
@@ -220,7 +259,7 @@
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('work_mode') {{ $message }} @enderror</div>
                         </div>
                         <div class="w-1/3 mb-6 ml-2">
-                            <label for="department" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Department</label>
+                            <label for="department" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Department <span class="text-red-600 font-bold text-md">*</span></label>
                             <br>
                             <select wire:model="department" id="department" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
                                 <option value="null">Select department</option>
@@ -294,4 +333,153 @@
             </div>
         </div>
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector(`#job_description`))
+            .then(editor => {
+                editor.model.document.on('change:data', (e) => {
+                    @this.set("job_description", editor.getData());
+                })
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+    <script>
+        const searchInput = document.getElementById('key_skill');
+        const selectedValues = document.getElementById('selected-values');
+        const autocompleteResults = document.getElementById('autocomplete-results');
+        const keySkills = @json($key_skills);
+        const selectedItems = [];
+        searchInput.addEventListener('input', debounce(search, 300));
+        searchInput.addEventListener('focus', updateSelectedValues);
+
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    func.apply(context, args);
+                }, wait);
+            };
+        }
+
+        function search() {
+            const query = searchInput.value;
+            if (query.length >= 1) {
+                const results = keySkills.filter(skill => skill.key_skill_name.toLowerCase().includes(query.toLowerCase()));
+                displayResults(results);
+            } else {
+                autocompleteResults.innerHTML = '';
+            }
+        }
+
+        function displayResults(results) {
+            autocompleteResults.innerHTML = '';
+            if (results.length === 0) {
+                autocompleteResults.innerHTML = '<div class="bg-gray-100 text-center rounded-lg"><p class="text-gray-800 py-2">No results found</p></div>';
+                return;
+            }
+            const resultsList = document.createElement('ul');
+            resultsList.className = 'mt-2 bg-gray-100 text-sm shadow-md border rounded-lg';
+            results.forEach((result) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'cursor-pointer hover:bg-gray-200 hover:rounded-lg p-2';
+
+                const suggestion = result.key_skill_name;
+                const startIndex = suggestion.toLowerCase().indexOf(searchInput.value.toLowerCase());
+                const endIndex = startIndex + searchInput.value.length;
+
+                const boldText = document.createElement('span');
+                boldText.className = 'font-bold';
+                boldText.textContent = suggestion.slice(startIndex, endIndex);
+
+                const regularText = document.createElement('span');
+                regularText.textContent = suggestion.slice(endIndex);
+
+                listItem.innerHTML = suggestion.slice(0, startIndex);
+                listItem.appendChild(boldText);
+                listItem.appendChild(regularText);
+
+                if (selectedItems.includes(result.key_skill_name)) {
+                    listItem.classList.add('text-gray-400', 'cursor-not-allowed');
+                } else {
+                    listItem.addEventListener('click', () => {
+                        searchInput.value = '';
+                        selectedItems.push(result.key_skill_name);
+                        updateSelectedValues();
+                        updateHiddenInput();
+                        autocompleteResults.innerHTML = '';
+                    });
+                }
+                resultsList.appendChild(listItem);
+            });
+            autocompleteResults.appendChild(resultsList);
+        }
+
+        function updateHiddenInput() {
+            const hiddenInput = document.getElementById('selected-ids');
+
+            if (selectedItems.length === 0) {
+                hiddenInput.value = '';
+            } else {
+                // const selectedIds = selectedItems.map(item => getItemIdByName(item));
+                hiddenInput.value = selectedItems.map(item => getItemIdByName(item)).join(',');
+                // hiddenInput.value = JSON.stringify(selectedIds);
+                // If you're using Livewire, you might need to trigger an input event to notify Livewire about the change. You can do this like this:
+                hiddenInput.dispatchEvent(new Event('input'));
+            }
+        }
+
+        function getItemIdByName(name) {
+            const matches = keySkills.filter(skill => skill.key_skill_name === name);
+            return matches.map(match => match.id);
+        }
+
+        function updateSelectedValues() {
+            const selectedValuesContainer = document.getElementById('selected-values');
+            selectedValuesContainer.innerHTML = '';
+            selectedValues.innerHTML = '';
+            if (selectedItems.length > 0) {
+                selectedItems.forEach((item) => {
+                    const selectedValue = document.createElement('span');
+                    selectedValue.className = 'bg-blue-200 border border-blue-500 rounded-full font-bold my-2 mr-2 text-xs px-3 py-2 text-blue-600';
+
+                    const selectedValueText = document.createElement('span');
+                    selectedValueText.textContent = item;
+
+                    const cancelIcon = document.createElement('span');
+                    cancelIcon.className = 'text-red-600 pl-1 cursor-pointer ';
+                    cancelIcon.innerHTML = '&#10005;';
+
+                    selectedValue.appendChild(selectedValueText);
+                    selectedValue.appendChild(cancelIcon);
+
+                    const width = selectedValueText.clientWidth;
+                    selectedValue.style.width = `${width}px`;
+
+                    cancelIcon.addEventListener('click', () => {
+                        removeSelectedItem(item);
+                    });
+
+                    selectedValuesContainer.appendChild(selectedValue);
+                });
+                updateHiddenInput();
+            } else {
+                selectedValues.innerHTML = '';
+                updateHiddenInput();
+            }
+        }
+
+        function removeSelectedItem(item) {
+            const index = selectedItems.indexOf(item);
+            if (index !== -1) {
+                selectedItems.splice(index, 1);
+                updateSelectedValues();
+            }
+        }
+    </script>
 </div>

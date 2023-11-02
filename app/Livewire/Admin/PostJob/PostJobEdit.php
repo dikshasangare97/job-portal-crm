@@ -7,7 +7,9 @@ use App\Models\Departments;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Industry;
+use App\Models\JobKeyskill;
 use App\Models\JobPostedBy;
+use App\Models\KeySkill;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
@@ -20,12 +22,12 @@ class PostJobEdit extends Component
     public $detail;
 
     #[Rule('required|min:3')]
-    public  $job_headline, $job_description, $company_name, $company_detail;
+    public  $job_headline, $job_description, $company_name, $company_detail, $job_highlights;
 
     #[Rule('required')]
-    public  $employment_type, $key_skill, $work_experience,  $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $vacancy;
+    public  $employment_type, $key_skill, $work_experience,  $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $vacancy, $work_mode, $department;
 
-    public $salary_hide_status, $work_mode, $annual_salary, $locality, $functional_area, $department, $reference_code, $job_edit_id, $status;
+    public $salary_hide_status, $annual_salary, $locality, $functional_area, $reference_code, $job_edit_id, $status, $getkeyskills;
 
     public function mount($id)
     {
@@ -33,7 +35,6 @@ class PostJobEdit extends Component
         $this->job_headline = $this->detail->job_headline;
         $this->employment_type = $this->detail->employment_type;
         $this->job_description = $this->detail->job_description;
-        $this->key_skill = $this->detail->key_skill;
         $this->work_experience = $this->detail->workExperience->id;
         $this->annual_salary = $this->detail->annual_salary;
         $this->salary_hide_status = $this->detail->salary_hide_status;
@@ -53,6 +54,8 @@ class PostJobEdit extends Component
         $this->department = $this->detail->department->id;
         $this->status = $this->detail->status;
         $this->job_edit_id = $this->detail->id;
+        $job_keyskill_detail = JobKeyskill::with('keyskill')->where('job_id', $this->job_edit_id)->get();
+        $this->getkeyskills = $job_keyskill_detail;
     }
 
     public function update()
@@ -61,7 +64,6 @@ class PostJobEdit extends Component
         $post_job_detail->job_headline = $this->job_headline;
         $post_job_detail->employment_type = $this->employment_type;
         $post_job_detail->job_description = $this->job_description;
-        $post_job_detail->key_skill = $this->key_skill;
         $post_job_detail->work_experience = $this->work_experience;
         $post_job_detail->annual_salary = $this->annual_salary;
         $post_job_detail->salary_hide_status = $this->salary_hide_status;
@@ -82,6 +84,15 @@ class PostJobEdit extends Component
         $post_job_detail->status = $this->status;
         $post_job_detail->save();
 
+        if ($this->key_skill) {
+            $selectedKeySkillIds = explode(',', $this->key_skill);
+            foreach ($selectedKeySkillIds as $value) {
+                JobKeyskill::create([
+                    'job_id' => $post_job_detail->id,
+                    'key_skill_id' => $value,
+                ]);
+            }
+        }
         session()->flash('message', 'Job updated sucessfully');
         return redirect()->to('/admin/post-job');
     }
@@ -99,6 +110,7 @@ class PostJobEdit extends Component
             'work_modes' => Workmode::where('status', 1)->get(),
             'departments' => Departments::where('status', 1)->get(),
             'experiences' => Experience::where('status', 1)->get(),
+            'key_skills' => KeySkill::where('status', 1)->get(),
         ]);
     }
 
@@ -115,5 +127,17 @@ class PostJobEdit extends Component
     {
         $numericSalary = (float) preg_replace('/[^0-9]/', '', $this->annual_salary);
         $this->annual_salary = number_format($numericSalary, 0);
+    }
+
+    public function deleteKeySkillId($id)
+    {
+        $this->key_skill = $id;
+    }
+
+    public function deleteKeySkill()
+    {
+        JobKeyskill::find($this->key_skill)->delete();
+        session()->flash('message', 'Key skill deleted sucessfully');
+        return redirect()->to('/recruiter/job/' . $this->job_edit_id . '/edit');
     }
 }

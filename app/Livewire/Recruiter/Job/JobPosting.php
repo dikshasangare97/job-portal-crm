@@ -55,7 +55,12 @@ class JobPosting extends Component
     public function store()
     {
         $this->validate();
-      $postJob =  PostJob::create([
+        if ($this->salary_hide_status) {
+            $salary_hide_status =  $this->salary_hide_status;
+        } else {
+            $salary_hide_status =  0;
+        }
+        $postJob =  PostJob::create([
             'user_id' => Auth::user()->id,
             'job_headline' => $this->job_headline,
             'employment_type' => $this->employment_type,
@@ -63,7 +68,7 @@ class JobPosting extends Component
             // 'key_skill' => $this->key_skill,
             'work_experience' => $this->work_experience,
             'annual_salary' => $this->annual_salary ?? 0,
-            'salary_hide_status' => $this->salary_hide_status,
+            'salary_hide_status' => $salary_hide_status,
             'location_id' => $this->location,
             'locality' => $this->locality,
             'industry_id' => $this->industry,
@@ -82,7 +87,7 @@ class JobPosting extends Component
             'job_highlights' => $this->job_highlights,
         ]);
 
-        if($this->key_skill){
+        if ($this->key_skill) {
             $selectedKeySkillIds = explode(',', $this->key_skill);
             foreach ($selectedKeySkillIds as $value) {
                 JobKeyskill::create([

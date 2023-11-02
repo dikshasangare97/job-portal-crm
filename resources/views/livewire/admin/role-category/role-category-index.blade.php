@@ -85,7 +85,8 @@
                                     </td>
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <span>{{$role->description}}</span>
+                                            <span>
+                                                {{strlen($role->description) > 30 ? substr($role->description, 0, 30) . '...' : $role->description ?? '-'}}</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-6 text-center">
@@ -97,12 +98,13 @@
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         <div class="flex item-center justify-center">
-                                            <!-- <button wire:click="show({{$role->id}})" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+
+                                            <button wire:click="getRoleId({{$role->id}})" data-modal-toggle="view-role-modal" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
-                                            </button> -->
+                                            </button>
                                             <button wire:click="edit({{$role->id}})" class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -178,6 +180,53 @@
                     </div>
                 </div>
                 @endif
+
+                <!-- role view modal -->
+                <div wire:ignore.self id="view-role-modal" data-modal-show="false" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+                    <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+                        <div class="bg-white rounded-lg shadow relative">
+                            <div class="text-end pt-5 pr-5">
+                                <button data-modal-toggle="view-role-modal" class="modal-close cursor-pointer z-50">
+                                    <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <h1 class=" items-center font-semibold tracking-wide text-gray-900 leading-8 text-xl px-3">Role Category Detail</h1>
+                            <div class="border my-3"></div>
+
+                            <div class="px-5 pb-2">
+                                <div class="my-3">
+                                    <label for="software_name" class="font-semibold text-md text-gray-700">Role Name</label>
+                                    <br>
+                                    <p class="text-sm text-gray-700">{{ $role_name ?? '' }}</p>
+                                </div>
+
+                                <div class="my-3">
+                                    <label for="software_name" class="font-semibold text-md text-gray-700">Role Description</label>
+                                    <br>
+                                    <p class="text-sm text-gray-700">{{ $description ?? '' }}</p>
+                                </div>
+
+                                <div class="mt-3 mb-5">
+                                    <label for="software_name" class="font-semibold text-md text-gray-700">Status</label>
+                                    <br>
+                                    <p> @if($status == 1)
+                                        <span class="bg-green-200 text-green-600 py-1 font-medium px-3 rounded-full text-xs">Active</span>
+                                        @else
+                                        <span class="bg-red-200 text-red-600 py-1 px-3 font-medium rounded-full text-xs">In&nbsp;Active</span>
+                                        @endif
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- role view modal end -->
+
             </div>
         </div>
     </div>

@@ -7,7 +7,9 @@ use App\Models\Departments;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Industry;
+use App\Models\JobKeyskill;
 use App\Models\JobPostedBy;
+use App\Models\KeySkill;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
@@ -19,12 +21,12 @@ use Livewire\Component;
 class PostJobCreate extends Component
 {
     #[Rule('required|min:3')]
-    public  $job_headline = '', $job_description = '', $company_name = '', $company_detail = '';
+    public  $job_headline = '', $job_description = '', $company_name = '', $company_detail = '', $job_highlights = '';
 
     #[Rule('required')]
-    public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '';
+    public  $employment_type = '', $key_skill = '', $work_experience = '',  $location = '', $industry = '', $role = '', $education_qualification = '', $company_type_id = '', $posted_by = '', $vacancy = '', $work_mode = '', $department = '';
 
-    public $salary_hide_status = '', $work_mode = '', $annual_salary = '', $locality = '', $functional_area = '', $department = '', $reference_code = '';
+    public $salary_hide_status = '', $annual_salary = '', $locality = '', $functional_area = '', $reference_code = '';
 
     public function resetInputFields()
     {
@@ -47,20 +49,26 @@ class PostJobCreate extends Component
         $this->company_detail = '';
         $this->company_type_id = '';
         $this->posted_by = '';
+        $this->job_highlights = '';
     }
 
     public function store()
     {
         $this->validate();
-        PostJob::create([
+        if ($this->salary_hide_status) {
+            $salary_hide_status =  $this->salary_hide_status;
+        } else {
+            $salary_hide_status =  0;
+        }
+        $postJob = PostJob::create([
             'user_id' => Auth::user()->id,
             'job_headline' => $this->job_headline,
             'employment_type' => $this->employment_type,
             'job_description' => $this->job_description,
-            'key_skill' => $this->key_skill,
+            // 'key_skill' => $this->key_skill,
             'work_experience' => $this->work_experience,
             'annual_salary' => $this->annual_salary ?? 0,
-            'salary_hide_status' => $this->salary_hide_status,
+            'salary_hide_status' => $salary_hide_status,
             'location_id' => $this->location,
             'locality' => $this->locality,
             'industry_id' => $this->industry,
@@ -76,7 +84,17 @@ class PostJobCreate extends Component
             'work_mode_id' => $this->work_mode,
             'department_id' => $this->department,
             'status' => 1,
+            'job_highlights' => $this->job_highlights,
         ]);
+        if ($this->key_skill) {
+            $selectedKeySkillIds = explode(',', $this->key_skill);
+            foreach ($selectedKeySkillIds as $value) {
+                JobKeyskill::create([
+                    'job_id' => $postJob->id,
+                    'key_skill_id' => $value,
+                ]);
+            }
+        }
         session()->flash('message', 'Job created sucessfully');
         $this->resetInputFields();
         return redirect()->to('/admin/post-job');
@@ -94,6 +112,7 @@ class PostJobCreate extends Component
             'work_modes' => Workmode::where('status', 1)->get(),
             'departments' => Departments::where('status', 1)->get(),
             'experiences' => Experience::where('status', 1)->get(),
+            'key_skills' => KeySkill::where('status', 1)->get(),
         ]);
     }
     // for salary

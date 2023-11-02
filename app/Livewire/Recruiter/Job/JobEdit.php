@@ -27,7 +27,7 @@ class JobEdit extends Component
     #[Rule('required')]
     public  $employment_type, $key_skill, $work_experience,  $location, $industry, $role, $education_qualification, $company_type_id, $posted_by, $vacancy, $work_mode, $department;
 
-    public $salary_hide_status, $annual_salary, $locality, $functional_area,  $reference_code, $job_edit_id, $status,$getkeyskills;
+    public $salary_hide_status, $annual_salary, $locality, $functional_area,  $reference_code, $job_edit_id, $status, $getkeyskills;
 
     public function mount($id)
     {
@@ -142,6 +142,6 @@ class JobEdit extends Component
     {
         JobKeyskill::find($this->key_skill)->delete();
         session()->flash('message', 'Key skill deleted sucessfully');
-        return redirect()->to('/recruiter/job/' . $this->job_edit_id . '/edit');
+        return redirect()->to('/admin/job/' . $this->job_edit_id . '/edit');
     }
 }

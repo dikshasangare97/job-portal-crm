@@ -49,6 +49,25 @@ class RoleCategoryIndex extends Component
         $this->openModal();
     }
 
+    public function getRoleId($id)
+    {
+        $this->roleCategoryId = $id;
+        $role = Role::findOrFail($this->roleCategoryId );
+        $this->role_name = $role->role_name;
+        $this->description = $role->description;
+        $this->status = $role->status;
+    }
+
+    public function show($id)
+    {
+        $role = Role::findOrFail($id);
+        $this->roleCategoryId = $id;
+        $this->role_name = $role->role_name;
+        $this->description = $role->description;
+        $this->status = $role->status;
+        $this->openModal();
+    }
+
     public function update()
     {
         if ($this->roleCategoryId) {

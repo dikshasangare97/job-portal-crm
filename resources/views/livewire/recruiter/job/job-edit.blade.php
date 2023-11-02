@@ -10,6 +10,26 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        #autocomplete-results {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        #autocomplete-results::-webkit-scrollbar {
+            width: 4px;
+            cursor: pointer;
+        }
+
+        #autocomplete-results::-webkit-scrollbar-track {
+            background-color: rgba(229, 231, 235, var(--bg-opacity));
+            cursor: pointer;
+        }
+
+        #autocomplete-results::-webkit-scrollbar-thumb {
+            cursor: pointer;
+            background-color: #cbd5e1;
+        }
     </style>
     <div class="flex">
         <div class="bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full">
@@ -88,7 +108,7 @@
                                 <div class="w-1/3">
                                     <input type="text" id="key_skill" class="text-sm sm:text-base placeholder-gray-500 mt-2 pl-3 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Search key skills" autocomplete="off">
                                     <div id="autocomplete-results" class="mt-2 overflow-y-auto max-h-40"></div>
-                                    <input type="text" id="selected-ids" wire:model="key_skill" value="{{ $key_skill }}">
+                                    <input type="hidden" id="selected-ids" wire:model="key_skill" value="{{ $key_skill }}">
                                 </div>
                             </div>
                             <div class="text-xs text-red-600 font-semibold pt-1">@error('key_skill') {{ $message }} @enderror</div>
