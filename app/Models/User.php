@@ -52,4 +52,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function userPersonalDetail()
+    {
+        return $this->hasMany(UserPersonalDetail::class);
+    }
+
+    public function userKeySkill()
+    {
+        return $this->hasMany(UserKeySkill::class);
+    }
+
 }

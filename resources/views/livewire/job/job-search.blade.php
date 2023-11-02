@@ -32,7 +32,7 @@
                         <ul class="text-gray-500 text-sm">
                             @foreach($workmodes as $workmode)
                             <li class="py-1">
-                                <input type="checkbox" x-on:click="scrollToContent()" wire:model="selectedWorkmodes" wire:click="toggleWorkmode({{ $workmode->id }})" value="{{ $workmode->work_mode_name }}" id="workmode_{{ $workmode->id }}" >
+                                <input type="checkbox" x-on:click="scrollToContent()" wire:model="selectedWorkmodes" wire:click="toggleWorkmode({{ $workmode->id }})" value="{{ $workmode->work_mode_name }}" id="workmode_{{ $workmode->id }}">
                                 <label class="ml-2" for="workmode_{{ $workmode->id }}">{{$workmode->work_mode_name}}</label>
                             </li>
                             @endforeach
@@ -348,30 +348,35 @@
                                 <p class="text-sm mt-1"> {{$getPostedjob->education->education_name}} </p>
                             </div>
 
+                            @if($getPostedjob->job_highlight)
                             <div class="flex mt-3 text-gray-700">
                                 <svg class="w-6 h-6 mr-1 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                                 </svg>
                                 <p class="text-sm">
-                                    {{$getPostedjob->job_description}}
+                                    {{$getPostedjob->job_highlight}}
                                 </p>
                             </div>
+                            @endif
                             <p class="mt-1 text-gray-700 text-sm">
-                                {{$getPostedjob->key_skill}}
+                                @foreach ($job_key_skills as $job_key)
+                                @if($job_key->job_id == $getPostedjob->id)
+                                <div class="inline-flex max-w-96 mt-1">
+                                    <span class="text-xs inline-flex rounded-full border border-gray-500 px-3 py-2 text-gray-600">
+                                        {{ $job_key->keyskill->key_skill_name }}
+                                    </span>
+                                </div>
+                                @endif
+                                @endforeach
                             </p>
                             <p class="mt-3 text-gray-500 text-xs">
                                 @php
                                 $date = Carbon\Carbon::parse($getPostedjob->created_at);
                                 $now = Carbon\Carbon::now();
-                                $diff = $date->diffInDays($now);
+                                $diff = $date->diffForHumans($now);
                                 @endphp
 
-                                @if($diff >= 30)
-                                30+
-                                @else
                                 {{$diff}}
-                                @endif
-                                Days Ago
                             </p>
 
                         </a>

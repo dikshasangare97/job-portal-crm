@@ -22,15 +22,10 @@
                                 @php
                                 $date = Carbon\Carbon::parse($job->created_at);
                                 $now = Carbon\Carbon::now();
-                                $diff = $date->diffInDays($now);
+                                $diff = $date->diffForHumans($now);
                                 @endphp
 
-                                @if($diff >= 30)
-                                30+
-                                @else
                                 {{$diff}}
-                                @endif
-                                Days Ago
                             </p>
                             <!-- <span class="bg-green-500 rounded-full uppercase text-white text-xs px-2 py-1 font-normal shadow-xl"> {{$job->workMode->work_mode_name}} </span> -->
                         </div>
@@ -52,37 +47,45 @@
                                 <span>{{$job->work_experience}} Yrs</span>
                             </div>
                         </div>
-                        <div>
-                            @auth
-                            @if(auth()->user()->register_for == 'user')
-                            <div class="mt-5">
-                                @php
-                                $jobId = $job->id;
-                                @endphp
 
-                                @php
-                                $alreadyApplied = false;
-                                @endphp
-
-                                @foreach($job_applies as $job_apply)
-                                @if($job_apply->job_id == $jobId)
-                                <p class="text-green-600 font-bold">Applied</p>
-                                @php
-                                $alreadyApplied = true;
-                                @endphp
-                                @break
-                                @endif
-                                @endforeach
-
-                                @if (!$alreadyApplied)
-                                <livewire:job.job-apply :jobId="$jobId" />
-                                @endif
-                            </div>
-                            @endif
-                            @endauth
-                        </div>
                     </div>
                 </a>
+                <div>
+                    @auth
+                    @if(auth()->user()->register_for == 'user')
+                    @if($userPersonalDetail)
+                    <div class="mt-5">
+                        @php
+                        $jobId = $job->id;
+                        @endphp
+
+                        @php
+                        $alreadyApplied = false;
+                        @endphp
+
+                        @foreach($job_applies as $job_apply)
+                        @if($job_apply->job_id == $jobId)
+                        <p class="text-green-600 font-bold">Applied</p>
+                        @php
+                        $alreadyApplied = true;
+                        @endphp
+                        @break
+                        @endif
+                        @endforeach
+
+                        @if (!$alreadyApplied)
+                        <livewire:job.job-apply :jobId="$jobId" />
+                        @endif
+                    </div>
+                    @else
+                    <div class="my-2">
+                        <a href="/user/profile" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2.5 px-4 border border-blue-500 hover:border-transparent rounded">Apply</a>
+                    </div>
+                    @endif
+                    @endif
+                    @endauth
+
+                </div>
             </div>
             @endforeach
         </div>

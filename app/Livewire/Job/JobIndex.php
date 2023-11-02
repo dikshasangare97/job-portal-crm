@@ -3,6 +3,7 @@
 namespace App\Livewire\Job;
 
 use App\Models\JobApply;
+use App\Models\JobKeyskill;
 use App\Models\PostJob;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -22,7 +23,8 @@ class JobIndex extends Component
         return view('livewire.job.job-index', [
             'jobs' =>  PostJob::with('location', 'industry', 'role', 'education', 'companyType')
                 ->orderBy('id', 'DESC')->paginate(15),
-            'job_applies' => $jobApplies
+            'job_applies' => $jobApplies,
+            'job_key_skills' => JobKeyskill::get(),
         ]);
     }
 }

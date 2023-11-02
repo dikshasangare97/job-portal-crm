@@ -7,7 +7,9 @@ use App\Models\Departments;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Industry;
+use App\Models\JobKeyskill;
 use App\Models\JobPostedBy;
+use App\Models\KeySkill;
 use App\Models\Location;
 use App\Models\PostJob;
 use App\Models\Role;
@@ -53,12 +55,12 @@ class JobPosting extends Component
     public function store()
     {
         $this->validate();
-        PostJob::create([
+      $postJob =  PostJob::create([
             'user_id' => Auth::user()->id,
             'job_headline' => $this->job_headline,
             'employment_type' => $this->employment_type,
             'job_description' => $this->job_description,
-            'key_skill' => $this->key_skill,
+            // 'key_skill' => $this->key_skill,
             'work_experience' => $this->work_experience,
             'annual_salary' => $this->annual_salary ?? 0,
             'salary_hide_status' => $this->salary_hide_status,
@@ -79,10 +81,21 @@ class JobPosting extends Component
             'status' => 1,
             'job_highlights' => $this->job_highlights,
         ]);
+
+        if($this->key_skill){
+            $selectedKeySkillIds = explode(',', $this->key_skill);
+            foreach ($selectedKeySkillIds as $value) {
+                JobKeyskill::create([
+                    'job_id' => $postJob->id,
+                    'key_skill_id' => $value,
+                ]);
+            }
+        }
         session()->flash('message', 'Job created sucessfully');
         $this->resetInputFields();
         return redirect()->to('/recruiter/jobs');
     }
+
     public function render()
     {
         return view('livewire.recruiter.job.job-posting', [
@@ -95,6 +108,7 @@ class JobPosting extends Component
             'work_modes' => Workmode::where('status', 1)->get(),
             'departments' => Departments::where('status', 1)->get(),
             'experiences' => Experience::where('status', 1)->get(),
+            'key_skills' => KeySkill::where('status', 1)->get(),
         ]);
     }
 

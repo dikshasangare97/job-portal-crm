@@ -88,21 +88,24 @@
                         </div>
                         @endif
                         <p class="mt-1 text-gray-700 text-sm">
-                            {{$job->key_skill}}
+                            @foreach ($job_key_skills as $job_key)
+                            @if($job_key->job_id == $job->id)
+                        <div class="inline-flex max-w-96 mt-1">
+                            <span class="text-xs inline-flex rounded-full border border-gray-500 px-3 py-2 text-gray-600">
+                                {{ $job_key->keyskill->key_skill_name }}
+                            </span>
+                        </div>
+                        @endif
+                        @endforeach
                         </p>
                         <p class="mt-3 text-gray-500 text-xs">
                             @php
                             $date = Carbon\Carbon::parse($job->created_at);
                             $now = Carbon\Carbon::now();
-                            $diff = $date->diffInDays($now);
+                            $diff = $date->diffForHumans($now);
                             @endphp
 
-                            @if($diff >= 30)
-                            30+
-                            @else
                             {{$diff}}
-                            @endif
-                            Days Ago
                         </p>
                     </div>
                 </div>

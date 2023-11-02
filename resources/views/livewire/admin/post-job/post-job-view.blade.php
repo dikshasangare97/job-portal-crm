@@ -90,15 +90,10 @@
                                 @php
                                 $date = Carbon\Carbon::parse($job->created_at);
                                 $now = Carbon\Carbon::now();
-                                $diff = $date->diffInDays($now);
+                                $diff = $date->diffForHumans($now);
                                 @endphp
 
-                                @if($diff >= 30)
-                                30+
-                                @else
                                 {{$diff}}
-                                @endif
-                                Days Ago
                             </div>
                         </div>
                     </div>

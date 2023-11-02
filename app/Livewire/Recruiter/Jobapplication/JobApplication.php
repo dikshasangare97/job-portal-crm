@@ -4,6 +4,7 @@ namespace App\Livewire\Recruiter\Jobapplication;
 
 use App\Models\ApplicationStatusLog;
 use App\Models\JobApply;
+use App\Models\JobKeyskill;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,9 +22,11 @@ class JobApplication extends Component
 
     public function render()
     {
-        $jobApplications = JobApply::with('user', 'job', 'applicationStatus')->where([['recruiter_id', Auth::user()->id], ['job_id', $this->jobAppId]])->orderBy('id', 'DESC')->paginate(10);
+        $jobApplications = JobApply::with('user', 'job', 'applicationStatus','user.userKeySkill','user.userPersonalDetail')->where([['recruiter_id', Auth::user()->id], ['job_id', $this->jobAppId]])->orderBy('id', 'DESC')->paginate(10);
+        $jobkeyskills = JobKeyskill::where('job_id', $this->jobAppId)->get();
         return view('livewire.recruiter.jobapplication.job-application', [
             'jobapplications' =>  $jobApplications,
+            'jobkeyskills' =>  $jobkeyskills,
         ]);
     }
 

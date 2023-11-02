@@ -8,6 +8,7 @@ use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Industry;
 use App\Models\JobFreshness;
+use App\Models\JobKeyskill;
 use App\Models\JobPostedBy;
 use App\Models\Location;
 use App\Models\PostJob;
@@ -95,7 +96,7 @@ class JobSearch extends Component
             $date = Carbon::now()->subDays($freshnessIds);
             $query->where('created_at', '>=', $date);
         })->orderBy('id', 'DESC')->paginate(15);
-        return view('livewire.job.job-search', ['getPostedjobs' =>  $getPostedjobs, 'getJobs' =>  $this->records, 'educations' => Education::get(), 'locations' => Location::get(), 'company_types' => CompanyType::get(), 'role_categories' => Role::get(), 'industries' => Industry::get(), 'posted_bies' => JobPostedBy::get(), 'workmodes' => Workmode::get(), 'departments' => Departments::get(), 'experiences' => Experience::get(), 'salaries' => Salary::get(), 'freshnesses' => JobFreshness::get()]);
+        return view('livewire.job.job-search', ['getPostedjobs' =>  $getPostedjobs, 'getJobs' =>  $this->records, 'educations' => Education::get(), 'locations' => Location::get(), 'company_types' => CompanyType::get(), 'role_categories' => Role::get(), 'industries' => Industry::get(), 'posted_bies' => JobPostedBy::get(), 'workmodes' => Workmode::get(), 'departments' => Departments::get(), 'experiences' => Experience::get(), 'salaries' => Salary::get(), 'freshnesses' => JobFreshness::get(),'job_key_skills' => JobKeyskill::get()]);
     }
 
     public function toggleEducation($educationId)
