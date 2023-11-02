@@ -1,6 +1,7 @@
 <div>
     <div class="relative flex items-center justify-center">
         <label for="profileimage" class="cursor-pointer">
+        {{ Storage::url('profileimage/' . $profile) }}
             @if(Auth::user()->profile_img)
             <img class="w-40 h-40 p-1 rounded-full ring-4 ring-blue-400" src="{{ Storage::url('profileimage/' . $profile) }}" alt="{{ Auth::user()->profile_img }}" />
             <div class="absolute bottom-0 @if(auth()->user()->is_user == 0) left-9 md:left-[108px] lg:left-[108px]  @else left-4 md:left-0 lg:left-0  @endif right-0 top-0 w-40 h-40 sm:w-40 sm:h-40 md:w-40 md:h-40 lg:w-40 lg:h-40 xl:w-40 xl:h-40 rounded-full overflow-hidden bg-black bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-50 flex items-center justify-center flex-col">
